@@ -5,7 +5,7 @@ info:
   description: Polls is a simple API allowing consumers to view polls and vote in them.
   license:
     name: MIT
-    url: https://github.com/apiaryio/polls-api/blob/master/LICENSE
+    url: https://git.heroku.com/app-progettose2-return-tosleep.git
 host: polls.apiblueprint.org
 basePath: /
 schemes:
