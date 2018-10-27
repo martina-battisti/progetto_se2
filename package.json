@@ -1,7 +1,7 @@
 {
   "name": "progetto_se2",
   "version": "1.0.0",
-  "description": "",
+  "description": "my commit Damiano Zoanetti",
   "main": "index.js",
   "scripts": {
     "start": "node api.js",
@@ -21,5 +21,6 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "node-fetch": "^2.2.0"
-  }
+  },
+  "devDependencies": {}
 }
