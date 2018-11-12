@@ -5,8 +5,8 @@ info:
   description: Api for a exam and task system.
   license:
     name: 
-    url: 
-host: ""
+    url: https://app-progettose2-return-tosleep.herokuapp.com/
+host: polls.apiblueprint.org
 basePath: /
 schemes:
 - https
