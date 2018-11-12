@@ -6,7 +6,7 @@ info:
   license:
     name: 
     url: 
-host:  
+host: ""
 basePath: /
 schemes:
 - https
