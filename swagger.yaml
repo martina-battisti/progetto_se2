@@ -68,3 +68,67 @@ paths:
       responses:
         default:
           description: "successful operation"
+  /task:
+    post:
+      description: Consente di creare una nuova task
+      summary: Crea una nuova task
+      responses:
+        201:
+          description: 'successful operation'
+    put:
+      description: Consente di modificare una task esistente
+      summary: Modifica una task
+      responses:
+        400:
+          description: 'Invalid ID supplied'
+        404:
+          description: 'Task not found'
+        405:
+          description: 'Validation exception'  
+  /task/{taskid}:
+    delete:
+      description: Elimina una task
+      summary: Elimina una task
+      responses:
+        400:
+          description: 'Invalid ID supplied'
+        404:
+          description: 'Task not found'
+  /task/{taskid}/answer:
+    post:
+      description: L'utente carica la propria risposta alla task
+      summary: Carica la risposta della task
+      responses:
+        200:
+          description: 'Successful operation' 
+  /task/findByTags:
+    get:
+      description: Ricerca le task in base ai tag (attributi). Serve per creare degli esami partendo da un pool di tasks.
+      summary: Ricerca le task in base ai tag (attributi).
+      responses:
+        200:
+          description: 'Successful operation'
+        400:
+          description: 'Invalid tag value'
+  /task/{taskid}/evaluate:
+    post:
+      description: Consente di caricare la valutazione della task (voto + commento)
+      summary: Carica la valutazione della task
+      responses:
+        200:
+          description: 'Successful operation'
+        400:
+          description: 'Invalid value'
+        404:
+          description: 'Task not found'
+  /task/{taskid}:
+    get:
+      description: Ritorna una task
+      summary: Trova una task tramite id
+      responses:
+        200:
+          description: 'Successful operation'
+        400:
+          description: 'Invalid ID supplied'
+        404:
+          description: 'Task not found'
