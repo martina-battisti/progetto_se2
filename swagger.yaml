@@ -4,7 +4,7 @@ info:
   title: "SE2 group project - return to_sleep"
   description: Api for a exam and task system.
   license:
-    name: 
+    name: MIT
     url: https://app-progettose2-return-tosleep.herokuapp.com/
 host: polls.apiblueprint.org
 basePath: /
