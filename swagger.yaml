@@ -162,9 +162,9 @@ paths:
     post:
       description: Crea un esame con una data lista di task
       summary: Crea un esame con una data lista di task
-    responses:
-      200: 
-        description: 'succesful operation'
+      responses:
+        200: 
+          description: 'succesful operation'
         
       
       
