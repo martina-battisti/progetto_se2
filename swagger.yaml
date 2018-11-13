@@ -66,7 +66,7 @@ paths:
       summary: "Logs out current logged in user session"
       description: ""
       responses:
-        default:
+        200:
           description: "successful operation"
   /task:
     post:
