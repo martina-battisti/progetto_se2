@@ -16,7 +16,6 @@ produces:
 - application/json
 paths:
   /user:
-    x-summary: User Entity
     post:
       description: Crea un nuovo utente
       summary: Crea un nuovo utente
