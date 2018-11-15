@@ -6,7 +6,7 @@ info:
   license:
     name: MIT
     url: https://app-progettose2-return-tosleep.herokuapp.com/
-host: polls.apiblueprint.org
+host: se2project.api
 basePath: /
 schemes:
 - https
