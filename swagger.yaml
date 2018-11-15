@@ -6,7 +6,7 @@ info:
   license:
     name: MIT
     url: https://app-progettose2-return-tosleep.herokuapp.com/
-host: se2project.api
+host: polls.apiblueprint.org
 basePath: /
 schemes:
 - https
@@ -16,6 +16,7 @@ produces:
 - application/json
 paths:
   /user:
+    x-summary: User Entity
     post:
       description: Crea un nuovo utente
       summary: Crea un nuovo utente
@@ -194,3 +195,12 @@ paths:
       responses:
         200: 
           description: 'succesful operation'
+          
+          
+  /group/createWithUserIdList:
+    post:
+      description: Consente di creare un nuovo gruppo data una lista di utenti 
+      summary: Crea un un nuovo gruppo
+      responses:
+        201:
+          description: 'successful operation'
