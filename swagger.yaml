@@ -75,16 +75,7 @@ paths:
       responses:
         201:
           description: 'successful operation'
-    put:
-      description: Consente di modificare una task esistente
-      summary: Modifica una task
-      responses:
-        400:
-          description: 'Invalid ID supplied'
-        404:
-          description: 'Task not found'
-        405:
-          description: 'Validation exception'  
+     
   /task/{taskid}:
     get:
       description: Ritorna una task
@@ -102,6 +93,22 @@ paths:
           description: 'Invalid ID supplied'
         404:
           description: 'Task not found'
+    put:
+      description: Consente di modificare una task esistente
+      parameters:
+      - name: "taskid"
+        in: "path"
+        description: "The taskid that needs to be deleted"
+        required: true
+        type: "string"
+      summary: Modifica una task
+      responses:
+        400:
+          description: 'Invalid ID supplied'
+        404:
+          description: 'Task not found'
+        405:
+          description: 'Validation exception'
     delete:
       description: Elimina una task
       parameters:
@@ -188,7 +195,7 @@ paths:
           description: 'Invalid ID supplied'
         404:
           description: 'Exam not found'
-  /exam/createWithList:
+  /exam/createWithTaskList:
     post:
       description: Crea un esame con una data lista di task
       summary: Crea un esame con una data lista di task
