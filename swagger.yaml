@@ -16,7 +16,6 @@ produces:
 - application/json
 paths:
   /user:
-    x-summary: User Entity
     post:
       description: Crea un nuovo utente
       summary: Crea un nuovo utente
@@ -195,7 +194,7 @@ paths:
           description: 'Invalid ID supplied'
         404:
           description: 'Exam not found'
-  /exam/createWithTaskList:
+  /exam/insertTaskWithTaskList:
     post:
       description: Crea un esame con una data lista di task
       summary: Crea un esame con una data lista di task
