@@ -432,6 +432,15 @@ definitions:
       taskid:
         type: integer
         format: int32
+      author: 
+        type: object
+        $ref: '#/definitions/User'
+      created_at_time: {
+          "type": "string",
+          "description": "...",
+          "example": "1995-09-07T10:40:52Z",
+          "format": "date-time"
+        }
       tipologia:
         type: string
         enum:
@@ -441,7 +450,10 @@ definitions:
     required:
       - taskid
       - title
-
+      - author
+      - created_at_time
+      - tipologia
+      
   Radiobox:
     title: Radiobox
     type: object
