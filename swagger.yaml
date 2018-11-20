@@ -28,8 +28,12 @@ paths:
       responses:
         200:
           description: "Successful operation"
-          items:
-            $ref: '#/definitions/User'
+          schema:
+            {
+              "type": "array",
+              "items": {
+              "$ref": "#/definitions/User"}
+            }
   /users/{username}:  
     put:
       summary: "Updated user"
