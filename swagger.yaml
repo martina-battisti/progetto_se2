@@ -1,4 +1,4 @@
-swagger: '2.0'
+﻿swagger: '2.0'
 info:
   version: '1.0'
   title: "SE2 group project - return to_sleep"
@@ -31,7 +31,7 @@ paths:
   /users/{username}:  
     put:
       summary: "Updated user"
-      description: "This can only be done by the logged in user."
+      description: "Modifica le informazioni dell'utente"
       parameters:
       - name: "username"
         in: "path"
@@ -45,7 +45,7 @@ paths:
           description: "User not found"
     delete:
       summary: "Delete user"
-      description: "This can only be done by the logged in user."
+      description: "Elimina l'utente"
       parameters:
       - name: "username"
         in: "path"
@@ -60,7 +60,7 @@ paths:
   /users/{username}/exams:  
     get:
       summary: "Recupera esami per un utente"
-      description: "This can only be done by the logged in user."
+      description: ""
       parameters:
       - name: "username"
         in: "path"
@@ -181,7 +181,7 @@ paths:
         404:
           description: 'Exam not found'
     put:
-      description: Consente di modificare un esame esistente
+      description: Consente di modificare un esame esistente aggiungendo gruppi e task
       parameters:
       - name: "examid"
         in: "path"
@@ -211,20 +211,6 @@ paths:
         404:
           description: 'Exam not found'
   /exams/{examid}/tasks:
-    post:
-      description: Inserire tasks in un esame
-      parameters:
-      - name: "examid"
-        in: "path"
-        description: "The examid that needs to get"
-        required: true
-        type: "string"
-      summary: Inserisce task in un esame
-      responses:
-        400:
-          description: 'Invalid ID supplied'
-        404:
-          description: 'Exam not found'
     get:
       description: Ritorna le tasks di un esame
       parameters:
@@ -239,60 +225,20 @@ paths:
           description: 'Invalid ID supplied'
         404:
           description: 'Exam not found'
-  /exams/{examid}/tasks/{taskid}:
-    put:
-      description: Svolgere una task in un esame
-      parameters:
-      - name: "examid"
-        in: "path"
-        description: "The examid that needs to get"
-        required: true
-        type: "string"
-      - name: "taskid"
-        in: "path"
-        description: "The taskid that needs to get"
-        required: true
-        type: "string"
-      summary: Permette di svolgere una specifica task in uno specifico esame
-      responses:
-        400:
-          description: 'Invalid ID supplied'
-        404:
-          description: 'Exam not found'
-    get:
-      description: Ritorna una task di un esame
-      parameters:
-      - name: "examid"
-        in: "path"
-        description: "The examid that needs to get"
-        required: true
-        type: "string"
-      - name: "taskid"
-        in: "path"
-        description: "The taskid that needs to get"
-        required: true
-        type: "string"
-      summary: Ritorna una specifica task in uno specifico esame
-      responses:
-        400:
-          description: 'Invalid ID supplied'
-        404:
-          description: 'Exam not found'
-  /exams/{examid}/groups:
+  /exams/{examid}/submit:
     post:
-      description: Assegna un esame a un gruppo
+      description: Invia le risposte di tutti i task di un esame
       parameters:
       - name: "examid"
         in: "path"
         description: "The examid that needs to get"
         required: true
         type: "string"
-      summary: Permette di assegnare un esame a uno o più gruppi
+      summary: Invia answers
       responses:
-        400:
-          description: 'Invalid ID supplied'
-        404:
-          description: 'Exam not found'
+        201:
+          description: 'successful operation'
+  /exams/{examid}/groups:
     get:
       description: Ritorna i gruppi a cui è assegnato l'esame
       parameters:
@@ -368,7 +314,54 @@ paths:
           description: 'Invalid ID supplied'
         404:
           description: 'Group not found'
-
+          
+  /answers:
+    post:
+      description: Consente di creare una nuova risposta
+      summary: Crea una nuova risposta
+      responses:
+        201:
+          description: 'Successful operation'
+    get:
+      description: "Ritorna l'elenco di tutte le risposte"
+      summary: "Trova tutte le risposte"
+      responses:
+        200:
+          description: "Successful operation"
+  /answers/{answerid}:
+    get:
+      description: Ritorna una risposta
+      parameters:
+      - name: "answerid"
+        in: "path"
+        description: "The answerid that needs to get"
+        required: true
+        type: "string"
+      summary: Trova una risposta tramite id
+      responses:
+        200:
+          description: 'Successful operation'
+        400:
+          description: 'Invalid ID supplied'
+        404:
+          description: 'Answer not found'
+    put:
+      description: Consente di modificare una risposta esistente
+      parameters:
+      - name: "answerid"
+        in: "path"
+        description: "The answerid that needs to be updated"
+        required: true
+        type: "string"
+      summary: Modifica una risposta
+      responses:
+        400:
+          description: 'Invalid ID supplied'
+        404:
+          description: 'Answer not found'
+        405:
+          description: 'Validation exception'
+          
 definitions:
   Task:
     title: Task
