@@ -19,6 +19,9 @@ paths:
     post:
       description: Crea un nuovo utente
       summary: Crea un nuovo utente
+      attributes: 
+        schema:
+          $ref: '#/definitions/User'
       responses:
         201:
           description: 'successful operation'
@@ -384,6 +387,7 @@ definitions:
           - $ref: '#/definitions/Checkbox'
     required:
       - taskid
+      - title
 
   Radiobox:
     title: Radiobox
