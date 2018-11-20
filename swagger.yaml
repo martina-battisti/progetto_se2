@@ -228,6 +228,12 @@ paths:
   /exams/{examid}/submit:
     post:
       description: Invia le risposte di tutti i task di un esame
+      parameters:
+      - name: "examid"
+        in: "path"
+        description: "The examid that needs to get"
+        required: true
+        type: "string"
       summary: Invia answers
       responses:
         201:
