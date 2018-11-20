@@ -116,6 +116,12 @@ paths:
       responses:
         200:
           description: "successful operation"
+  schema:
+            {
+              "type": "array",
+              "items": {
+              "$ref": "#/definitions/Users"}
+            } 
           
   /tasks:
     post:
@@ -234,6 +240,10 @@ paths:
         description: "The examid that needs to be updated"
         required: true
         type: "string"
+
+      schema:
+      $ref: "#/definitions/Exams"
+
       summary: Modifica un esame
       responses:
         400:
@@ -362,6 +372,8 @@ paths:
         description: "The groupid that needs to be updated"
         required: true
         type: "string"
+      schema:
+              $ref: "#/definitions/groups"
       summary: Modifica un gruppo
       responses:
         400:
