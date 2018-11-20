@@ -551,6 +551,36 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Group'
+      created_at_time: {
+          "type": "string",
+          "description": "...",
+          "example": "1995-09-07T10:40:52Z",
+          "format": "date-time"
+        }
+      start: {
+          "type": "string",
+          "description": "...",
+          "example": "1995-09-07T10:40:52Z",
+          "format": "date-time"
+        }
+      end: {
+          "type": "string",
+          "description": "...",
+          "example": "1995-09-07T10:40:52Z",
+          "format": "date-time"
+        }
+      exam_time_limit:
+        type: integer
+        format: int32
+    required:
+      - examid
+      - creator
+      - tasks
+      - groups
+      - created_at_time
+      - start
+      - end
+      - exam_time_limit
 
   Answer:
     title: Answer
