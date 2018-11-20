@@ -1,4 +1,4 @@
-﻿swagger: '2.0'
+swagger: '2.0'
 info:
   version: '1.0'
   title: "SE2 group project - return to_sleep"
@@ -28,6 +28,8 @@ paths:
       responses:
         200:
           description: "Successful operation"
+          items:
+            $ref: '#/definitions/User'
   /users/{username}:  
     put:
       summary: "Updated user"
