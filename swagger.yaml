@@ -102,6 +102,12 @@ paths:
       responses:
         200:
           description: "Successful operation"
+          schema:
+            {
+              "type": "array",
+              "items": {
+              "$ref": "#/definitions/Task"}
+            }
   /tasks/{taskid}:
     get:
       description: Ritorna una task
@@ -115,6 +121,8 @@ paths:
       responses:
         200:
           description: 'Successful operation'
+          schema:
+            $ref: '#/definitions/Task'
         400:
           description: 'Invalid ID supplied'
         404:
@@ -163,6 +171,12 @@ paths:
       responses:
         200:
           description: "Successful operation"
+          schema:
+            {
+              "type": "array",
+              "items": {
+              "$ref": "#/definitions/Exam"}
+            }
   /exams/{examid}:
     get:
       description: Ritorna un esame
@@ -176,6 +190,8 @@ paths:
       responses:
         200:
           description: 'Successful operation'
+          schema:
+            $ref: '#/definitions/Exam'
         400:
           description: 'Invalid ID supplied'
         404:
@@ -221,6 +237,14 @@ paths:
         type: "string"
       summary: Ritorna tutte le task inserite in un esame
       responses:
+        200:
+          description: 'Success'
+          schema:
+            {
+              "type": "array",
+              "items": {
+              "$ref": "#/definitions/Task"}
+            }
         400:
           description: 'Invalid ID supplied'
         404:
@@ -249,6 +273,14 @@ paths:
         type: "string"
       summary: Ritorna una lista dei gruppi ai quali è stato assegnato uno specifico esame
       responses:
+        200:
+          description: 'Success'
+          schema:
+            {
+              "type": "array",
+              "items": { 
+              "$ref": "#/definitions/Group"}
+            }
         400:
           description: 'Invalid ID supplied'
         404:
@@ -267,6 +299,12 @@ paths:
       responses:
         200:
           description: "Successful operation"
+          schema:
+            {
+              "type": "array",
+              "items": {
+              "$ref": "#/definitions/Group"}
+            }
   /groups/{groupid}:
     get:
       description: Ritorna un gruppo
@@ -280,6 +318,8 @@ paths:
       responses:
         200:
           description: 'Successful operation'
+          schema:
+            $ref: '#/definitions/Group'
         400:
           description: 'Invalid ID supplied'
         404:
@@ -328,6 +368,12 @@ paths:
       responses:
         200:
           description: "Successful operation"
+          schema:
+            {
+              "type": "array",
+              "items": {
+              "$ref": "#/definitions/Answer"}
+            }
   /answers/{answerid}:
     get:
       description: Ritorna una risposta
@@ -341,6 +387,8 @@ paths:
       responses:
         200:
           description: 'Successful operation'
+          schema:
+            $ref: '#/definitions/Answer'
         400:
           description: 'Invalid ID supplied'
         404:
@@ -486,3 +534,22 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Group'
+
+  Answer:
+    title: Answer
+    type: object
+    properties:
+      answerid:
+        type: integer
+        format: int32
+      taskid:
+        type: integer
+        format: int32
+      user:
+        type: object
+        $ref: '#/definitions/User'
+      risposta:
+        type: string
+      tempo:
+        type: string
+        format: date-time
