@@ -57,6 +57,21 @@ paths:
           description: "Invalid username supplied"
         404:
           description: "User not found"
+  /users/{username}/exams:  
+    get:
+      summary: "Recupera esami per un utente"
+      description: "This can only be done by the logged in user."
+      parameters:
+      - name: "username"
+        in: "path"
+        description: "name that need to be updated"
+        required: true
+        type: "string"
+      responses:
+        400:
+          description: "Invalid user supplied"
+        404:
+          description: "User not found"
   /users/login:
     get:
       summary: "Logs user into the system"
@@ -82,8 +97,8 @@ paths:
         201:
           description: 'successful operation'
     get:
-      description: "Ritorna l'elenco di tutte le task"
-      summary: "Trova tutte le task"
+      description: Ritorna l'elenco di tutte le task
+      summary: Trova tutte le tasks
       responses:
         200:
           description: "Successful operation"
@@ -132,45 +147,6 @@ paths:
       responses:
         400:
           description: 'Invalid ID supplied'
-        404:
-          description: 'Task not found'
-  /tasks/{taskid}/answer:
-    post:
-      description: L'utente carica la propria risposta alla task
-      parameters:
-      - name: "taskid"
-        in: "path"
-        description: "The taskid that needs to get answer"
-        required: true
-        type: "string"
-      summary: Carica la risposta della task
-      responses:
-        200:
-          description: 'Successful operation' 
-  /tasks/findByTags:
-    get:
-      description: Ricerca le task in base ai tag (attributi). Serve per creare degli esami partendo da un pool di tasks.
-      summary: Ricerca le task in base ai tag (attributi).
-      responses:
-        200:
-          description: 'Successful operation'
-        400:
-          description: 'Invalid tag value'
-  /tasks/{taskid}/evaluate:
-    post:
-      description: Consente di caricare la valutazione della task (voto + commento)
-      parameters:
-      - name: "taskid"
-        in: "path"
-        description: "The taskid that needs to post"
-        required: true
-        type: "string"
-      summary: Carica la valutazione della task
-      responses:
-        200:
-          description: 'Successful operation'
-        400:
-          description: 'Invalid value'
         404:
           description: 'Task not found'
   
@@ -234,13 +210,103 @@ paths:
           description: 'Invalid ID supplied'
         404:
           description: 'Exam not found'
-  /exams/insertTaskWithTaskList:
+  /exams/{examid}/tasks:
     post:
-      description: Crea un esame con una data lista di task
-      summary: Crea un esame con una data lista di task
+      description: Inserire tasks in un esame
+      parameters:
+      - name: "examid"
+        in: "path"
+        description: "The examid that needs to get"
+        required: true
+        type: "string"
+      summary: Inserisce task in un esame
       responses:
-        200: 
-          description: 'succesful operation'
+        400:
+          description: 'Invalid ID supplied'
+        404:
+          description: 'Exam not found'
+    get:
+      description: Ritorna le tasks di un esame
+      parameters:
+      - name: "examid"
+        in: "path"
+        description: "The examid that needs to get"
+        required: true
+        type: "string"
+      summary: Ritorna tutte le task inserite in un esame
+      responses:
+        400:
+          description: 'Invalid ID supplied'
+        404:
+          description: 'Exam not found'
+  /exams/{examid}/tasks/{taskid}:
+    put:
+      description: Svolgere una task in un esame
+      parameters:
+      - name: "examid"
+        in: "path"
+        description: "The examid that needs to get"
+        required: true
+        type: "string"
+      - name: "taskid"
+        in: "path"
+        description: "The taskid that needs to get"
+        required: true
+        type: "string"
+      summary: Permette di svolgere una specifica task in uno specifico esame
+      responses:
+        400:
+          description: 'Invalid ID supplied'
+        404:
+          description: 'Exam not found'
+    get:
+      description: Ritorna una task di un esame
+      parameters:
+      - name: "examid"
+        in: "path"
+        description: "The examid that needs to get"
+        required: true
+        type: "string"
+      - name: "taskid"
+        in: "path"
+        description: "The taskid that needs to get"
+        required: true
+        type: "string"
+      summary: Ritorna una specifica task in uno specifico esame
+      responses:
+        400:
+          description: 'Invalid ID supplied'
+        404:
+          description: 'Exam not found'
+  /exams/{examid}/groups:
+    post:
+      description: Assegna un esame a un gruppo
+      parameters:
+      - name: "examid"
+        in: "path"
+        description: "The examid that needs to get"
+        required: true
+        type: "string"
+      summary: Permette di assegnare un esame a uno o più gruppi
+      responses:
+        400:
+          description: 'Invalid ID supplied'
+        404:
+          description: 'Exam not found'
+    get:
+      description: Ritorna i gruppi a cui è assegnato l'esame
+      parameters:
+      - name: "examid"
+        in: "path"
+        description: "The examid that needs to get"
+        required: true
+        type: "string"
+      summary: Ritorna una lista dei gruppi ai quali è stato assegnato uno specifico esame
+      responses:
+        400:
+          description: 'Invalid ID supplied'
+        404:
+          description: 'Exam not found'
           
   /groups:
     post:
@@ -302,10 +368,3 @@ paths:
           description: 'Invalid ID supplied'
         404:
           description: 'Group not found'
-  /groups/createWithUserIdList:
-    post:
-      description: Consente di creare un nuovo gruppo data una lista di utenti 
-      summary: Crea un un nuovo gruppo
-      responses:
-        201:
-          description: 'successful operation'
