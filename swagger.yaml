@@ -368,3 +368,129 @@ paths:
           description: 'Invalid ID supplied'
         404:
           description: 'Group not found'
+
+definitions:
+  Task:
+    title: Task
+    type: object
+    properties:
+      taskid:
+        type: integer
+        format: int32
+      tipologia:
+        type: string
+        enum: [Aperta, Radiobox, Checkbox]
+        oneOf:
+          - $ref: '#/definitions/Aperta'
+          - $ref: '#/definitions/Radiobox'
+          - $ref: '#/definitions/Checkbox'
+    required:
+      - taskid
+
+  Radiobox:
+    title: Radiobox
+    type: object
+    properties:
+      domanda: 
+        type: string
+      options:
+        type: array
+        items: 
+          $ref: '#/definitions/Choice'
+      risposta: 
+        type: string
+    required:
+      - domanda
+      - choices
+
+  Checkbox:
+    title: Checkbox
+    type: object
+    properties:
+      domanda: 
+        type: string
+      options: 
+        type: array
+        items:
+          $ref: '#/definitions/Choice'
+      risposta: 
+        type: array
+        items:
+          type: string
+    required:
+      - domanda
+      - choices
+
+  Choice:
+    title: Choice
+    type: object
+    properties:
+      choice: 
+        type: string
+      selection: 
+        type: boolean
+    required:
+     - choice
+
+  Aperta:
+    title: Aperta
+    type: object
+    properties:
+      domanda: 
+        type: string
+      riposta: 
+        type: string
+    required: 
+      - domanda
+
+  User:
+    title: User
+    type: object
+    properties:
+      username: 
+        type: string
+      nome: 
+        type: string
+      cognome: 
+        type: string
+      email: 
+        type: string
+      matricola:
+        type: integer
+        format: int32
+    required:
+      - username
+      - matricola
+
+  Group:
+    title: Group
+    type: object
+    properties:
+      groupid: 
+        type: integer
+        format: int32
+      componenti: 
+        type: array
+        items:
+          $ref: '#/definitions/User'
+    required:
+      - groupid
+
+  Exam:
+    title: Exam
+    type: object
+    properties:
+      examid:
+        type: integer
+        format: int32
+      creator:
+        type: object
+        $ref: '#/definitions/User'
+      tasks: 
+        type: array
+        items:
+          $ref: '#/definitions/Task'
+      groups: 
+        type: array
+        items:
+          $ref: '#/definitions/Group'
