@@ -372,8 +372,7 @@ definitions:
         format: int32
       tipologia:
         type: string
-        enum: [Aperta, Radiobox, Checkbox]
-        oneOf:
+        enum:
           - $ref: '#/definitions/Aperta'
           - $ref: '#/definitions/Radiobox'
           - $ref: '#/definitions/Checkbox'
