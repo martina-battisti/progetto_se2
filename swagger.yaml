@@ -40,7 +40,7 @@ paths:
             {
               "type": "array",
               "items": {
-              "$ref": "#/definitions/User"}
+              "$ref": "#/definitions/users/login"}
             }
   /users/{username}:  
     put:
@@ -52,6 +52,8 @@ paths:
         description: "name that need to be updated"
         required: true
         type: "string"
+        schema:
+              $ref: "#/definitions/users"
       responses:
         400:
           description: "Invalid user supplied"
@@ -86,6 +88,12 @@ paths:
           description: "Invalid user supplied"
         404:
           description: "User not found"
+        schema:
+            {
+              "type": "array",
+              "items": {
+              "$ref": "#/definitions/exams"}
+            }  
   /users/login:
     get:
       summary: "Logs user into the system"
@@ -95,6 +103,12 @@ paths:
           description: "successful operation"
         400:
           description: "Invalid username/password supplied"
+  schema:
+            {
+              "type": "array",
+              "items": {
+              "$ref": "#/definitions/users/login"}
+            }
   /users/logout:
     get:
       summary: "Logs out current logged in user session"
@@ -149,6 +163,8 @@ paths:
         description: "The taskid that needs to be updated"
         required: true
         type: "string"
+        schema:
+              $ref: "#/definitions/Task"
       summary: Modifica una task
       responses:
         400:
@@ -407,6 +423,8 @@ paths:
           description: 'Invalid ID supplied'
         404:
           description: 'Answer not found'
+    
+
     put:
       description: Consente di modificare una risposta esistente
       parameters:
@@ -415,6 +433,8 @@ paths:
         description: "The answerid that needs to be updated"
         required: true
         type: "string"
+        schema:
+              $ref: "#/definitions/answers"
       summary: Modifica una risposta
       responses:
         400:
@@ -432,15 +452,6 @@ definitions:
       taskid:
         type: integer
         format: int32
-      author: 
-        type: object
-        $ref: '#/definitions/User'
-      created_at_time: {
-          "type": "string",
-          "description": "...",
-          "example": "1995-09-07T10:40:52Z",
-          "format": "date-time"
-        }
       tipologia:
         type: string
         enum:
@@ -450,10 +461,7 @@ definitions:
     required:
       - taskid
       - title
-      - author
-      - created_at_time
-      - tipologia
-      
+
   Radiobox:
     title: Radiobox
     type: object
@@ -563,36 +571,6 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Group'
-      created_at_time: {
-          "type": "string",
-          "description": "...",
-          "example": "1995-09-07T10:40:52Z",
-          "format": "date-time"
-        }
-      start: {
-          "type": "string",
-          "description": "...",
-          "example": "1995-09-07T10:40:52Z",
-          "format": "date-time"
-        }
-      end: {
-          "type": "string",
-          "description": "...",
-          "example": "1995-09-07T10:40:52Z",
-          "format": "date-time"
-        }
-      exam_time_limit:
-        type: integer
-        format: int32
-    required:
-      - examid
-      - creator
-      - tasks
-      - groups
-      - created_at_time
-      - start
-      - end
-      - exam_time_limit
 
   Answer:
     title: Answer
