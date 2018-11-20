@@ -40,7 +40,7 @@ paths:
             {
               "type": "array",
               "items": {
-              "$ref": "#/definitions/users/login"}
+              "$ref": "#/definitions/User"}
             }
   /users/{username}:  
     put:
@@ -52,13 +52,15 @@ paths:
         description: "name that need to be updated"
         required: true
         type: "string"
-        schema:
-              $ref: "#/definitions/users"
       responses:
         400:
           description: "Invalid user supplied"
         404:
           description: "User not found"
+        200:
+          description: "Successful operation"
+          schema:
+              $ref: "#/definitions/User"
     delete:
       summary: "Delete user"
       description: "Elimina l'utente"
@@ -171,7 +173,7 @@ paths:
         required: true
         type: "string"
         schema:
-              $ref: "#/definitions/Task"
+              $ref: '#/definitions/Task'
       summary: Modifica una task
       responses:
         400:
@@ -241,10 +243,6 @@ paths:
         description: "The examid that needs to be updated"
         required: true
         type: "string"
-
-      schema:
-      $ref: "#/definitions/Exams"
-
       summary: Modifica un esame
       responses:
         400:
@@ -253,6 +251,10 @@ paths:
           description: 'Exam not found'
         405:
           description: 'Validation exception'
+        200:
+          description: 'Successful operation'
+          schema:
+            $ref: "#/definitions/Exam"
     delete:
       description: Elimina un esame
       parameters:
@@ -373,8 +375,6 @@ paths:
         description: "The groupid that needs to be updated"
         required: true
         type: "string"
-      schema:
-              $ref: "#/definitions/groups"
       summary: Modifica un gruppo
       responses:
         400:
@@ -383,6 +383,10 @@ paths:
           description: 'Group not found'
         405:
           description: 'Validation exception'
+        200:
+          description: 'Successful operation'
+          schema:
+            $ref: '#/definitions/Group'
     delete:
       description: Elimina un esame
       parameters:
@@ -446,8 +450,6 @@ paths:
         description: "The answerid that needs to be updated"
         required: true
         type: "string"
-        schema:
-              $ref: "#/definitions/answers"
       summary: Modifica una risposta
       responses:
         400:
@@ -456,6 +458,10 @@ paths:
           description: 'Answer not found'
         405:
           description: 'Validation exception'
+        200:
+          description: 'Successful operation'
+          schema:
+            $ref: '#/definitions/Answer'
           
 definitions:
   Task:
