@@ -19,9 +19,14 @@ paths:
     post:
       description: Crea un nuovo utente
       summary: Crea un nuovo utente
-      attributes: 
-        schema:
-          $ref: '#/definitions/User'
+      parameters: 
+         -  in: "body"
+            name: "body"
+            description: "Creazione di nuovo utente"
+            required: true
+            schema:
+              $ref: "#/definitions/User"
+        
       responses:
         201:
           description: 'successful operation'
@@ -463,6 +468,8 @@ definitions:
     required:
       - username
       - matricola
+      - nome
+      - cognome
 
   Group:
     title: Group
