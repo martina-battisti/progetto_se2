@@ -1,4 +1,4 @@
-﻿swagger: '2.0'
+swagger: '2.0'
 info:
   version: '1.0'
   title: "SE2 group project - return to_sleep"
@@ -19,6 +19,14 @@ paths:
     post:
       description: Crea un nuovo utente
       summary: Crea un nuovo utente
+      parameters: 
+         -  in: "body"
+            name: "body"
+            description: "Creazione di nuovo utente"
+            required: true
+            schema:
+              $ref: "#/definitions/User"
+        
       responses:
         201:
           description: 'successful operation'
@@ -28,6 +36,12 @@ paths:
       responses:
         200:
           description: "Successful operation"
+          schema:
+            {
+              "type": "array",
+              "items": {
+              "$ref": "#/definitions/User"}
+            }
   /users/{username}:  
     put:
       summary: "Updated user"
@@ -426,6 +440,7 @@ definitions:
           - $ref: '#/definitions/Checkbox'
     required:
       - taskid
+      - title
 
   Radiobox:
     title: Radiobox
@@ -501,6 +516,8 @@ definitions:
     required:
       - username
       - matricola
+      - nome
+      - cognome
 
   Group:
     title: Group
