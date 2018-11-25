@@ -1,15 +1,15 @@
 {
   "name": "progetto_se2",
   "version": "1.0.0",
-  "description": "my commit Damiano Zoanetti",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node api.js",
     "test": "jest"
   },
   "jest": {
-	"verbose":true,
-	"collectCoverage":true
+    "verbose": true,
+    "collectCoverage": true
   },
   "repository": {
     "type": "git",
