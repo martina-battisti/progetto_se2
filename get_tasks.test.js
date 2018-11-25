@@ -1,5 +1,5 @@
-const fn = require('./get_tasks').fn
+const f1 = require('./get_tasks').f1
 
 test('task 0 corrisponde', () => {
-	expect(fn('a')).toBe('a');
+	expect(f1('a')).toBe('a');
 });
