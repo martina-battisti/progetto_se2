@@ -136,6 +136,13 @@ paths:
     post:
       description: Consente di creare una nuova task
       summary: Crea una nuova task
+      parameters: 
+         -  in: "body"
+            name: "body"
+            description: "Creazione di nuovo task"
+            required: true
+            schema:
+              $ref: "#/definitions/Task"
       responses:
         201:
           description: 'successful operation'
@@ -211,6 +218,13 @@ paths:
     post:
       description: Consente di creare un nuovo esame
       summary: Crea un un nuovo esame
+      parameters: 
+         -  in: "body"
+            name: "body"
+            description: "Creazione di nuovo esame"
+            required: true
+            schema:
+              $ref: "#/definitions/Exam"
       responses:
         201:
           description: 'successful operation'
@@ -349,6 +363,13 @@ paths:
     post:
       description: Consente di creare un nuovo gruppo
       summary: Crea un un nuovo gruppo
+      parameters: 
+         -  in: "body"
+            name: "body"
+            description: "Creazione di nuovo gruppo"
+            required: true
+            schema:
+              $ref: "#/definitions/Group"
       responses:
         201:
           description: 'Successful operation'
@@ -428,6 +449,13 @@ paths:
     post:
       description: Consente di creare una nuova risposta
       summary: Crea una nuova risposta
+      parameters: 
+         -  in: "body"
+            name: "body"
+            description: "Creazione di nuovo risposta"
+            required: true
+            schema:
+              $ref: "#/definitions/Answer"
       responses:
         201:
           description: 'Successful operation'
