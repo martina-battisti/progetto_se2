@@ -12,5 +12,10 @@ test('works with GET /tasks', () => {
     return fetch(url)
         .then(r => expect(r.status).toEqual(200))
 });
+test('works with GET /groups', () => {
+	expect.assertions(1);
+    return fetch(url)
+        .then(r => expect(r.status).toEqual(200))
+});
 
 afterAll(() => setTimeout(() => process.exit(), 1000));

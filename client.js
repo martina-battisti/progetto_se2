@@ -1,7 +1,7 @@
 var https = require('http');
 const fetch = require("node-fetch");
 
-var url = "http://localhost:3000/tasks";
+var url = "http://localhost:3000/";
 
 /*
 https.get(url, function(resp) {
