@@ -1,7 +1,9 @@
 var https = require('http');
 const fetch = require("node-fetch");
 
-var url = "http://localhost:3000/tasks";
+var url = "http://localhost:3000/";
+var urlTask = "http://localhost:3000/tasks";
+var urlUser = "http://localhost:3000/users";
 
 /*
 https.get(url, function(resp) {
@@ -60,8 +62,10 @@ async function get(url) {
 };
 
 async function get_post (url) {
-	await get(url);
-	await postBody(url,{name: 'prova2'});
+	await get(url+"tasks");
+	await postBody(url+"tasks",{name: 'prova2'});
+	await get(url+"users");
+	await postBody(url+"users",{username: 'utente_prova2'});
 };
 
 
