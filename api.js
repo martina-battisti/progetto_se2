@@ -6,6 +6,8 @@ const get_groups = require('./get_groups').get_groups
 const post_groups = require('./get_groups').post_groups
 const get_users = require('./users').users_get
 const post_users = require('./users').users_post
+const get_answers = require('./users').answers_get
+const post_answers = require('./users').answers_post
 const app = express()
 const PORT = process.env.PORT || 3001
 app.use( bodyParser.json() )
