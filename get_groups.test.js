@@ -6,5 +6,5 @@ test('get group corrisponde', () => {
 });
 
 test('post group corrisponde', () => {
-	expect(f2group('prova')).toEqual({ id: 'prova', name: 'prova' });
+	expect(f2groups('prova')).toEqual({ id: 'prova', name: 'prova' });
 });
