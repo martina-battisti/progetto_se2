@@ -4,6 +4,8 @@ const get_tasks = require('./get_tasks').f1
 const post_tasks = require('./get_tasks').f2
 const get_groups = require('./get_groups').f1groups
 const post_groups = require('./get_groups').f2groups
+const get_users = require('./users').users_get
+const post_users = require('./users').users_post
 const app = express()
 const PORT = process.env.PORT || 3000
 app.use( bodyParser.json() )
@@ -51,6 +53,32 @@ app.post('/tasks', (req, res) => {
 
 
 // -------- END TASKS
+
+// ------- USERS
+
+var users = [{id: 1, username: 'PincoPallino'},{id: 22, username:'PancoPinco'}];
+
+
+app.get('/', (req, res) => res.send('Hello World!'))
+
+
+app.get('/users', (req, res) => {
+	res.send(get_users(users));
+})
+
+app.post('/users', (req, res) => {
+	var new_user = post_users(req.body.username); //body è la variabile che setto nel client.js
+	
+	users.push(new_user)
+	
+	res.json(users)
+	
+})
+
+//exports.tasks = tasks;
+module.exports = {app};
+
+// -------- END USERS
 
 
 // ------- GROUPS

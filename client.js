@@ -3,6 +3,7 @@ const fetch = require("node-fetch");
 
 var url = "http://localhost:3000/";
 
+
 /*
 https.get(url, function(resp) {
 	console.log('\ngetting ' + url)
@@ -60,8 +61,10 @@ async function get(url) {
 };
 
 async function get_post (url) {
-	await get(url);
-	await postBody(url,{name: 'prova2'});
+	await get(url+"tasks");
+	await postBody(url+"tasks",{name: 'prova2'});
+	await get(url+"users");
+	await postBody(url+"users",{username: 'utente_prova2'});
 };
 
 

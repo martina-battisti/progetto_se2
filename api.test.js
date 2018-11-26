@@ -1,6 +1,6 @@
 const app = require('./api').app
 const fetch = require("node-fetch")
-const url = "http://localhost:3000/tasks"
+const url = "http://localhost:3000/"
 
 
 test('base test', () => {
@@ -9,7 +9,7 @@ test('base test', () => {
 
 test('works with GET /tasks', () => {
 	expect.assertions(1);
-    return fetch(url)
+    return fetch(url+"tasks")
         .then(r => expect(r.status).toEqual(200))
 });
 test('works with GET /groups', () => {
@@ -18,4 +18,10 @@ test('works with GET /groups', () => {
         .then(r => expect(r.status).toEqual(200))
 });
 
-afterAll(() => setTimeout(() => process.exit(), 1000));
+test('works with GET /users', () => {
+	expect.assertions(1);
+    return fetch(url+"users")
+        .then(r => expect(r.status).toEqual(200))
+});
+
+//afterAll(() => setTimeout(() => process.exit(), 1000));
