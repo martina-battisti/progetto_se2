@@ -28,7 +28,7 @@ test('works with POST /tasks', () => {
 
 test('works with POST /tasks', () => {
 	expect.assertions(1);
-	return fetch(url, {
+	return fetch(url+"tasks", {
 		method: 'POST',
 		body: JSON.stringify({name: 'new task'}),
 		headers: {
