@@ -36,7 +36,7 @@ async function postBody(url, body) {
 		});
 		//	console.log('\n==='+ body +'===\n')
 
-		//console.log(response.status)
+		console.log(response.status)
 		const json = await response.json();
 		//	console.log('\n==='+ body +'===\n')
 

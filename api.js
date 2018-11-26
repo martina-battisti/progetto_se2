@@ -39,7 +39,7 @@ app.post('/tasks', (req, res) => {
     tasks.push(new_task)
 	*/
 	tasks.push(new_task)
-//    res.status(201)
+    res.status(201)
 	//console.log(tasks);
 	res.json(tasks)
 	
@@ -47,12 +47,12 @@ app.post('/tasks', (req, res) => {
 })
 
 //exports.tasks = tasks;
-module.exports = {app};
+
 
 // -------- END TASKS
 
 
 
-
+module.exports = {app};
 
 app.listen(PORT, () => console.log('Listening on port ' + PORT))
