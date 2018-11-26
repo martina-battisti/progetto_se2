@@ -1,10 +1,11 @@
-const f1groups = require('./get_groups').f1groups
-const f2groups = require('./get_groups').f2groups
+const get_groups = require('./get_groups').get_groups
+const post_groups = require('./get_groups').post_groups
 
 test('get group corrisponde', () => {
-	expect(f1groups('a')).toBe('a');
+	expect(get_groups('a')).toBe('a');
 });
-
-test('post group corrisponde', () => {
-	expect(f2groups('prova')).toEqual({ id: 'prova', name: 'prova' });
+/*
+test('post group corrisponde', () => {  //DA MODIFICARE
+	expect(post_groups('prova')).toEqual({ id: 'prova', name: 'prova' });
 });
+*/

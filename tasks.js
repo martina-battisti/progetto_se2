@@ -7,7 +7,7 @@ app.use( bodyParser.json() )
 app.use(bodyParser.urlencoded({ extended: true }));
 
 	//funzione della get: non fa altro se non ritornare l'elemento desiderato
-var f1 = (x) => {
+var get_tasks = (x) => {
 	/*
 		var r = ''
 		r = r + 'id: ' + x[0].id
@@ -26,11 +26,11 @@ var f1 = (x) => {
 	
 
 	//funzione della post: crea una nuova task
-var f2 = (x) => {
-	const task_name = x
-    const new_id = task_name.replace(/\s/g, '') //da sistemare perché al momento scrive "prova 2" - guarda client.js
-    const new_task =  {id:new_id, name:task_name}
+var post_tasks = (x) => {
+	const new_name = x
+    const new_id = new_name.replace(/\s/g, '') //da sistemare perché al momento scrive "prova 2" - guarda client.js
+    const new_task =  {id:new_id, task_name:new_name}
     return(new_task)
 }
 	
-module.exports={f1,f2}
+module.exports={get_tasks,post_tasks}

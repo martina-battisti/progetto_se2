@@ -37,7 +37,7 @@ async function postBody(url, body) {
 		});
 		//	console.log('\n==='+ body +'===\n')
 
-		console.log(response.status)
+		//console.log(response.status)
 		const json = await response.json();
 		//	console.log('\n==='+ body +'===\n')
 
@@ -62,9 +62,11 @@ async function get(url) {
 
 async function get_post (url) {
 	await get(url+"tasks");
-	await postBody(url+"tasks",{name: 'prova2'});
+	await postBody(url+"tasks",{task_name: 'prova2'});
 	await get(url+"users");
-	await postBody(url+"users",{username: 'utente_prova2'});
+	await postBody(url+"users",{user_name: 'utente_prova2'});
+	await get(url+"groups");
+	//await postBody(url+"groups",{group_pname: 'utente_prova2'});
 };
 
 

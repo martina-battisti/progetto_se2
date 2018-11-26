@@ -6,5 +6,5 @@ test('get user corrisponde', () => {
 });
 
 test('user postato corrisponde', () => {
-	expect(post('prova')).toEqual({ id: 'prova', name: 'prova' });
+	expect(post('prova')).toEqual({ id: 'prova', user_name: 'prova' });
 });
