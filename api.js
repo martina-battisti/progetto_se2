@@ -7,7 +7,7 @@ const post_groups = require('./get_groups').f2groups
 const get_users = require('./users').users_get
 const post_users = require('./users').users_post
 const app = express()
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3001
 app.use( bodyParser.json() )
 app.use(bodyParser.urlencoded({ extended: true }));
 
