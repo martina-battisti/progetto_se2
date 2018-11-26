@@ -12,3 +12,5 @@ test('works with GET /tasks', () => {
     return fetch(url)
         .then(r => expect(r.status).toEqual(200))
 });
+
+afterAll(() => setTimeout(() => process.exit(), 1000));

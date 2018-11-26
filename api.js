@@ -31,7 +31,7 @@ app.get('/tasks', (req, res) => {
 })
 
 app.post('/tasks', (req, res) => {
-	var new_task = post_tasks(req.body.name);
+	var new_task = post_tasks(req.body.name); //body è la variabile che setto nel client.js
 	/*
 	const task_name = req.body.name
     const new_id = task_name.replace(/\s/g, '')
