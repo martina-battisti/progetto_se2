@@ -6,8 +6,7 @@ test('Restituisce quello che passo correttamente', () => {
 });
 
 
-test('Crea nuova task con parametro passato', () => 
+test('Crea nuova task con parametro passato', () => {
 		expect(f2('prova')).toEqual({ id: 'prova', name: 'prova' });
-	}
 });
 
