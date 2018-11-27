@@ -8,6 +8,9 @@ const get_users = require('./users').users_get
 const post_users = require('./users').users_post
 const get_answers = require('./answers').answers_get
 const post_answers = require('./answers').answers_post
+const get_exams = require('./exams').get_exams
+const post_exams = require('./exams').post_exams
+
 const app = express()
 const PORT = process.env.PORT || 3001
 app.use( bodyParser.json() )
@@ -157,7 +160,33 @@ app.post('/answers', (req, res) => {
 
 // -------- END ANSWERS
 
+// ------- EXAMS
 
+var exams = [{
+    examsid: 12,
+    creator: users[0],
+    tasks: [tasks[0],tasks[1]],
+    groups: [groups[0]]
+}];
+var exams = [{
+    examsid: 10,
+    creatore: users[1],
+    tasks: tasks,
+    tasks: [tasks[0],tasks[1]],
+    groups: [groups[0]]
+}];
+
+app.get('/exams', (req, res) => {
+    res.send(get_exams(exams));
+        })
+
+app.post('/exams',(req,res) => {
+    var new_exams = post_exams(req.body)
+    exams.push(new_exams)
+    res.status(201)
+    res.json(exams)
+        })
+// -------- END EXAMS
 module.exports = {app};
 
 app.listen(PORT, () => console.log('Listening on port ' + PORT))
