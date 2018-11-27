@@ -64,7 +64,7 @@ async function get_post (url) {
 	await get(url+"tasks");
 	await postBody(url+"tasks",{task_name: 'prova2'});
 	await get(url+"users");
-	await postBody(url+"users",{user_name: 'utente_prova2'});
+	await postBody(url+"users",{username: 'provaUser', nome: 'Firstname', cognome: 'Lastname', email:'prova@mail.it', matricola: 123654});
 	await get(url+"groups");
 	//await postBody(url+"groups",{group_pname: 'utente_prova2'});
 	await get(url+"answers");

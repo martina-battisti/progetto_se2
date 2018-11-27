@@ -44,7 +44,7 @@ test('works with POST /users', () => {
 	expect.assertions(1);
 	return fetch(url+"users", {
 		method: 'POST',
-		body: JSON.stringify({user_name: 'new user'}),
+		body: JSON.stringify({username: 'provaT', nome: 'TestName', cognome: 'TestSurname', email:'mail@test.com', matricola: 111111}),
 		headers: {
 			'Content-Type': 'application/json',
 		},
