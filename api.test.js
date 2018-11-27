@@ -61,12 +61,12 @@ test('works with GET /groups', () => {
     return fetch(url+"groups")
         .then(r => expect(r.status).toEqual(200))
 });
-/*
+
 test('works with POST /groups', () => {
 	expect.assertions(1);
 	return fetch(url+"groups", {
 		method: 'POST',
-		body: JSON.stringify({group_name: 'new group'}),
+		body: JSON.stringify({groupid: 8, componenti: [{username: 'provaUser', nome: 'Firstname', cognome: 'Lastname', email:'prova@mail.it', matricola: 123654}]}),
 		headers: {
 			'Content-Type': 'application/json',
 		},
@@ -74,7 +74,7 @@ test('works with POST /groups', () => {
 	//.then(r => r.json())
     .then(r => expect(r.status).toEqual(201));
 });
-*/
+
 
 test('works with GET /answers', () => {
 	expect.assertions(1);

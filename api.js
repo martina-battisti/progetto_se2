@@ -2,8 +2,8 @@ const express = require('express')
 var bodyParser = require('body-parser')
 const get_tasks = require('./tasks').get_tasks
 const post_tasks = require('./tasks').post_tasks
-const get_groups = require('./get_groups').get_groups
-const post_groups = require('./get_groups').post_groups
+const get_groups = require('./groups').get_groups
+const post_groups = require('./groups').post_groups
 const get_users = require('./users').users_get
 const post_users = require('./users').users_post
 const get_answers = require('./answers').answers_get
@@ -87,17 +87,40 @@ app.post('/users', (req, res) => {
 
 // ------- GROUPS
 
-var groups = [{groupid : 10, 	componenti: [{username: 'mr', matricola: 136, nome: 'Martina', cognome: 'Rossi', email: 'email1@gmail.com' },
-											{username: 'cr', matricola: 157, nome: 'Cristiano', cognome: 'Rossi', email: 'email2@gmail.com' }]},
-			{groupid : 15, 	componenti: [{username: 'mr', matricola: 136, nome: 'Martina', cognome: 'Rossi', email: 'email1@gmail.com' },
-										{username: 'cr', matricola: 157, nome: 'Cristiano', cognome: 'Rossi', email: 'email2@gmail.com' }]}];
+/*
+{
+  "groupid": -84588233,
+  "componenti": [
+    {
+      "username": "ipsum adipisicing",
+      "matricola": 16073017,
+      "nome": "Lorem la",
+      "cognome": "do sit quis Excepteur",
+      "email": "consequat"
+    },
+    {
+      "username": "magna anim ullamco",
+      "matricola": 65992090,
+      "nome": "velit non Ut officia exercitation",
+      "cognome": "magna nisi fugiat labore",
+      "email": "reprehenderit consequat ex"
+	}
+}
+*/
+
+var groups = [{
+	groupid: 10,
+	componenti: users
+}];
+
+// console.log(groups[0].componenti[0]); //questa è la dimostrazione che c'è
 
 app.get('/groups', (req, res) => {
 	res.send(get_groups(groups));
 })
 
 app.post('/groups', (req, res) => {
-	var new_group = post_groups(req.body.name); //body è la variabile che setto nel client.js
+	var new_group = post_groups(req.body); //body è la variabile che setto nel client.js
 	groups.push(new_group)
 	res.status(201)
 	res.json(groups)

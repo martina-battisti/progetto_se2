@@ -10,14 +10,11 @@ var get_groups = (x) => {
 	return(x)
 	}
 	
-/*
-	//funzione della post: crea una nuova task
+
+	//funzione della post: crea un nuovo gruppo
 var post_groups = (x) => {
-	const new_name = x
-    const new_id = new_name.replace(/\s/g, '') //da sistemare perché al momento scrive "prova 2" - guarda client.js
-    const new_group =  {id:new_id, group_name:new_name} //DA MODIFICARE
+	const new_group = x
     return(new_group)
 }
-*/
 	
-module.exports={get_groups,/*post_groups*/}
+module.exports={get_groups,post_groups}
