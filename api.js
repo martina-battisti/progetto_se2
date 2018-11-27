@@ -28,8 +28,8 @@ var choice = [{choice: 'Prima scelta', selection: false},
 var radiobox = {domanda: 'Prima domanda radiobox?', options: choice, risposta: 'Prima risposta'};
 var checkbox = {domanda: 'Prima domanda checkbox?', options: choice, risposta: ['Prima risposta','Seconda risposta']};
 var aperta = {domanda: 'Prima domanda aperta', risposta: 'Prima risposta'}
-var tasks = [{taskid: 21, tipologia: checkbox},
-			 {taskid: 28, tipologia: aperta}];
+var tasks = [{taskid: 1, tipologia: checkbox},
+			 {taskid: 2, tipologia: aperta}];
 
 /*
 app.get('/tasks', (req, res) => {
@@ -53,8 +53,8 @@ app.post('/tasks', (req, res) => {
 	*/
 	tasks.push(new_task)
     res.status(201)
-	//console.log(tasks);
-	res.json(tasks)
+	//console.log(new_task);
+	res.json(new_task)
 	
 	//res.end();
 })
@@ -65,7 +65,8 @@ app.post('/tasks', (req, res) => {
 
 // ------- USERS
 
-var users = [{username: 'lscotch', nome: 'Laura', cognome: 'Scoccianti', email:'laurascotch@live.it', matricola: 185765}, {username: 'ppall', nome: 'Pinco', cognome: 'Pallino', email:'pp@mail.it', matricola: 123456}];
+var users = [{username: 'lscotch', nome: 'Laura', cognome: 'Scoccianti', email:'laurascotch@live.it', matricola: 185765},
+			 {username: 'ppall', nome: 'Pinco', cognome: 'Pallino', email:'pp@mail.it', matricola: 123456}];
 
 /*
 	USER	
@@ -87,8 +88,7 @@ app.post('/users', (req, res) => {
 
 	users.push(new_user)
 	res.status(201)
-	res.json(users)
-	
+	res.json(new_user)
 })
 
 
@@ -119,10 +119,10 @@ app.post('/users', (req, res) => {
 }
 */
 
-var groups = [{
-	groupid: 10,
-	componenti: users
-}];
+var groups = [{groupid: 1,
+			   componenti: [users[0], users[1]]},
+			  {groupid: 2,
+			   componenti: [users[0]]}];
 
 // console.log(groups[0].componenti[0]); //questa è la dimostrazione che c'è
 
@@ -134,7 +134,7 @@ app.post('/groups', (req, res) => {
 	var new_group = post_groups(req.body); //body è la variabile che setto nel client.js
 	groups.push(new_group)
 	res.status(201)
-	res.json(groups)
+	res.json(new_group)
 })
 
 // -------- END GROUPS
@@ -142,42 +142,43 @@ app.post('/groups', (req, res) => {
 
 // ------- ANSWERS
 
-var answers = [{answerid: 1, taskid: 21, user: users[0], risposta: 'Prima risposta', tempo: '2018-01-30T17:12:47'},
-			   {answerid: 2, taskid: 28, user: users[0], risposta: 'Seconda risposta', tempo: '2018-02-30T17:12:47'}];
+var answers = [{answerid: 1, taskid: 1, user: users[0], risposta: 'Prima risposta', tempo: '2018-01-30T17:12:47'},
+			   {answerid: 2, taskid: 2, user: users[0], risposta: 'Seconda risposta', tempo: '2018-02-30T17:12:47'}];
 
 app.get('/answers', (req, res) => {
 	res.send(get_answers(answers));
 })
 
 app.post('/answers', (req, res) => {
-	var new_answare = post_answers(req.body); //body è la variabile che setto nel client.js
-	
-	answers.push(new_answare)
+	var new_answer = post_answers(req.body); //body è la variabile che setto nel client.js
+	answers.push(new_answer)
 	res.status(201)
-	res.json(answers)
+	res.json(new_answer)
 	
 })
-
 
 // -------- END ANSWERS
 
 // ------- EXAMS
 
-var exams = [{ examsid: 12,  creator: users[0], tasks: [tasks[0],tasks[1]], groups: [groups[0]]},
-			 { examsid: 10,  creator: users[1],tasks: [tasks[0],tasks[1]], groups: [groups[0]]}];
+var exams = [{ examsid: 1,  creator: users[0], tasks: [tasks[0],tasks[1]], groups: [groups[0]]},
+			 { examsid: 2,  creator: users[1], tasks: [tasks[0],tasks[1]], groups: [groups[0]]}];
 			
 
 app.get('/exams', (req, res) => {
     res.send(get_exams(exams));
-        })
+    })
 
 app.post('/exams',(req,res) => {
 			var new_exam = post_exams(req.body)
 			exams.push(new_exam)
 			res.status(201)
-			res.json(exams)
-				})
+			res.json(new_exam)
+			})
+			
 // -------- END EXAMS
+
+
 module.exports = {app};
 
 app.listen(PORT, () => console.log('Listening on port ' + PORT))

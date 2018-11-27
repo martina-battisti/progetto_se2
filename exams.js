@@ -9,10 +9,8 @@ var get_exams = (x) => {
 	return(x)
 }
 
-var post_exams = (body) => {
-	
-    
-    const new_exam = x;
+var post_exams = (body) => {  
+    const new_exam = body;
     return(new_exam);
 }
 	
