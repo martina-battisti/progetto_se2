@@ -12,8 +12,8 @@ var get_groups = (x) => {
 	
 
 	//funzione della post: crea un nuovo gruppo
-var post_groups = (x) => {
-	const new_group = x
+var post_groups = (body,i) => {
+	const new_group =  {groupid:i, componenti:body.componenti}
     return(new_group)
 }
 	

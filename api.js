@@ -30,7 +30,7 @@ var checkbox = {domanda: 'Prima domanda checkbox?', options: choice, risposta: [
 var aperta = {domanda: 'Prima domanda aperta', risposta: 'Prima risposta'}
 var tasks = [{taskid: 1, tipologia: checkbox},
 			 {taskid: 2, tipologia: aperta}];
-
+var i_tasks=2;
 /*
 app.get('/tasks', (req, res) => {
 	res.json(get_tasks(tasks))
@@ -44,7 +44,8 @@ app.get('/tasks', (req, res) => {
 })
 
 app.post('/tasks', (req, res) => {
-	var new_task = post_tasks(req.body); //body è la variabile che setto nel client.js
+	i_tasks += 1;
+	var new_task = post_tasks(req.body,i_tasks); //body è la variabile che setto nel client.js
 	/*
 	const task_name = req.body.name
     const new_id = task_name.replace(/\s/g, '')
@@ -59,9 +60,10 @@ app.post('/tasks', (req, res) => {
 	//res.end();
 })
 
-
+//exports.tasks = tasks;
 
 // -------- END TASKS
+
 
 // ------- USERS
 
@@ -123,7 +125,7 @@ var groups = [{groupid: 1,
 			   componenti: [users[0], users[1]]},
 			  {groupid: 2,
 			   componenti: [users[0]]}];
-
+var i_groups = 2;
 // console.log(groups[0].componenti[0]); //questa è la dimostrazione che c'è
 
 app.get('/groups', (req, res) => {
@@ -131,7 +133,8 @@ app.get('/groups', (req, res) => {
 })
 
 app.post('/groups', (req, res) => {
-	var new_group = post_groups(req.body); //body è la variabile che setto nel client.js
+	i_groups += 1;
+	var new_group = post_groups(req.body,i_groups); //body è la variabile che setto nel client.js
 	groups.push(new_group)
 	res.status(201)
 	res.json(new_group)

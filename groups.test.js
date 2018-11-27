@@ -6,5 +6,5 @@ test('get group corrisponde', () => {
 });
 
 test('post group corrisponde', () => {  //DA MODIFICARE
-	expect(post_groups({groupid: 8, componenti: [{username: 'provaUser', nome: 'Firstname', cognome: 'Lastname', email:'prova@mail.it', matricola: 123654}]})).toEqual({groupid: 8, componenti: [{username: 'provaUser', nome: 'Firstname', cognome: 'Lastname', email:'prova@mail.it', matricola: 123654}]});
+	expect(post_groups({componenti: [{username: 'provaUser', nome: 'Firstname', cognome: 'Lastname', email:'prova@mail.it', matricola: 123654}]},3)).toEqual({groupid: 3, componenti: [{username: 'provaUser', nome: 'Firstname', cognome: 'Lastname', email:'prova@mail.it', matricola: 123654}]});
 });
