@@ -19,7 +19,14 @@ app.get('/', (req, res) => res.send('Hello World!'))
 
 // ------- TASKS
 
-var tasks = [{id: 21, task_name: 'Crocette'},{id: 28, task_name:'V/F'}];
+var choice = [{choice: 'Prima scelta', selection: false},
+			  {choice: 'Seconda scelta', selection: false},
+			  {choice: 'Terza scelta', selection: false}];
+var radiobox = {domanda: 'Prima domanda radiobox?', options: choice, risposta: 'Prima risposta'};
+var checkbox = {domanda: 'Prima domanda checkbox?', options: choice, risposta: ['Prima risposta','Seconda risposta']};
+var aperta = {domanda: 'Prima domanda aperta', risposta: 'Prima risposta'}
+var tasks = [{taskid: 21, tipologia: checkbox},
+			 {taskid: 28, tipologia: aperta}];
 
 /*
 app.get('/tasks', (req, res) => {
@@ -34,7 +41,7 @@ app.get('/tasks', (req, res) => {
 })
 
 app.post('/tasks', (req, res) => {
-	var new_task = post_tasks(req.body.task_name); //body è la variabile che setto nel client.js
+	var new_task = post_tasks(req.body); //body è la variabile che setto nel client.js
 	/*
 	const task_name = req.body.name
     const new_id = task_name.replace(/\s/g, '')
@@ -48,6 +55,7 @@ app.post('/tasks', (req, res) => {
 	
 	//res.end();
 })
+
 
 
 // -------- END TASKS

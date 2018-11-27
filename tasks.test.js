@@ -6,5 +6,5 @@ test('Restituisce quello che passo correttamente', () => {
 });
 
 test('Crea nuova task con parametro passato', () => {
-		expect(post_tasks('prova')).toEqual({ id: 'prova', task_name: 'prova' });
+		expect(post_tasks({tipologia: {domanda: 'Prima domanda radiobox?', options: [{choice: 'Prima scelta', selection: false},{choice: 'Seconda scelta', selection: false},{choice: 'Terza scelta', selection: false}], risposta: 'Prima risposta'}})).toEqual({taskid: 'Primadomandaradiobox?', tipologia: {domanda: 'Prima domanda radiobox?', options: [{choice: 'Prima scelta', selection: false},{choice: 'Seconda scelta', selection: false},{choice: 'Terza scelta', selection: false}], risposta: 'Prima risposta'}});
 });
