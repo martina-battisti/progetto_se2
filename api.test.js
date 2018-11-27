@@ -25,7 +25,7 @@ test('works with POST /tasks', () => {
 	expect.assertions(1);
 	return fetch(url+"tasks", {
 		method: 'POST',
-		body: JSON.stringify({task_name: 'new task'}),
+		body: JSON.stringify({tipologia: {domanda: 'Prima domanda radiobox?', options: [{choice: 'Prima scelta', selection: false},{choice: 'Seconda scelta', selection: false},{choice: 'Terza scelta', selection: false}], risposta: 'Prima risposta'}}),
 		headers: {
 			'Content-Type': 'application/json',
 		},

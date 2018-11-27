@@ -26,10 +26,10 @@ var get_tasks = (x) => {
 	
 
 	//funzione della post: crea una nuova task
-var post_tasks = (x) => {
-	const new_name = x
-    const new_id = new_name.replace(/\s/g, '') //da sistemare perché al momento scrive "prova 2" - guarda client.js
-    const new_task =  {id:new_id, task_name:new_name}
+var post_tasks = (body) => {
+	const new_domanda = body.tipologia.domanda
+    const new_taskid = new_domanda.replace(/\s/g, '') //da sistemare perché al momento scrive "prova 2" - guarda client.js
+    const new_task =  {taskid:new_taskid, tipologia:body.tipologia}
     return(new_task)
 }
 	
