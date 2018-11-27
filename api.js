@@ -62,15 +62,26 @@ app.post('/tasks', (req, res) => {
 
 // ------- USERS
 
-var users = [{id: 1, user_name: 'PincoPallino'},{id: 22, user_name:'PancoPinco'}];
+var users = [{username: 'lscotch', nome: 'Laura', cognome: 'Scoccianti', email:'laurascotch@live.it', matricola: 185765}, {username: 'ppall', nome: 'Pinco', cognome: 'Pallino', email:'pp@mail.it', matricola: 123456}];
+
+/*
+	USER	
+{
+	"username": "ipsum aliqua exercitation nulla",
+	"nome": "elit d",
+	"cognome": "nostrud ullamco ea labore Excepteur",
+	"email": "dolor exercitation incididunt reprehen",
+	"matricola": -51728310
+}*/
 
 app.get('/users', (req, res) => {
 	res.send(get_users(users));
 })
 
 app.post('/users', (req, res) => {
-	var new_user = post_users(req.body.user_name); //body è la variabile che setto nel client.js
-	
+	//var new_user = post_users(req.body.user_name); //body è la variabile che setto nel client.js
+	var new_user = post_users(req.body);
+
 	users.push(new_user)
 	res.status(201)
 	res.json(users)
