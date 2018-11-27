@@ -90,8 +90,6 @@ paths:
         404:
           description: "User not found"
   /users/{username}/exams:  
-    tags:
-      - "users"
     get:
       summary: "Recupera esami per un utente"
       description: ""
@@ -115,8 +113,6 @@ paths:
         404:
           description: "User not found" 
   /users/login:
-    tags:
-      - "users"
     get:
       summary: "Logs user into the system"
       description: ""
@@ -132,8 +128,6 @@ paths:
         400:
           description: "Invalid username/password supplied"
   /users/logout:
-    tags:
-      - "users"
     get:
       summary: "Logs out current logged in user session"
       description: ""
