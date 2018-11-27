@@ -535,7 +535,7 @@ definitions:
           - $ref: '#/definitions/Checkbox'
     required:
       - taskid
-      - title
+      - tipologia
 
   Radiobox:
     title: Radiobox
