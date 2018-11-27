@@ -163,30 +163,20 @@ app.post('/answers', (req, res) => {
 
 // ------- EXAMS
 
-var exams = [{
-    examsid: 12,
-    creator: users[0],
-    tasks: [tasks[0],tasks[1]],
-    groups: [groups[0]]
-}];
-var exams = [{
-    examsid: 10,
-    creatore: users[1],
-    tasks: tasks,
-    tasks: [tasks[0],tasks[1]],
-    groups: [groups[0]]
-}];
+var exams = [{ examsid: 12,  creator: users[0], tasks: [tasks[0],tasks[1]], groups: [groups[0]]},
+			 { examsid: 10,  creator: users[1],tasks: [tasks[0],tasks[1]], groups: [groups[0]]}];
+			
 
 app.get('/exams', (req, res) => {
     res.send(get_exams(exams));
         })
 
 app.post('/exams',(req,res) => {
-    var new_exams = post_exams(req.body)
-    exams.push(new_exams)
-    res.status(201)
-    res.json(exams)
-        })
+			var new_exam = post_exams(req.body)
+			exams.push(new_exam)
+			res.status(201)
+			res.json(exams)
+				})
 // -------- END EXAMS
 module.exports = {app};
 
