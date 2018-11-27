@@ -139,14 +139,15 @@ app.post('/groups', (req, res) => {
 
 // ------- ANSWERS
 
-var answers = [{id: 1, answare_name: 'risposta 1'},{id: 22, answare_name:'risposta 2'}];
+var answers = [{answerid: 1, taskid: 21, user: users[0], risposta: 'Prima risposta', tempo: '2018-01-30T17:12:47'},
+			   {answerid: 2, taskid: 28, user: users[0], risposta: 'Seconda risposta', tempo: '2018-02-30T17:12:47'}];
 
 app.get('/answers', (req, res) => {
 	res.send(get_answers(answers));
 })
 
 app.post('/answers', (req, res) => {
-	var new_answare = post_answers(req.body.answer_name); //body è la variabile che setto nel client.js
+	var new_answare = post_answers(req.body); //body è la variabile che setto nel client.js
 	
 	answers.push(new_answare)
 	res.status(201)

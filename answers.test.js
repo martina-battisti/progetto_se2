@@ -6,5 +6,5 @@ test('Get answer coincide', () => {
 });
 
 test('Crea nuova answer con parametro passato', () => {
-		expect(post_answers('prova')).toEqual({ id: 'prova', answer_name: 'prova' });
+		expect(post_answers({answerid: 2, taskid: 28, user: {username: 'provaUser', nome: 'Firstname', cognome: 'Lastname', email:'prova@mail.it', matricola: 123654}, risposta: 'Seconda risposta', tempo: '2018-02-30T17:12:47'})).toEqual({answerid: 2, taskid: 28, user: {username: 'provaUser', nome: 'Firstname', cognome: 'Lastname', email:'prova@mail.it', matricola: 123654}, risposta: 'Seconda risposta', tempo: '2018-02-30T17:12:47'});
 });

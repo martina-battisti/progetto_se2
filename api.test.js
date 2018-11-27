@@ -86,7 +86,7 @@ test('works with POST /answers', () => {
 	expect.assertions(1);
 	return fetch(url+"answers", {
 		method: 'POST',
-		body: JSON.stringify({answer_name: 'new answer'}),
+		body: JSON.stringify({answerid: 2, taskid: 28, user: {username: 'provaUser', nome: 'Firstname', cognome: 'Lastname', email:'prova@mail.it', matricola: 123654}, risposta: 'Seconda risposta', tempo: '2018-02-30T17:12:47'}),
 		headers: {
 			'Content-Type': 'application/json',
 		},
