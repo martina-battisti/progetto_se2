@@ -17,6 +17,8 @@ produces:
 paths:
   /users:
     post:
+      tags:
+      - "users"
       description: Crea un nuovo utente
       summary: Crea un nuovo utente
       parameters: 
@@ -31,6 +33,8 @@ paths:
         201:
           description: 'successful operation'
     get:
+      tags:
+      - "users"
       description: "Ritorna l'elenco di tutti gli utenti"
       summary: "Trova tutti gli utenti"
       responses:
@@ -44,6 +48,8 @@ paths:
             }
   /users/{username}:  
     put:
+      tags:
+      - "users"
       summary: "Updated user"
       description: "Modifica le informazioni dell'utente"
       parameters:
@@ -68,6 +74,8 @@ paths:
           schema:
               $ref: "#/definitions/User"
     delete:
+      tags:
+      - "users"
       summary: "Delete user"
       description: "Elimina l'utente"
       parameters:
@@ -82,6 +90,8 @@ paths:
         404:
           description: "User not found"
   /users/{username}/exams:  
+    tags:
+      - "users"
     get:
       summary: "Recupera esami per un utente"
       description: ""
@@ -105,6 +115,8 @@ paths:
         404:
           description: "User not found" 
   /users/login:
+    tags:
+      - "users"
     get:
       summary: "Logs user into the system"
       description: ""
@@ -120,6 +132,8 @@ paths:
         400:
           description: "Invalid username/password supplied"
   /users/logout:
+    tags:
+      - "users"
     get:
       summary: "Logs out current logged in user session"
       description: ""
@@ -134,6 +148,8 @@ paths:
             }
   /tasks:
     post:
+      tags:
+      - "tasks"
       description: Consente di creare una nuova task
       summary: Crea una nuova task
       parameters: 
@@ -147,6 +163,8 @@ paths:
         201:
           description: 'successful operation'
     get:
+      tags:
+      - "tasks"
       description: Ritorna l'elenco di tutte le task
       summary: Trova tutte le tasks
       responses:
@@ -160,6 +178,8 @@ paths:
             }
   /tasks/{taskid}:
     get:
+      tags:
+      - "tasks"
       description: Ritorna una task
       parameters:
       - name: "taskid"
@@ -178,6 +198,8 @@ paths:
         404:
           description: 'Task not found'
     put:
+      tags:
+      - "tasks"
       description: Consente di modificare una task esistente
       parameters:
       - name: "taskid"
@@ -200,6 +222,8 @@ paths:
         405:
           description: 'Validation exception'
     delete:
+      tags:
+      - "tasks"
       description: Elimina una task
       parameters:
       - name: "taskid"
@@ -216,6 +240,8 @@ paths:
   
   /exams:
     post:
+      tags:
+      - "exams"
       description: Consente di creare un nuovo esame
       summary: Crea un un nuovo esame
       parameters: 
@@ -229,6 +255,8 @@ paths:
         201:
           description: 'successful operation'
     get:
+      tags:
+      - "exams"
       description: "Ritorna l'elenco di tutti gli esami"
       summary: "Trova tutti gli esami"
       responses:
@@ -242,6 +270,8 @@ paths:
             }
   /exams/{examid}:
     get:
+      tags:
+      - "exams"
       description: Ritorna un esame
       parameters:
       - name: "examid"
@@ -260,6 +290,8 @@ paths:
         404:
           description: 'Exam not found'
     put:
+      tags:
+      - "exams"
       description: Consente di modificare un esame esistente aggiungendo gruppi e task
       parameters:
       - name: "examid"
@@ -286,6 +318,8 @@ paths:
           schema:
             $ref: "#/definitions/Exam"
     delete:
+      tags:
+      - "exams"
       description: Elimina un esame
       parameters:
       - name: "examid"
@@ -301,6 +335,8 @@ paths:
           description: 'Exam not found'
   /exams/{examid}/tasks:
     get:
+      tags:
+      - "exams"
       description: Ritorna le tasks di un esame
       parameters:
       - name: "examid"
@@ -324,6 +360,8 @@ paths:
           description: 'Exam not found'
   /exams/{examid}/submit:
     post:
+      tags:
+      - "exams"
       description: Invia le risposte di tutti i task di un esame
       parameters:
       - name: "examid"
@@ -337,6 +375,8 @@ paths:
           description: 'successful operation'
   /exams/{examid}/groups:
     get:
+      tags:
+      - "exams"
       description: Ritorna i gruppi a cui è assegnato l'esame
       parameters:
       - name: "examid"
@@ -361,6 +401,8 @@ paths:
           
   /groups:
     post:
+      tags:
+      - "groups"
       description: Consente di creare un nuovo gruppo
       summary: Crea un un nuovo gruppo
       parameters: 
@@ -374,6 +416,8 @@ paths:
         201:
           description: 'Successful operation'
     get:
+      tags:
+      - "groups"
       description: "Ritorna l'elenco di tutti i gruppi"
       summary: "Trova tutti i gruppi"
       responses:
@@ -387,6 +431,8 @@ paths:
             }
   /groups/{groupid}:
     get:
+      tags:
+      - "groups"
       description: Ritorna un gruppo
       parameters:
       - name: "groupid"
@@ -405,6 +451,8 @@ paths:
         404:
           description: 'Group not found'
     put:
+      tags:
+      - "groups"
       description: Consente di modificare un gruppo esistente
       parameters:
       - name: "groupid"
@@ -431,6 +479,8 @@ paths:
           schema:
             $ref: '#/definitions/Group'
     delete:
+      tags:
+      - "groups"
       description: Elimina un esame
       parameters:
       - name: "groupid"
@@ -447,6 +497,8 @@ paths:
           
   /answers:
     post:
+      tags:
+      - "answers"
       description: Consente di creare una nuova risposta
       summary: Crea una nuova risposta
       parameters: 
@@ -460,6 +512,8 @@ paths:
         201:
           description: 'Successful operation'
     get:
+      tags:
+      - "answers"
       description: "Ritorna l'elenco di tutte le risposte"
       summary: "Trova tutte le risposte"
       responses:
@@ -473,6 +527,8 @@ paths:
             }
   /answers/{answerid}:
     get:
+      tags:
+      - "answers"
       description: Ritorna una risposta
       parameters:
       - name: "answerid"
@@ -493,6 +549,8 @@ paths:
     
 
     put:
+      tags:
+      - "answers"
       description: Consente di modificare una risposta esistente
       parameters:
       - name: "answerid"
