@@ -67,6 +67,8 @@ async function get_post (url) {
 	await postBody(url+"users",{user_name: 'utente_prova2'});
 	await get(url+"groups");
 	//await postBody(url+"groups",{group_pname: 'utente_prova2'});
+	await get(url+"answers");
+	await postBody(url+"answers",{answer_name: 'risposta prova'});
 };
 
 

@@ -6,8 +6,8 @@ const get_groups = require('./get_groups').get_groups
 const post_groups = require('./get_groups').post_groups
 const get_users = require('./users').users_get
 const post_users = require('./users').users_post
-const get_answers = require('./users').answers_get
-const post_answers = require('./users').answers_post
+const get_answers = require('./answers').answers_get
+const post_answers = require('./answers').answers_post
 const app = express()
 const PORT = process.env.PORT || 3001
 app.use( bodyParser.json() )
@@ -93,6 +93,27 @@ app.post('/groups', (req, res) => {
 })
 
 // -------- END GROUPS
+
+
+// ------- ANSWERS
+
+var answers = [{id: 1, answare_name: 'risposta 1'},{id: 22, answare_name:'risposta 2'}];
+
+app.get('/answers', (req, res) => {
+	res.send(get_answers(answers));
+})
+
+app.post('/answers', (req, res) => {
+	var new_answare = post_answers(req.body.answer_name); //body è la variabile che setto nel client.js
+	
+	answers.push(new_answare)
+	res.status(201)
+	res.json(answers)
+	
+})
+
+
+// -------- END ANSWERS
 
 
 module.exports = {app};

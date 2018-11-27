@@ -7,6 +7,7 @@ test('base test', () => {
 	expect(true).toBe(true);
 });
 
+
 test('works with GET /tasks', () => {
 	expect.assertions(1);
     return fetch(url+"tasks")
@@ -74,3 +75,22 @@ test('works with POST /groups', () => {
     .then(r => expect(r.status).toEqual(201));
 });
 */
+
+test('works with GET /answers', () => {
+	expect.assertions(1);
+    return fetch(url+"answers")
+        .then(r => expect(r.status).toEqual(200))
+});
+
+test('works with POST /answers', () => {
+	expect.assertions(1);
+	return fetch(url+"answers", {
+		method: 'POST',
+		body: JSON.stringify({answer_name: 'new answer'}),
+		headers: {
+			'Content-Type': 'application/json',
+		},
+    })
+	//.then(r => r.json())
+    .then(r => expect(r.status).toEqual(201));
+});

@@ -1,5 +1,5 @@
-const get_tasks = require('./aswers').get_answers
-const post_tasks = require('./answers').post_answers
+const get_answers = require('./answers').answers_get
+const post_answers = require('./answers').answers_post
 
 test('Get answer coincide', () => {
 	expect(get_answers('a')).toBe('a');
