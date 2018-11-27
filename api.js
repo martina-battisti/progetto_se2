@@ -147,13 +147,15 @@ app.post('/groups', (req, res) => {
 
 var answers = [{answerid: 1, taskid: 1, user: users[0], risposta: 'Prima risposta', tempo: '2018-01-30T17:12:47'},
 			   {answerid: 2, taskid: 2, user: users[0], risposta: 'Seconda risposta', tempo: '2018-02-30T17:12:47'}];
+i_answers = 2;
 
 app.get('/answers', (req, res) => {
 	res.send(get_answers(answers));
 })
 
 app.post('/answers', (req, res) => {
-	var new_answer = post_answers(req.body); //body è la variabile che setto nel client.js
+	i_answers += 1;
+	var new_answer = post_answers(req.body,i_answers); //body è la variabile che setto nel client.js
 	answers.push(new_answer)
 	res.status(201)
 	res.json(new_answer)
@@ -164,16 +166,17 @@ app.post('/answers', (req, res) => {
 
 // ------- EXAMS
 
-var exams = [{ examsid: 1,  creator: users[0], tasks: [tasks[0],tasks[1]], groups: [groups[0]]},
-			 { examsid: 2,  creator: users[1], tasks: [tasks[0],tasks[1]], groups: [groups[0]]}];
-			
+var exams = [{ examid: 1,  creator: users[0], tasks: [tasks[0],tasks[1]], groups: [groups[0]]},
+			 { examid: 2,  creator: users[1], tasks: [tasks[0],tasks[1]], groups: [groups[0]]}];
+var i_exams = 2;
 
 app.get('/exams', (req, res) => {
     res.send(get_exams(exams));
     })
 
 app.post('/exams',(req,res) => {
-			var new_exam = post_exams(req.body)
+			i_exams += 1
+			var new_exam = post_exams(req.body, i_exams)
 			exams.push(new_exam)
 			res.status(201)
 			res.json(new_exam)
