@@ -9,8 +9,8 @@ var get_exams = (x) => {
 	return(x)
 }
 
-var post_exams = (body) => {  
-    const new_exam = body;
+var post_exams = (body,i) => {  
+    const new_exam = {examid:i, creator:body.creator, tasks:body.tasks, groups:body.groups};
     return(new_exam);
 }
 	

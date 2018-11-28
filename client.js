@@ -60,7 +60,7 @@ async function get(url) {
     }
 };
 
-async function get_post (url) {/*
+async function get_post (url) {
 	await get(url+"users");
 	await postBody(url+"users",{username: 'provaUser', nome: 'Firstname', cognome: 'Lastname', email:'prova@mail.it', matricola: 123654});
 	await get(url+"users")
@@ -68,14 +68,13 @@ async function get_post (url) {/*
 	await get(url+"tasks");
 	await postBody(url+"tasks",{tipologia: {domanda: 'Prima domanda radiobox?', options: [{choice: 'Prima scelta', selection: false},{choice: 'Seconda scelta', selection: false},{choice: 'Terza scelta', selection: false}], risposta: 'Prima risposta'}});
 	await get(url+"tasks");
-	*/
+	
 	await get(url+"groups");
 	await postBody(url+"groups",{componenti: [{username: 'provaUser', nome: 'Firstname', cognome: 'Lastname', email:'prova@mail.it', matricola: 123654}]});
 	await get(url+"groups");
-	/*
+	
 	await get(url+"exams");
     await postBody(url+"exams",{
-        examsid: 3, 
         creator: {username: 'provaUser', nome: 'Firstname', cognome: 'Lastname', email:'prova@mail.it', matricola: 123456}, 
         tasks: [
             {taskid: 1, tipologia: {domanda: 'Prima domanda radiobox?', options: [{choice: 'Prima scelta', selection: false},{choice: 'Seconda scelta', selection: false},{choice: 'Terza scelta', selection: false}], risposta: 'Prima risposta'}}, 
@@ -87,9 +86,9 @@ async function get_post (url) {/*
 	await get(url+"exams");
 	
 	await get(url+"answers");
-	await postBody(url+"answers",{answerid: 3, taskid: 28, user: {username: 'provaUser', nome: 'Firstname', cognome: 'Lastname', email:'prova@mail.it', matricola: 123654}, risposta: 'Prova risposta', tempo: '2018-03-30T17:12:47'});
+	await postBody(url+"answers",{taskid: 2, user: {username: 'provaUser', nome: 'Firstname', cognome: 'Lastname', email:'prova@mail.it', matricola: 123654}, risposta: 'Prova risposta', tempo: '2018-03-30T17:12:47'});
 	await get(url+"answers");
-*/};
+};
 
 
 get_post(url)

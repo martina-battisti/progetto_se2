@@ -86,7 +86,7 @@ test('works with POST /answers', () => {
 	expect.assertions(1);
 	return fetch(url+"answers", {
 		method: 'POST',
-		body: JSON.stringify({answerid: 2, taskid: 28, user: {username: 'provaUser', nome: 'Firstname', cognome: 'Lastname', email:'prova@mail.it', matricola: 123654}, risposta: 'Seconda risposta', tempo: '2018-02-30T17:12:47'}),
+		body: JSON.stringify({taskid: 28, user: {username: 'provaUser', nome: 'Firstname', cognome: 'Lastname', email:'prova@mail.it', matricola: 123654}, risposta: 'Seconda risposta', tempo: '2018-02-30T17:12:47'}),
 		headers: {
 			'Content-Type': 'application/json',
 		},
@@ -95,18 +95,17 @@ test('works with POST /answers', () => {
     .then(r => expect(r.status).toEqual(201));
 });
 
-test('works with GET /groups', () => {
+test('works with GET /exams', () => {
 	expect.assertions(1);
-    return fetch(url+"groups")
+    return fetch(url+"exams")
         .then(r => expect(r.status).toEqual(200))
 });
 
-test('works with POST /groups', () => {
+test('works with POST /exams', () => {
 	expect.assertions(1);
-	return fetch(url+"groups", {
+	return fetch(url+"exams", {
 		method: 'POST',
 		body: JSON.stringify({
-        examsid: 3, 
         creator: {username: 'provaUser', nome: 'Firstname', cognome: 'Lastname', email:'prova@mail.it', matricola: 123456}, 
         tasks: [
             {taskid: 1, tipologia: {domanda: 'Prima domanda radiobox?', options: [{choice: 'Prima scelta', selection: false},{choice: 'Seconda scelta', selection: false},{choice: 'Terza scelta', selection: false}], risposta: 'Prima risposta'}}, 
