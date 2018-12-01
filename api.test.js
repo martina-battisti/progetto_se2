@@ -1,6 +1,6 @@
 const app = require('./api').app
 const fetch = require("node-fetch")
-const url = "http://localhost:3001/"
+const url = "http://localhost:300/"
 
 
 test('base test', () => {
