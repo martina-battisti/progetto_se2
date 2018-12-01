@@ -26,7 +26,7 @@ test('post exam corrisponde', () => {  //DA MODIFICARE
                                       {username: 'provaUser1', nome: 'Firstname1', cognome: 'Lastname1', email:'prova1@mail.it', matricola: 123655}]} ] });
 });
 
-
+/*
 test('post exam senza creator', () => {  //DA MODIFICARE
 	expect(post_exams({
         examsid: 4, 
@@ -62,3 +62,4 @@ test('post exam senza groups', () => {  //DA MODIFICARE
         groups: null})).toEqual(null);
 });
 
+*/
