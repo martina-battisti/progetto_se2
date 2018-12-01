@@ -12,7 +12,7 @@ const get_exams = require('./exams').get_exams
 const post_exams = require('./exams').post_exams
 
 const app = express()
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3001
 app.use( bodyParser.json() )
 app.use(bodyParser.urlencoded({ extended: true }));
 
