@@ -3,6 +3,20 @@ const fetch = require("node-fetch");
 
 var url = "http://localhost:3001/";
 
+var task_valido1 = 	{tipologia: 
+						{domanda: 'Prima domanda radiobox?', 
+						 options: [{choice: 'Prima scelta', selection: false},
+								   {choice: 'Seconda scelta', selection: false},
+								   {choice: 'Terza scelta', selection: false}], 
+						 risposta: 'Prima risposta'
+						}
+					};
+var task_nonvalido2 =	{tipologia:
+							{
+							 risposta: 'Prima risposta'
+							}
+						};	
+
 
 /*
 https.get(url, function(resp) {
@@ -45,7 +59,7 @@ async function postBody(url, body) {
 		//	console.log('\n==='+ body +'===\n')
 
 	} catch (error) {
-        console.log(error);
+        console.log('error');
     }
 };
 
@@ -66,7 +80,7 @@ async function get_post (url) {
 	await get(url+"users")
 	
 	await get(url+"tasks");
-	await postBody(url+"tasks",{tipologia: {domanda: 'Prima domanda radiobox?', options: [{choice: 'Prima scelta', selection: false},{choice: 'Seconda scelta', selection: false},{choice: 'Terza scelta', selection: false}], risposta: 'Prima risposta'}});
+	await postBody(url+"tasks",task_valido1);
 	await get(url+"tasks");
 	
 	await get(url+"groups");

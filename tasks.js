@@ -32,8 +32,20 @@ var post_tasks = (body,i) => {
 	//console.log(i);
 	//const new_domanda = body.tipologia.domanda
     //const new_taskid = new_domanda.replace(/\s/g, '') //da sistemare perché al momento scrive "prova 2" - guarda client.js
-    const new_task =  {taskid:i, tipologia:body.tipologia}
-    return(new_task)
+	//body = {tipologia: ''}
+	//console.log(body.tipologia);
+	if(body==null || isNaN(i)) {
+		return('errore')
+	} else if(body.tipologia==false || body.tipologia==null) {
+		return('errore')
+	}
+	else if(body.tipologia.domanda==false || body.tipologia.domanda==null) {
+		return('errore')
+	} 
+	else {
+		const new_task =  {taskid:i, tipologia:body.tipologia}
+		return(new_task)
+	}
 }
 	
 //exports.i = i

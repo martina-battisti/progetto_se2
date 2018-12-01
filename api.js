@@ -51,10 +51,16 @@ app.post('/tasks', (req, res) => {
     const new_task =  {id:new_id, name:task_name}
     tasks.push(new_task)
 	*/
-	tasks.push(new_task)
-    res.status(201)
-	//console.log(new_task);
-	res.json(new_task)
+	if(new_task!='errore') {
+		tasks.push(new_task)
+		res.status(201)
+		//console.log(new_task);
+		res.json(new_task)
+	}
+	else {
+		res.status(400)
+		res.end();
+	}
 	
 	//res.end();
 })
@@ -186,4 +192,7 @@ app.post('/exams',(req,res) => {
 
 module.exports = {app};
 
-app.listen(PORT, () => console.log('Listening on port ' + PORT))
+var server = app.listen(PORT, () => console.log('Listening on port ' + PORT))
+
+module.exports = {app};
+module.exports = server;

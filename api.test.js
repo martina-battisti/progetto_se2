@@ -3,6 +3,35 @@ const fetch = require("node-fetch")
 const url = "http://localhost:3001/"
 
 
+var task_valido1 = 	{tipologia: 
+						{domanda: 'Prima domanda radiobox?', 
+						 options: [{choice: 'Prima scelta', selection: false},
+								   {choice: 'Seconda scelta', selection: false},
+								   {choice: 'Terza scelta', selection: false}], 
+						 risposta: 'Prima risposta'
+						}
+					};
+					
+var task_nonvalido3 =	{tipologia:
+							{risposta: 'Prima risposta'}
+						};
+
+
+
+var server;
+
+beforeAll(function () {
+  server = require('./api.js');
+});
+
+afterAll(function () {
+  server.close();
+});
+
+
+
+
+
 test('base test', () => {
 	expect(true).toBe(true);
 });
@@ -21,17 +50,30 @@ test('works with POST /tasks', () => {
 });
 */
 
-test('works with POST /tasks', () => {
-	expect.assertions(1);
+test('works with correct POST /tasks', () => {
+	expect.assertions(1); 
 	return fetch(url+"tasks", {
 		method: 'POST',
-		body: JSON.stringify({tipologia: {domanda: 'Prima domanda radiobox?', options: [{choice: 'Prima scelta', selection: false},{choice: 'Seconda scelta', selection: false},{choice: 'Terza scelta', selection: false}], risposta: 'Prima risposta'}}),
+		body: JSON.stringify(task_valido1),
 		headers: {
 			'Content-Type': 'application/json',
 		},
     })
 	//.then(r => r.json())
     .then(r => expect(r.status).toEqual(201));
+});
+
+test('works with wrong POST /tasks', () => {
+	expect.assertions(1); 
+	return fetch(url+"tasks", {
+		method: 'POST',
+		body: JSON.stringify(task_nonvalido3),
+		headers: {
+			'Content-Type': 'application/json',
+		},
+    })
+	//.then(r => r.json())
+    .then(r => expect(r.status).toEqual(400));
 });
 
 test('works with GET /users', () => {
