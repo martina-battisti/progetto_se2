@@ -17,6 +17,19 @@ var task_nonvalido3 =	{tipologia:
 						};
 
 
+var user_nonvalido3 = 	{	"username": "usernamev1",
+						   	"nome": "firstname1",
+						   	"cognome": "lastname1",
+						   	"matricola": 132465
+						};
+
+var user_valido1 = 	{"username": "usernamev1",
+					 "nome": "firstname1",
+					 "cognome": "lastname1",
+					 "email": "prova1@mail.it",
+					 "matricola": 132465
+					};
+
 
 var server;
 
@@ -82,17 +95,30 @@ test('works with GET /users', () => {
         .then(r => expect(r.status).toEqual(200))
 });
 
-test('works with POST /users', () => {
+test('works with correct POST /users', () => {
 	expect.assertions(1);
 	return fetch(url+"users", {
 		method: 'POST',
-		body: JSON.stringify({username: 'provaT', nome: 'TestName', cognome: 'TestSurname', email:'mail@test.com', matricola: 111111}),
+		body: JSON.stringify(user_valido1),
 		headers: {
 			'Content-Type': 'application/json',
 		},
     })
 	//.then(r => r.json())
     .then(r => expect(r.status).toEqual(201));
+});
+
+test('works with wrong POST /users', () => {
+	expect.assertions(1); 
+	return fetch(url+"users", {
+		method: 'POST',
+		body: JSON.stringify(user_nonvalido3),
+		headers: {
+			'Content-Type': 'application/json',
+		},
+    })
+	//.then(r => r.json())
+    .then(r => expect(r.status).toEqual(400));
 });
 
 //afterAll(() => setTimeout(() => process.exit(), 1000));

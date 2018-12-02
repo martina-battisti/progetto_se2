@@ -91,11 +91,24 @@ app.get('/users', (req, res) => {
 
 app.post('/users', (req, res) => {
 	//var new_user = post_users(req.body.user_name); //body è la variabile che setto nel client.js
-	var new_user = post_users(req.body);
+	/*var new_user = post_users(req.body);
 
 	users.push(new_user)
 	res.status(201)
-	res.json(new_user)
+	res.json(new_user)*/
+
+	var new_user = post_users(req.body); //body è la variabile che setto nel client.js
+	
+	if(new_user!='errore') {
+		users.push(new_user)
+		res.status(201)
+		res.json(new_user)
+	}
+	else {
+		res.status(400)
+		res.end();
+	}
+
 })
 
 

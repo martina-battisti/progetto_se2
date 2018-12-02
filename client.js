@@ -17,6 +17,20 @@ var task_nonvalido2 =	{tipologia:
 							}
 						};	
 
+var user_valido1 = 	{"username": "usernamev1",
+					 "nome": "firstname1",
+					 "cognome": "lastname1",
+					 "email": "prova1@mail.it",
+					 "matricola": 132465
+					};
+
+var user_nonvalido2 = 	{
+						 "nome": "firstname2",
+						 "cognome": "lastname2",
+						 "email": "prova2@mail.it",
+						 "matricola": 132465
+				   		}
+
 
 /*
 https.get(url, function(resp) {
@@ -76,7 +90,7 @@ async function get(url) {
 
 async function get_post (url) {
 	await get(url+"users");
-	await postBody(url+"users",{username: 'provaUser', nome: 'Firstname', cognome: 'Lastname', email:'prova@mail.it', matricola: 123654});
+	await postBody(url+"users",user_valido1);
 	await get(url+"users")
 	
 	await get(url+"tasks");
