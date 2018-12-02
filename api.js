@@ -193,11 +193,19 @@ app.get('/exams', (req, res) => {
     })
 
 app.post('/exams',(req,res) => {
-			i_exams += 1
-			var new_exam = post_exams(req.body, i_exams)
-			exams.push(new_exam)
-			res.status(201)
-			res.json(new_exam)
+    i_exams += 1
+    var new_exam = post_exams(req.body, i_exams)
+    if(new_exam!='errore') {
+        exams.push(new_exam)
+        res.status(201)
+        res.json(new_exam)
+   }
+	else {
+		res.status(400)
+		res.end();
+	}
+			
+			
 			})
 			
 // -------- END EXAMS
