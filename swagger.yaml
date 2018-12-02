@@ -758,7 +758,6 @@ definitions:
     required:
       - examid
       - title
-      - componenti
       - creator
       - tasks
       - groups
