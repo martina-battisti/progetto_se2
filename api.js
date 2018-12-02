@@ -184,8 +184,8 @@ app.post('/answers', (req, res) => {
 
 // ------- EXAMS
 
-var exams = [{ examid: 1,  creator: users[0], tasks: [tasks[0],tasks[1]], groups: [groups[0]]},
-			 { examid: 2,  creator: users[1], tasks: [tasks[0],tasks[1]], groups: [groups[0]]}];
+var exams = [{ examid: 1, title:'prova',  creator: users[0], tasks: [tasks[0],tasks[1]], groups: [groups[0]]},
+			 { examid: 2, title:'prova', creator: users[1], tasks: [tasks[0],tasks[1]], groups: [groups[0]]}];
 var i_exams = 2;
 
 app.get('/exams', (req, res) => {
@@ -204,8 +204,6 @@ app.post('/exams',(req,res) => {
 		res.status(400)
 		res.end();
 	}
-			
-			
 			})
 			
 // -------- END EXAMS
