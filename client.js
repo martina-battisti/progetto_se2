@@ -32,55 +32,20 @@ var user_nonvalido2 = 	{
 				   		}
 
 var exam_valido1 = {
-                    creator: user_valido1,
-                    title: 'prova',
-                    tasks: task_valido1,  
-                    groups: [
-                            {groupid: 1, 
-                             componenti: [{username: 'provaUser', 
-                                           nome: 'Firstname', 
-                                           cognome: 'Lastname', 
-                                           email:'prova@mail.it', 
-                                           matricola: 123654}]}, 
-                            {groupid: 2, 
-                             componenti: [{username: 'provaUser2', 
-                                           nome: 'Firstname2', 
-                                           cognome: 'Lastname2', 
-                                           email:'prova2@mail.it',
-                                           matricola: 123650},
-                                           {username: 'provaUser1',
-                                            nome: 'Firstname1', 
-                                            cognome: 'Lastname1', 
-                                            email:'prova1@mail.it', 
-                                            matricola: 123655}]
-                            } 
-                    ] 
+                    creator: 12,
+                    titolo: 'prova',
+                    tasks: [1,2,3,4], 
+                    groups: [12,13,14]
+    
 }
+         
 
 var exam_nonvalido1 = {
                     creator: null,
-                    title: 'prova',
-                    tasks: task_valido1,  
-                    groups: [
-                            {groupid: 1, 
-                             componenti: [{username: 'provaUser', 
-                                           nome: 'Firstname', 
-                                           cognome: 'Lastname', 
-                                           email:'prova@mail.it', 
-                                           matricola: 123654}]}, 
-                            {groupid: 2, 
-                             componenti: [{username: 'provaUser2', 
-                                           nome: 'Firstname2', 
-                                           cognome: 'Lastname2', 
-                                           email:'prova2@mail.it',
-                                           matricola: 123650},
-                                           {username: 'provaUser1',
-                                            nome: 'Firstname1', 
-                                            cognome: 'Lastname1', 
-                                            email:'prova1@mail.it', 
-                                            matricola: 123655}]
-                            } 
-                    ] 
+                    titolo: 'prova',
+                    tasks: [1,2,3,4], 
+                    groups: [12,13,14]
+    
 }
 
 /*

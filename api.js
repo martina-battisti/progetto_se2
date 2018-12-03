@@ -190,8 +190,8 @@ app.post('/answers', (req, res) => {
 
 // ------- EXAMS
 
-var exams = [{ examid: 1, title:'prova',  creator: 0, tasks: [0,1], groups: [4,5,6]},
-			 { examid: 2, title:'prova', creator: 1, tasks: [0,1], groups: [4,6,8]}];
+var exams = [{ examid: 1, titolo:'prova', creator: 0, tasks: [0,1], groups: [4,5,6]},
+			 { examid: 2, titolo:'prova', creator: 1, tasks: [0,1], groups: [4,6,8]}];
 var i_exams = 2;
 
 app.get('/exams', (req, res) => {

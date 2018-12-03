@@ -12,7 +12,7 @@ var exam_valido1 = {
 
 var exam_nonvalido1 = null;
 
-var exam_nonvalido1 = {
+var exam_nonvalido2 = {
                     creator: null,
                     titolo: 'prova',
                     tasks: [1,2,3,4], 
@@ -20,7 +20,7 @@ var exam_nonvalido1 = {
     
 }
 
-var exam_nonvalido2 = {
+var exam_nonvalido3 = {
                     creator: 12,
                     titolo: 'prova',
                     tasks: null, 
@@ -28,7 +28,7 @@ var exam_nonvalido2 = {
     
 }
 
-var exam_nonvalido3 = {
+var exam_nonvalido4 = {
                     creator: 12,
                     titolo: 'prova',
                     tasks: [1,2,3,4], 
@@ -37,7 +37,7 @@ var exam_nonvalido3 = {
 }
 
 
-var exam_nonvalido4 = {
+var exam_nonvalido5 = {
                     creator: 12,
                     titolo: null,
                     tasks: [1,2,3,4], 
@@ -52,13 +52,15 @@ test('Restituisce quello che passo correttamente', () => {
 	expect(get_exams('a')).toBe('a');
 });
 
-//TASK NON VALIDI
-
 test('Crea nuovo exams con parametri passati', () => {
 	//var i = tasks.i
-	expect(post_exams(exam_valido1,1)).toEqual({examid:1, creator:exam_valido1.creator, tasks:exam_valido1.tasks, groups:exam_valido1.groups });
+	expect(post_exams(exam_valido1,1)).toEqual({examid:1, titolo:exam_valido1.titolo, creator:exam_valido1.creator, tasks:exam_valido1.tasks, groups:exam_valido1.groups });
 	
 });
+
+
+//TASK NON VALIDI
+
 
 test('exam non inserito', () => {
 	expect(post_exams(exam_nonvalido1,1)).toEqual('errore');
@@ -75,6 +77,11 @@ test('exam con tasks null', () => {
 test('exam con groups null', () => {
 	expect(post_exams(exam_nonvalido4,1)).toEqual('errore');
 });
+
+test('exam con titolo null', () => {
+	expect(post_exams(exam_nonvalido5,1)).toEqual('errore');
+});
+
 
 test('exam con id NaN', () => {
 	expect(post_exams(exam_valido1,'c')).toEqual('errore');
