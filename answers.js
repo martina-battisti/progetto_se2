@@ -20,7 +20,7 @@ var answers_post = (body,i) => {
 	} else if(body.taskid==false || body.taskid==null) {
 		return('errore')
 	}
-	else if(body.userid==false || body.userid == null) {
+	else if(body.userid==false || body.userid == null || isNaN(body.userid) || !(Number.isInteger(body.userid))){
 		return('errore')
 	} 
 	else if(body.tempo==false || body.tempo==null) {
