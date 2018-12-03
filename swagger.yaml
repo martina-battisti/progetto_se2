@@ -703,6 +703,9 @@ definitions:
     title: User
     type: object
     properties:
+      userid: 
+        type: integer
+        format: int32
       username: 
         type: string
       nome: 
@@ -715,6 +718,7 @@ definitions:
         type: integer
         format: int32
     required:
+      - userid
       - username
       - matricola
       - nome
@@ -728,13 +732,16 @@ definitions:
       groupid: 
         type: integer
         format: int32
+      titolo:
+        type: string
       componenti: 
         type: array
         items:
-          $ref: '#/definitions/User'
+          type: integer
+          format: int32
     required:
       - groupid
-      - title
+      - titolo
       - componenti
 
   Exam:
@@ -744,7 +751,7 @@ definitions:
       examid:
         type: integer
         format: int32
-      nome_esame:
+      titolo:
         type: string
       creator:
         type: integer
@@ -761,7 +768,7 @@ definitions:
           format: int32
     required:
       - examid
-      - nome_esame
+      - titolo
       - creator
       - tasks
       - groups
