@@ -30,27 +30,27 @@ var users_post = (userid,body) => {
 		return('errore')
 	}
 	else if(userid==false || isNaN(userid) || !(Number.isInteger(userid))){
-		console.log("userID non inserito/non valido")
+		//console.log("userID non inserito/non valido")
 		return('errore')
 	}
 	else if(body.username==false || body.username==null) {
-		console.log("username non inserita")
+		//console.log("username non inserita")
 		return('errore')
 	}
 	else if(body.matricola==false || body.matricola==null) {
-		console.log("numero di matricola non inserito")
+		//console.log("numero di matricola non inserito")
 		return('errore')
 	}
 	else if(body.email==false || body.email==null) {
-		console.log("indirizzo email non inserito")
+		//console.log("indirizzo email non inserito")
 		return('errore')
 	}
 	else if(body.matricola.toString().length != 6) {
-		console.log("questo non è un numero di matricola")
+		//console.log("questo non è un numero di matricola")
 		return('errore')
 	}
 	else if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(body.email))){
-		console.log("email non valida")
+		//console.log("email non valida")
 		return('errore')
 	}
 	else {
