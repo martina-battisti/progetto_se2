@@ -203,14 +203,14 @@ test('works with POST /groups', () => {
 });
 
 // ------- END GROUPS
-// ------- EXAMS
+// ------- ANSWERS
 
 test('works with GET /answers', () => {
 	expect.assertions(1);
     return fetch(url+"answers")
         .then(r => expect(r.status).toEqual(200))
 });
-/*
+
 test('works with POST /answers', () => {
 	expect.assertions(1);
 	return fetch(url+"answers", {
@@ -223,20 +223,7 @@ test('works with POST /answers', () => {
 	//.then(r => r.json())
     .then(r => expect(r.status).toEqual(201));
 });
-*/
 
-test('works with correct POST /tasks', () => {
-	expect.assertions(1); 
-	return fetch(url+"tasks", {
-		method: 'POST',
-		body: JSON.stringify(task_valido1),
-		headers: {
-			'Content-Type': 'application/json',
-		},
-    })
-	//.then(r => r.json())
-    .then(r => expect(r.status).toEqual(201));
-});
 
 // ------- END ANSWERS
 
