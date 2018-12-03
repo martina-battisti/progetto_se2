@@ -100,6 +100,8 @@ test('base test', () => {
 });
 
 
+// ------- TASKS
+
 test('works with GET /tasks', () => {
 	expect.assertions(1);
     return fetch(url+"tasks")
@@ -139,6 +141,11 @@ test('works with wrong POST /tasks', () => {
     .then(r => expect(r.status).toEqual(400));
 });
 
+// ------- END TASKS
+// ------- USERS
+
+
+
 test('works with GET /users', () => {
 	expect.assertions(1);
     return fetch(url+"users")
@@ -173,6 +180,8 @@ test('works with wrong POST /users', () => {
 
 //afterAll(() => setTimeout(() => process.exit(), 1000));
 
+// ------- END USERS
+// ------- GROUPS
 
 test('works with GET /groups', () => {
 	expect.assertions(1);
@@ -193,13 +202,15 @@ test('works with POST /groups', () => {
     .then(r => expect(r.status).toEqual(201));
 });
 
+// ------- END GROUPS
+// ------- EXAMS
 
 test('works with GET /answers', () => {
 	expect.assertions(1);
     return fetch(url+"answers")
         .then(r => expect(r.status).toEqual(200))
 });
-
+/*
 test('works with POST /answers', () => {
 	expect.assertions(1);
 	return fetch(url+"answers", {
@@ -212,6 +223,24 @@ test('works with POST /answers', () => {
 	//.then(r => r.json())
     .then(r => expect(r.status).toEqual(201));
 });
+*/
+
+test('works with correct POST /tasks', () => {
+	expect.assertions(1); 
+	return fetch(url+"tasks", {
+		method: 'POST',
+		body: JSON.stringify(task_valido1),
+		headers: {
+			'Content-Type': 'application/json',
+		},
+    })
+	//.then(r => r.json())
+    .then(r => expect(r.status).toEqual(201));
+});
+
+// ------- END ANSWERS
+
+// ------- EXAMS
 
 test('works with GET /exams', () => {
 	expect.assertions(1);
@@ -244,3 +273,5 @@ test('works with wrong POST /exams', () => {
 	//.then(r => r.json())
     .then(r => expect(r.status).toEqual(400));
 });
+
+// ------- END EXAMS
