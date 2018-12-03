@@ -1,7 +1,7 @@
 {
   "name": "progetto_se2",
   "version": "1.0.0",
-  "description": "",
+  "description": "my commit Damiano Zoanetti\r my commit Laura Scoccianti\r my commit Enrico Berthod\r my commit Andrea Carrara",
   "main": "index.js",
   "scripts": {
     "start": "node api.js",

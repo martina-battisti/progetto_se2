@@ -56,7 +56,7 @@ test('get group corrisponde', () => {
 
 test('Crea nuovo group con parametri passati', () => {
 	//var i = tasks.i
-	expect(post_groups(group_valido1,1)).toEqual({examid:1, titolo:group_valido1.titolo, componenti:group_valido1.componenti});
+	expect(post_groups(group_valido1,1)).toEqual({groupid:1, titolo:group_valido1.titolo, componenti:group_valido1.componenti});
 	
 });
 
