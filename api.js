@@ -170,9 +170,15 @@ app.get('/answers', (req, res) => {
 app.post('/answers', (req, res) => {
 	i_answers += 1;
 	var new_answer = post_answers(req.body,i_answers); //body è la variabile che setto nel client.js
-	answers.push(new_answer)
-	res.status(201)
-	res.json(new_answer)
+	if(new_answer!='errore'){
+		answers.push(new_answer)
+		res.status(201)
+		res.json(new_answer)
+	}
+	else {
+		res.status(400)
+		res.end();
+}
 	
 })
 
@@ -180,8 +186,8 @@ app.post('/answers', (req, res) => {
 
 // ------- EXAMS
 
-var exams = [{ examid: 1,  creator: users[0], tasks: [tasks[0],tasks[1]], groups: [groups[0]]},
-			 { examid: 2,  creator: users[1], tasks: [tasks[0],tasks[1]], groups: [groups[0]]}];
+var exams = [{ examid: 1, title:'prova',  creator: 0, tasks: [0,1], groups: [4,5,6]},
+			 { examid: 2, title:'prova', creator: 1, tasks: [0,1], groups: [4,6,8]}];
 var i_exams = 2;
 
 app.get('/exams', (req, res) => {
@@ -200,8 +206,6 @@ app.post('/exams',(req,res) => {
 		res.status(400)
 		res.end();
 	}
-			
-			
 			})
 			
 // -------- END EXAMS

@@ -31,6 +31,57 @@ var user_nonvalido2 = 	{
 						 "matricola": 132465
 				   		}
 
+var exam_valido1 = {
+                    creator: user_valido1,
+                    title: 'prova',
+                    tasks: task_valido1,  
+                    groups: [
+                            {groupid: 1, 
+                             componenti: [{username: 'provaUser', 
+                                           nome: 'Firstname', 
+                                           cognome: 'Lastname', 
+                                           email:'prova@mail.it', 
+                                           matricola: 123654}]}, 
+                            {groupid: 2, 
+                             componenti: [{username: 'provaUser2', 
+                                           nome: 'Firstname2', 
+                                           cognome: 'Lastname2', 
+                                           email:'prova2@mail.it',
+                                           matricola: 123650},
+                                           {username: 'provaUser1',
+                                            nome: 'Firstname1', 
+                                            cognome: 'Lastname1', 
+                                            email:'prova1@mail.it', 
+                                            matricola: 123655}]
+                            } 
+                    ] 
+}
+
+var exam_nonvalido1 = {
+                    creator: null,
+                    title: 'prova',
+                    tasks: task_valido1,  
+                    groups: [
+                            {groupid: 1, 
+                             componenti: [{username: 'provaUser', 
+                                           nome: 'Firstname', 
+                                           cognome: 'Lastname', 
+                                           email:'prova@mail.it', 
+                                           matricola: 123654}]}, 
+                            {groupid: 2, 
+                             componenti: [{username: 'provaUser2', 
+                                           nome: 'Firstname2', 
+                                           cognome: 'Lastname2', 
+                                           email:'prova2@mail.it',
+                                           matricola: 123650},
+                                           {username: 'provaUser1',
+                                            nome: 'Firstname1', 
+                                            cognome: 'Lastname1', 
+                                            email:'prova1@mail.it', 
+                                            matricola: 123655}]
+                            } 
+                    ] 
+}
 
 /*
 https.get(url, function(resp) {
@@ -102,15 +153,7 @@ async function get_post (url) {
 	await get(url+"groups");
 	
 	await get(url+"exams");
-    await postBody(url+"exams",{
-        creator: {username: 'provaUser', nome: 'Firstname', cognome: 'Lastname', email:'prova@mail.it', matricola: 123456}, 
-        tasks: [
-            {taskid: 1, tipologia: {domanda: 'Prima domanda radiobox?', options: [{choice: 'Prima scelta', selection: false},{choice: 'Seconda scelta', selection: false},{choice: 'Terza scelta', selection: false}], risposta: 'Prima risposta'}}, 
-            {taskid: 2, tipologia: {domanda: 'Prima domanda radiobox?', options: [{choice: 'Prima scelta', selection: false},{choice: 'Seconda scelta', selection: false},{choice: 'Terza scelta', selection: false}], risposta: 'Prima risposta'}}], 
-        groups: [
-            {groupid: 1, componenti: [{username: 'provaUser', nome: 'Firstname', cognome: 'Lastname', email:'prova@mail.it', matricola: 123654}]}, 
-            {groupid: 2, componenti: [{username: 'provaUser2', nome: 'Firstname2', cognome: 'Lastname2', email:'prova2@mail.it', matricola: 123650},
-                                      {username: 'provaUser1', nome: 'Firstname1', cognome: 'Lastname1', email:'prova1@mail.it', matricola: 123655}]} ] })
+    await postBody(url+"exams",exam_valido1)
 	await get(url+"exams");
 	
 	await get(url+"answers");
