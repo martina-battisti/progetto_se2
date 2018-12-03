@@ -745,16 +745,16 @@ definitions:
         type: integer
         format: int32
       creator:
-        type: object
-        $ref: '#/definitions/User'
+        type: integer
+        format: int32
       tasks: 
         type: array
         items:
-          $ref: '#/definitions/Task'
+          format: int32
       groups: 
         type: array
         items:
-          $ref: '#/definitions/Group'
+          format: int32
     required:
       - examid
       - title
