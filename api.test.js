@@ -78,7 +78,7 @@ var group_nonvalido2 = {
 		-6293821,
 		-70651806
 	  ]
-}
+	}
 
 
 beforeAll(function () {
