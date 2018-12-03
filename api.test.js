@@ -46,6 +46,19 @@ var exam_nonvalido1 = {
     
 }
 
+var answer_valida1 = {taskid: 1,
+					 user: users[0],
+					 risposta: 'Prima risposta',
+					 tempo: '2018-01-30T17:12:47'
+}
+
+var answer_nonvalida1 = {"taskid": 1,
+					 "user": users[0],
+					  "risposta": 'Prima risposta',
+					  "tempo": '2018-01-30T17:12:47'
+}
+
+
 beforeAll(function () {
   server = require('./api.js');
 });
@@ -174,11 +187,24 @@ test('works with GET /answers', () => {
         .then(r => expect(r.status).toEqual(200))
 });
 
-test('works with POST /answers', () => {
+test('works with correct POST /answers', () => {
 	expect.assertions(1);
 	return fetch(url+"answers", {
 		method: 'POST',
-		body: JSON.stringify({taskid: 28, user: {username: 'provaUser', nome: 'Firstname', cognome: 'Lastname', email:'prova@mail.it', matricola: 123654}, risposta: 'Seconda risposta', tempo: '2018-02-30T17:12:47'}),
+		body: JSON.stringify(answer_valida1),
+		headers: {
+			'Content-Type': 'application/json',
+		},
+    })
+	//.then(r => r.json())
+    .then(r => expect(r.status).toEqual(201));
+});
+
+test('works with correct POST /answers', () => {
+	expect.assertions(1);
+	return fetch(url+"answers", {
+		method: 'POST',
+		body: JSON.stringify(answer_nonvalida1),
 		headers: {
 			'Content-Type': 'application/json',
 		},
