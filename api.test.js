@@ -55,7 +55,7 @@ var answer_valida1 = {taskid: 1,
 var answer_nonvalida1 = {
 		taskid: 1,
 		userid: 1,
-		//risposta: 'Prima risposta',
+		risposta: '',
 		tempo: '2018-01-30T17:12:47'
 }
 
@@ -235,7 +235,7 @@ test('works with correct POST /answers', () => {
     .then(r => expect(r.status).toEqual(201));
 });
 
-test('works with correct POST /answers', () => {
+test('works with wrong POST /answers', () => {
 	expect.assertions(1);
 	return fetch(url+"answers", {
 		method: 'POST',
@@ -245,7 +245,7 @@ test('works with correct POST /answers', () => {
 		},
     })
 	//.then(r => r.json())
-    .then(r => expect(r.status).toEqual(201));
+    .then(r => expect(r.status).toEqual(400));
 });
 
 

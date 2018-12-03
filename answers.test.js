@@ -3,27 +3,38 @@ const post_answers = require('./answers').answers_post
 
 var answer_valido1 = {taskid: 1, 
 	userid:1 ,
-	 risposta: 'Prima risposta', 
-	 tempo: '2018-01-30T17:12:47'
+	risposta: 'Prima risposta', 
+	tempo: '2018-01-30T17:12:47'
 };
 
 var answer_nonvalido1 = null;	
 
-var answer_nonvalido2 =	{risposta:
-		{ 
-		 risposta: ''
-		}
-	};	
+var answer_nonvalido2 =	{
+	userid:1 ,
+	risposta: 'Prima risposta', 
+	tempo: '2018-01-30T17:12:47'
+};	
 
-var answer_nonvalido3 =	{risposta:
-		{risposta: 'Prima risposta'}
-	};	
+var answer_nonvalido3 =	{taskid: 1, 
+	risposta: 'Prima risposta', 
+	tempo: '2018-01-30T17:12:47'
+};
 
-var answer_nonvalido4 = {risposta: null};						
+var answer_nonvalido4 = {taskid: 1, 
+	userid:1 , 
+	tempo: '2018-01-30T17:12:47'
+};						
 
-var answer_nonvalido5 =	{risposta: 'a', 
-	 risposta: 'Prima risposta'
-	};	
+var answer_nonvalido5 =	{taskid: 1, 
+	userid:1 ,
+	risposta: '', 
+	tempo: '2018-01-30T17:12:47'
+};
+
+var answer_nonvalido6 =	{taskid: 1, 
+	userid:1 ,
+	risposta: '', 
+};
 
 
 
@@ -42,24 +53,32 @@ test('Crea nuova task con parametro passato', () => {
 
 //TESTS NON VALIDI
 
-test('answer non inserito', () => {
+test('answerid mancante', () => {
+	expect(post_answers(answer_valido1)).toEqual('errore');
+});
+
+test('answer null', () => {
 	expect(post_answers(answer_nonvalido1,1)).toEqual('errore');
 });
 
-test('answer con domanda vuota', () => {
+test('answer con taskid assente', () => {
 	expect(post_answers(answer_nonvalido2,1)).toEqual('errore');
 });
 
-test('answer con domanda assente', () => {
+test('answer con userid assente', () => {
 	expect(post_answers(answer_nonvalido3,1)).toEqual('errore');
 });
 
-test('answer con tipologia null', () => {
+test('answer con risposta assente', () => {
 	expect(post_answers(answer_nonvalido4,1)).toEqual('errore');
 });
 
-test('answer con tipologia assente', () => {
+test('answer con risposta vuota', () => {
 	expect(post_answers(answer_nonvalido5,1)).toEqual('errore');
+});
+
+test('answer con risposta assente', () => {
+	expect(post_answers(answer_nonvalido6,1)).toEqual('errore');
 });
 
 test('answer con i passato NaN', () => {
