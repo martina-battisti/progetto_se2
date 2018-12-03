@@ -62,6 +62,10 @@ test('Crea nuova task con parametro passato', () => {
 
 //NON VALIDI
 
+test('taskis mancante', () => {
+	expect(post_tasks(task_valido1)).toEqual('errore');
+});
+
 test('task non inserito', () => {
 	expect(post_tasks(task_nonvalido1,1)).toEqual('errore');
 });
