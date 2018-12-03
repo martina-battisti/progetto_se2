@@ -17,7 +17,7 @@ var answers_post = (body,i) => {
     //const new_id = new_name.replace(/\s/g, '') //da sistemare perché al momento scrive "answer_prova 2" - guarda client.js
     if(body==null || isNaN(i)) {
 		return('errore')
-	} else if(body.taskid==false || body.taskid==null || isNaN(body.userid) || !(Number.isInteger(body.userid))) {
+	} else if(body.taskid==false || body.taskid==null || isNaN(body.taskid) || !(Number.isInteger(body.taskid))) {
 		return('errore')
 	}
 	else if(body.userid==false || body.userid == null || isNaN(body.userid) || !(Number.isInteger(body.userid))){
