@@ -744,20 +744,24 @@ definitions:
       examid:
         type: integer
         format: int32
+      nome_esame:
+        type: string
       creator:
         type: integer
         format: int32
       tasks: 
         type: array
         items:
+          type: integer
           format: int32
       groups: 
         type: array
         items:
+          type: integer
           format: int32
     required:
       - examid
-      - title
+      - nome_esame
       - creator
       - tasks
       - groups
