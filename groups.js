@@ -14,7 +14,15 @@ var get_groups = (x) => {
 	//funzione della post: crea un nuovo gruppo
 var post_groups = (body,i) => {
 	const new_group =  {groupid:i, componenti:body.componenti}
-    return(new_group)
+	return(new_group)
+	
+	if(body==null || isNaN(i)) {
+		return('errore')
+	} else if(body.titolo==false || body.titolo==null) {
+		return('errore')
+	} else (body.componenti==false || body.componenti==null) {
+		return('errore')
+	}
 }
 	
 module.exports={get_groups,post_groups}
