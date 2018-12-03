@@ -15,8 +15,24 @@ var answers_get = (x) => {
 var answers_post = (body,i) => {
 	//const new_name = x
     //const new_id = new_name.replace(/\s/g, '') //da sistemare perché al momento scrive "answer_prova 2" - guarda client.js
-    const new_answer = {answerid:i, taskid: body.taskid, user: body.user, risposta: body.risposta, tempo: body.tempo} //{id:new_id, answer_name:new_name}
-    return(new_answer)
+    if(body==null || isNaN(i)) {
+		return('errore')
+	} else if(body.taskid==false || body.taskid==null) {
+		return('errore')
+	}
+	else if(body.userid==false || body.userid == null) {
+		return('errore')
+	} 
+	else if(body.tempo==false || body.tempo==null) {
+		return('errore')
+	} 
+	else if(body.risposta==false || body.risposta==null) {
+		return('errore')
+	} 
+	else {
+		const new_answer = {answerid:i, taskid: body.taskid, userid: body.userid, risposta: body.risposta, tempo: body.tempo} //{id:new_id, answer_name:new_name}
+		return(new_answer)
+	}	
 }
 	
 module.exports={answers_get,answers_post}
