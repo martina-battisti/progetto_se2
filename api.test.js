@@ -47,13 +47,13 @@ var exam_nonvalido1 = {
 }
 
 var answer_valida1 = {taskid: 1,
-					 user: users[0],
+					 user: 1,
 					 risposta: 'Prima risposta',
 					 tempo: '2018-01-30T17:12:47'
 }
 
 var answer_nonvalida1 = {"taskid": 1,
-					 "user": users[0],
+					 "user": 1,
 					  "risposta": 'Prima risposta',
 					  "tempo": '2018-01-30T17:12:47'
 }

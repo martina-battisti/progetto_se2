@@ -13,16 +13,16 @@ var post_exams = (body,i) => {
     if(body==null || isNaN(i)) {
 		return('errore')
 	} else if(body.creator == false || body.creator == null){
-        console.log('creator non inserita')
+        //console.log('creator non inserita')
         return('errore')
     } else if(body.titolo == false || body.titolo == null){
-        console.log('titolo non inserito')
-         return('errore')
+        //console.log('titolo non inserito')
+        return('errore')
     }else if(body.tasks == false || body.tasks == null){
-        console.log('tasks non inserite')
+        //console.log('tasks non inserite')
         return('errore')
     } else if(body.groups == false || body.groups == null){
-        console.log('groups non inseriti')
+        //console.log('groups non inseriti')
         return('errore')
     } else{
         const new_exam = {examid:i, titolo:body.titolo, creator:body.creator, tasks:body.tasks, groups:body.groups};
