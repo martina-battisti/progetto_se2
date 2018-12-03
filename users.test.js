@@ -8,9 +8,19 @@ var user_valido1 = 	{"username": "usernamev1",
 					 "matricola": 132465
 					};
 
-//manca username
-var user_nonvalido1 = 	{
+//user non inserito
+user_nonvalido00 = null
+
+//manca userID
+var user_nonvalido0 = 	{"username": "provaname",
 						 "nome": "firstname2",
+						 "cognome": "lastname2",
+						 "email": "prova2@mail.it",
+						 "matricola": 132465
+				   		}
+
+//manca username
+var user_nonvalido1 = 	{"nome": "firstname2",
 						 "cognome": "lastname2",
 						 "email": "prova2@mail.it",
 						 "matricola": 132465
@@ -60,35 +70,47 @@ var user_nonvalido6 = 	{	"username": "usernamev1",
 //validi
 
 test('get user corrisponde', () => {
-	expect(get({username: 'provaT', nome: 'TestName', cognome: 'TestSurname', email:'mail@test.com', matricola: 111111})).toEqual({username: 'provaT', nome: 'TestName', cognome: 'TestSurname', email:'mail@test.com', matricola: 111111});
+	expect(get({userID: 8, username: 'provaT', nome: 'TestName', cognome: 'TestSurname', email:'mail@test.com', matricola: 111111})).toEqual({userID: 8, username: 'provaT', nome: 'TestName', cognome: 'TestSurname', email:'mail@test.com', matricola: 111111});
 });
 
-test('user postato corrisponde', () => {
-	expect(post({username: 'provaT', nome: 'TestName', cognome: 'TestSurname', email:'mail@test.com', matricola: 111111})).toEqual({username: 'provaT', nome: 'TestName', cognome: 'TestSurname', email:'mail@test.com', matricola: 111111});
+test('user postato correttamente con parametro', () => {
+	expect(post(8, user_valido1)).toEqual({userID: 8, username: user_valido1.username, nome: user_valido1.nome, cognome: user_valido1.cognome, email: user_valido1.email, matricola: user_valido1.matricola});
 });
 
 //non validi
 
+test('userID mancante', () => {
+	expect(post(user_valido1)).toEqual('errore');
+});
+
+test('userID non è un numero', () => {
+	expect(post('a', user_valido1)).toEqual('errore');
+});
+
+test('user non inserito', () => {
+	expect(post(2, user_nonvalido00)).toEqual('errore');
+});
+
 test('username mancante', () => {
-	expect(post(user_nonvalido1)).toEqual('errore');
+	expect(post(2, user_nonvalido1)).toEqual('errore');
 });
 
 test('matricola mancante', () => {
-	expect(post(user_nonvalido2)).toEqual('errore');
+	expect(post(2, user_nonvalido2)).toEqual('errore');
 });
 
 test('email mancante', () => {
-	expect(post(user_nonvalido3)).toEqual('errore');
+	expect(post(2, user_nonvalido3)).toEqual('errore');
 });
 
 test('email non valida 1', () => {
-	expect(post(user_nonvalido4)).toEqual('errore');
+	expect(post(2, user_nonvalido4)).toEqual('errore');
 });
 
 test('email non valida 2', () => {
-	expect(post(user_nonvalido5)).toEqual('errore');
+	expect(post(2, user_nonvalido5)).toEqual('errore');
 });
 
 test('email non valida 3', () => {
-	expect(post(user_nonvalido6)).toEqual('errore');
+	expect(post(2, user_nonvalido6)).toEqual('errore');
 });

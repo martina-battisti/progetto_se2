@@ -72,12 +72,14 @@ app.post('/tasks', (req, res) => {
 
 // ------- USERS
 
-var users = [{username: 'lscotch', nome: 'Laura', cognome: 'Scoccianti', email:'laurascotch@live.it', matricola: 185765},
-			 {username: 'ppall', nome: 'Pinco', cognome: 'Pallino', email:'pp@mail.it', matricola: 123456}];
+var users = [{userID: 1, username: 'lscotch', nome: 'Laura', cognome: 'Scoccianti', email:'laurascotch@live.it', matricola: 185765},
+			 {userID: 2, username: 'ppall', nome: 'Pinco', cognome: 'Pallino', email:'pp@mail.it', matricola: 123456}];
 
+var user_id = 2;
 /*
 	USER	
 {
+	"userID" : 21
 	"username": "ipsum aliqua exercitation nulla",
 	"nome": "elit d",
 	"cognome": "nostrud ullamco ea labore Excepteur",
@@ -90,14 +92,8 @@ app.get('/users', (req, res) => {
 })
 
 app.post('/users', (req, res) => {
-	//var new_user = post_users(req.body.user_name); //body è la variabile che setto nel client.js
-	/*var new_user = post_users(req.body);
-
-	users.push(new_user)
-	res.status(201)
-	res.json(new_user)*/
-
-	var new_user = post_users(req.body); //body è la variabile che setto nel client.js
+	user_id += 1;
+	var new_user = post_users(user_id,req.body); //body è la variabile che setto nel client.js
 	
 	if(new_user!='errore') {
 		users.push(new_user)

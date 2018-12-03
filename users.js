@@ -23,12 +23,17 @@ var users_get = (x) => {
 //	return(new_user);
 //}
 
-var users_post = (body) => {
-	//i += 1;
+var users_post = (userid,body) => {
+	//id += 1;
 	//console.log(i);
 	if(body==null) {
 		return('errore')
-	} else if(body.username==false || body.username==null) {
+	}
+	else if(userid==false || isNaN(userid) || !(Number.isInteger(userid))){
+		console.log("userID non inserito/non valido")
+		return('errore')
+	}
+	else if(body.username==false || body.username==null) {
 		console.log("username non inserita")
 		return('errore')
 	}
@@ -49,7 +54,7 @@ var users_post = (body) => {
 		return('errore')
 	}
 	else {
-		const new_user =  {username:body.username, nome:body.nome, cognome:body.cognome, email:body.email, matricola:body.matricola}
+		const new_user =  {userID: userid, username:body.username, nome:body.nome, cognome:body.cognome, email:body.email, matricola:body.matricola}
 		return(new_user)
 	}
 }
