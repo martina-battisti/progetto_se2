@@ -10,6 +10,8 @@ const get_answers = require('./answers').answers_get
 const post_answers = require('./answers').answers_post
 const get_exams = require('./exams').get_exams
 const post_exams = require('./exams').post_exams
+const get_exams_by_id = require('./exams').get_exams_by_id
+
 
 const app = express()
 const PORT = process.env.PORT || 3001
@@ -188,6 +190,8 @@ app.post('/answers', (req, res) => {
 
 var exams = [{ examid: 1, titolo:'prova', creator: 0, tasks: [0,1], groups: [4,5,6]},
 			 { examid: 2, titolo:'prova', creator: 1, tasks: [0,1], groups: [4,6,8]}];
+
+exports.exams = exams;
 var i_exams = 2;
 
 app.get('/exams', (req, res) => {
@@ -208,6 +212,13 @@ app.post('/exams',(req,res) => {
 	}
 			})
 			
+app.get('/exams/:examid', async (req,res) => {
+    var exambyid = get_exams_by_id(req.params.id)
+    console.log(index);
+    
+    res.send(exams[index]);
+    
+}) 
 // -------- END EXAMS
 
 
