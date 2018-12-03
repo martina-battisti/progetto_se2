@@ -174,9 +174,15 @@ app.get('/answers', (req, res) => {
 app.post('/answers', (req, res) => {
 	i_answers += 1;
 	var new_answer = post_answers(req.body,i_answers); //body è la variabile che setto nel client.js
-	answers.push(new_answer)
-	res.status(201)
-	res.json(new_answer)
+	if(new_answer!='errore'){
+		answers.push(new_answer)
+		res.status(201)
+		res.json(new_answer)
+	}
+	else {
+		res.status(400)
+		res.end();
+}
 	
 })
 
