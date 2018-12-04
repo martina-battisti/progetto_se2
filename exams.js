@@ -32,9 +32,9 @@ function post_exams(body,i){
         return('errore')
     } else if(body.groups.some((n)=> {return n<=0} )  || !body.groups.every(Number.isInteger)){
         return('errore')
-    } else if(body.groups == false || body.groups == null){
+    /*} else if(body.groups == false || body.groups == null){
         //console.log('groups non inseriti')
-        return('errore')
+        return('errore')*/
     } else{
         const new_exam = {examid:i, titolo:body.titolo, creator:body.creator, tasks:body.tasks, groups:body.groups};
         return(new_exam);
