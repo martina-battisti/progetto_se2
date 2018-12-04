@@ -14,12 +14,13 @@ var get_groups = (x) => {
 	//funzione della post: crea un nuovo gruppo
 var post_groups = (body,i) => {
 	
-	
 	if(body==null || isNaN(i)) {
 		return('errore')
 	} else if(body.titolo==false || body.titolo==null) {
 		return('errore')
 	} else if(body.componenti==false || body.componenti==null) {
+		return('errore')
+	} else if (body.componenti.some((n)=> {return n<=0} )  || !body.componenti.every(Number.isInteger) ) {
 		return('errore')
 	} else {
 		const new_group =  {groupid:i, titolo:body.titolo, componenti:body.componenti}
