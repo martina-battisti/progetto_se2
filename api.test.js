@@ -139,6 +139,27 @@ test('works with wrong POST /tasks', () => {
     .then(r => expect(r.status).toEqual(400));
 });
 
+test('works with correct GET /tasks/:idtask', () => {
+	expect.assertions(1); 
+	return fetch(url+'tasks/1')
+	//.then(r => r.json())
+    .then(r => expect(r.status).toEqual(200));
+});
+
+test('works with 404 GET /tasks/:idtask', () => {
+	expect.assertions(1); 
+	return fetch(url+'tasks/999999')
+	//.then(r => r.json())
+    .then(r => expect(r.status).toEqual(404));
+});
+
+test('works with 400 GET /tasks/:idtask', () => {
+	expect.assertions(1); 
+	return fetch(url+'tasks/a')
+	//.then(r => r.json())
+    .then(r => expect(r.status).toEqual(400));
+});
+
 // ------- END TASKS
 // ------- USERS
 

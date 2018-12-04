@@ -111,7 +111,7 @@ async function postBody(url, body) {
 };
 
 async function get(url) {
-	console.log('\n\ngetting 2 ' + url + '\n')
+	console.log('\n\ngetting ' + url + '\n')
     try {
 		const response = await fetch(url);
         const json = await response.json();
@@ -121,7 +121,19 @@ async function get(url) {
     }
 };
 
+async function get_id(url) {
+	console.log('\n\ngetting by id ' + url + '\n')
+    try {
+		const response = await fetch(url);
+        const json = await response.json();
+        console.log(json)
+    } catch (error) {
+        console.log('error');
+    }
+};
+
 async function get_post (url) {
+	
 	await get(url+"users");
 	await postBody(url+"users",user_valido1);
 	await get(url+"users")
@@ -129,6 +141,7 @@ async function get_post (url) {
 	await get(url+"tasks");
 	await postBody(url+"tasks",task_valido1);
 	await get(url+"tasks");
+	await get_id(url+'tasks/1');
 	
 	await get(url+"groups");
 	await postBody(url+"groups",group_valido1);
@@ -141,6 +154,7 @@ async function get_post (url) {
 	await get(url+"answers");
 	await postBody(url+"answers",answer_valido1);
 	await get(url+"answers");
+	
 };
 
 
