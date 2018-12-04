@@ -7,13 +7,18 @@ var aperta = {domanda: 'Prima domanda aperta', risposta: 'Prima risposta'}
 var tasks = [{taskid: 1, tipologia: checkbox},
 			 {taskid: 2, tipologia: aperta}];
 			 
+<<<<<<< HEAD
 			 
 var answers = [{answerid: 1, taskid: 1, userid: 1, tempo: '2018-01-30T17:12:47'},
 			   {answerid: 2, taskid: 2, userid: 2, tempo: '2018-02-30T17:12:47'}];
 			 
 var groups = [{groupid: 1, titolo: "prova1", componenti: [1, 2]},
-			  {groupid: 2, titolo: "prova2", componenti: [1]}];			 
+			  {groupid: 2, titolo: "prova2", componenti: [1]}];		
+
+var users = [{userID: 1, username: 'lscotch', nome: 'Laura', cognome: 'Scoccianti', email:'laurascotch@live.it', matricola: 185765},
+			 {userID: 2, username: 'ppall', nome: 'Pinco', cognome: 'Pallino', email:'pp@mail.it', matricola: 123456}];			  
 			 
 exports.tasks = tasks;
 exports.answers = answers;
 exports.groups = groups;
+exports.users = users;

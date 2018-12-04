@@ -2,7 +2,7 @@
 var bodyParser = require('body-parser')
 const express = require('express')
 const app = express()
-
+var risorse = require('./risorse')
 app.use( bodyParser.json() )
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -79,4 +79,14 @@ var users_put = (toModify,oldUser) => {
 }
 */
 
-module.exports={users_get,users_post/*,users_put*/}
+var get_id = (id) => {
+	for(let i=0;i<risorse.users.get.length;i++) {
+		//console.log(risorse.users[i].userid)
+		if(risorse.users[i].userid==id) {
+			return(risorse.users[i])
+		}
+	}
+	return('errore');
+}
+
+module.exports={get_users,post_users,get_id/*,users_put*/}

@@ -136,7 +136,8 @@ async function get_post (url) {
 	
 	await get(url+"users");
 	await postBody(url+"users",user_valido1);
-	await get(url+"users");
+	await get(url+"users")
+	await get_id(url+'users/1');
 	
 	await get(url+"tasks");
 	await postBody(url+"tasks",task_valido1);

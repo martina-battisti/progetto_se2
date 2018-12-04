@@ -1,6 +1,8 @@
 const get = require('./users').users_get
 const post = require('./users').users_post
 //const put = require('./users').users_put
+const get_id_users = require('./users').get_id
+var risorse = require('./risorse')
 
 var user_valido1 = 	{"username": "usernamev1",
 					 "nome": "firstname1",
@@ -129,7 +131,15 @@ test('user postato correttamente con parametro', () => {
 	expect(post(8, user_valido1)).toEqual({userID: 8, username: user_valido1.username, nome: user_valido1.nome, cognome: user_valido1.cognome, email: user_valido1.email, matricola: user_valido1.matricola});
 });
 
+test('Get user con id correttamente', () => {
+	expect(get_id_users(1)).toEqual(risorse.users[0]);
+});
+
 //non validi
+
+test('Get user con id inesistente', () => {
+	expect(get_id_users(999999)).toEqual('errore');
+});
 
 test('userID mancante', () => {
 	expect(post(user_valido1)).toEqual('errore');
@@ -191,3 +201,5 @@ test('modifica non valida - passo un null', () => {
 	expect(put(mod_nonvalido4, damod)).toEqual('errore');
 });
 */
+
+

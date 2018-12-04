@@ -7,6 +7,7 @@ const get_groups = require('./groups').get_groups
 const get_id_groups = require('./groups').get_id
 const post_groups = require('./groups').post_groups
 const get_users = require('./users').users_get
+const get_id_users = require('./users').get_id
 const post_users = require('./users').users_post
 //const put_users = require('./users').users_put
 const get_answers = require('./answers').answers_get
@@ -91,12 +92,7 @@ app.get('/tasks/:taskid', (req,res) => {
 
 // ------- USERS
 
-var users = [{userID: 1, username: 'lscotch', nome: 'Laura', cognome: 'Scoccianti', email:'laurascotch@live.it', matricola: 185765},
-			 {userID: 2, username: 'ppall', nome: 'Pinco', cognome: 'Pallino', email:'pp@mail.it', matricola: 123456},
-			 {userID: 3, username: 'ppall2', nome: 'Pinco2', cognome: 'Pallino2', email:'pp2@mail.it', matricola: 654321},
-			 {userID: 4, username: 'ppall3', nome: 'Pinco3', cognome: 'Pallino3', email:'pp3@mail.it', matricola: 132456}];
-
-var user_id = 4;
+var user_id = 2;
 /*
 	USER	
 {
@@ -109,7 +105,7 @@ var user_id = 4;
 }*/
 
 app.get('/users', (req, res) => {
-	res.send(get_users(users));
+	res.send(get_users(risorse.users));
 })
 
 app.post('/users', (req, res) => {
@@ -117,7 +113,7 @@ app.post('/users', (req, res) => {
 	var new_user = post_users(user_id,req.body); //body è la variabile che setto nel client.js
 	
 	if(new_user!='errore') {
-		users.push(new_user)
+		risorse.users.push(new_user)
 		res.status(201)
 		res.json(new_user)
 	}
@@ -164,6 +160,25 @@ app.delete('users/:userID', async (req, res) => {
 	}
 })
 */
+app.get('/users/:userid', (req,res) => {
+	const id = Number.parseInt(req.params.userid);
+	if(!id){
+        res.status(400)
+		res.send('errore')
+		res.end();
+    }
+	var user = get_id_users(id);
+    if(user!='errore'){
+        //var tjson = JSON.parse(JSON.stringify(user));
+		res.json(user)
+        res.status(200)
+		//res.send(tjson);
+    }else{
+		res.status(404);
+		res.send('errore');
+		res.end();
+    }
+});
 
 // -------- END USERS
 
