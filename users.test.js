@@ -1,6 +1,7 @@
 const get = require('./users').users_get
 const post = require('./users').users_post
-
+const get_id_users = require('./users').users_id
+var risorse = require('./risorse')
 var user_valido1 = 	{"username": "usernamev1",
 					 "nome": "firstname1",
 					 "cognome": "lastname1",
@@ -85,7 +86,12 @@ test('user postato correttamente con parametro', () => {
 	expect(post(8, user_valido1)).toEqual({userID: 8, username: user_valido1.username, nome: user_valido1.nome, cognome: user_valido1.cognome, email: user_valido1.email, matricola: user_valido1.matricola});
 });
 
+test('Get user con id correttamente', () => {
+	expect(get_id_users(1)).toEqual(risorse.users[0]);
+});
+
 //non validi
+
 
 test('userID mancante', () => {
 	expect(post(user_valido1)).toEqual('errore');
@@ -125,4 +131,8 @@ test('email non valida 3', () => {
 
 test('matricola non della giusta lunghezza', () => {
 	expect(post(2, user_nonvalido7)).toEqual('errore');
+});
+
+test('Get user con id inesistente', () => {
+	expect(get_id_users(999999)).toEqual('errore');
 });

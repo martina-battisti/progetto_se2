@@ -3,6 +3,7 @@ var bodyParser = require('body-parser')
 const express = require('express')
 const app = express()
 
+var risorse = require('./risorse')
 app.use( bodyParser.json() )
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -58,5 +59,16 @@ var users_post = (userid,body) => {
 		return(new_user)
 	}
 }
+
+var get_id = (id) => {
+	for(let i=0;i<risorse.users.get.length;i++) {
+		//console.log(risorse.users[i].userid)
+		if(risorse.users[i].userid==id) {
+			return(risorse.users[i])
+		}
+	}
+	return('errore');
+}
 	
-module.exports={users_get,users_post}
+
+module.exports={get_users,post_users,get_id}

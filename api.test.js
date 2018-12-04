@@ -197,6 +197,25 @@ test('works with wrong POST /users', () => {
     .then(r => expect(r.status).toEqual(400));
 });
 
+test('works with correct GET /users/:iduser', () => {
+	expect.assertions(1); 
+	return fetch(url+'users/1')
+	//.then(r => r.json())
+    .then(r => expect(r.status).toEqual(200));
+});
+ test('works with 404 GET /users/:iduser', () => {
+	expect.assertions(1); 
+	return fetch(url+'tasks/999999')
+	//.then(r => r.json())
+    .then(r => expect(r.status).toEqual(404));
+});
+ test('works with 400 GET /users/:iduser', () => {
+	expect.assertions(1); 
+	return fetch(url+'users/a')
+	//.then(r => r.json())
+    .then(r => expect(r.status).toEqual(400));
+});
+
 //afterAll(() => setTimeout(() => process.exit(), 1000));
 
 // ------- END USERS

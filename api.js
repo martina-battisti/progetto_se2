@@ -6,6 +6,7 @@ const post_tasks = require('./tasks').post_tasks
 const get_groups = require('./groups').get_groups
 const post_groups = require('./groups').post_groups
 const get_users = require('./users').users_get
+const get_id_users = require('./users').users_id
 const post_users = require('./users').users_post
 const get_answers = require('./answers').answers_get
 const post_answers = require('./answers').answers_post
@@ -102,7 +103,7 @@ var user_id = 2;
 }*/
 
 app.get('/users', (req, res) => {
-	res.send(get_users(users));
+	res.send(get_users(risorse.users));
 })
 
 app.post('/users', (req, res) => {
@@ -110,7 +111,7 @@ app.post('/users', (req, res) => {
 	var new_user = post_users(user_id,req.body); //body è la variabile che setto nel client.js
 	
 	if(new_user!='errore') {
-		users.push(new_user)
+		risorse.users.push(new_user)
 		res.status(201)
 		res.json(new_user)
 	}
@@ -120,6 +121,27 @@ app.post('/users', (req, res) => {
 	}
 
 })
+
+app.get('/users/:userid', (req,res) => {
+	const id = Number.parseInt(req.params.userid);
+	if(!id){
+        res.status(400)
+		res.send('errore')
+		res.end();
+    }
+	var user = get_id_users(id);
+    if(user!='errore'){
+        //var tjson = JSON.parse(JSON.stringify(user));
+		res.json(user)
+        res.status(200)
+		//res.send(tjson);
+    }else{
+		res.status(404);
+		res.send('errore');
+		res.end();
+    }
+});
+
 
 
 // -------- END USERS
