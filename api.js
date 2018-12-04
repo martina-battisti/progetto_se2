@@ -87,8 +87,7 @@ app.get('/tasks/:taskid', (req,res) => {
 
 // ------- USERS
 
-var users = [{userID: 1, username: 'lscotch', nome: 'Laura', cognome: 'Scoccianti', email:'laurascotch@live.it', matricola: 185765},
-			 {userID: 2, username: 'ppall', nome: 'Pinco', cognome: 'Pallino', email:'pp@mail.it', matricola: 123456}];
+
 
 var user_id = 2;
 /*

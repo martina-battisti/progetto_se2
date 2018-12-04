@@ -8,3 +8,8 @@ var tasks = [{taskid: 1, tipologia: checkbox},
 			 {taskid: 2, tipologia: aperta}];
 			 
 exports.tasks = tasks;
+
+var users = [{userID: 1, username: 'lscotch', nome: 'Laura', cognome: 'Scoccianti', email:'laurascotch@live.it', matricola: 185765},
+			 {userID: 2, username: 'ppall', nome: 'Pinco', cognome: 'Pallino', email:'pp@mail.it', matricola: 123456}];
+
+exports.users = users;
