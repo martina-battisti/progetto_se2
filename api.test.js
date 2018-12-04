@@ -205,7 +205,7 @@ test('works with correct GET /users/:iduser', () => {
 });
  test('works with 404 GET /users/:iduser', () => {
 	expect.assertions(1); 
-	return fetch(url+'tasks/999999')
+	return fetch(url+'users/999999')
 	//.then(r => r.json())
     .then(r => expect(r.status).toEqual(404));
 });
