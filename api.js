@@ -3,7 +3,6 @@ var bodyParser = require('body-parser')
 const get_tasks = require('./tasks').get_tasks
 const get_id_tasks = require('./tasks').get_id
 const post_tasks = require('./tasks').post_tasks
-const get_id_tasks = require('./tasks').get_id
 const get_groups = require('./groups').get_groups
 const post_groups = require('./groups').post_groups
 const get_users = require('./users').users_get
