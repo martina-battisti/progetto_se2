@@ -6,6 +6,7 @@ const get_groups = require('./groups').get_groups
 const post_groups = require('./groups').post_groups
 const get_users = require('./users').users_get
 const post_users = require('./users').users_post
+const put_users = require('./users').users_put
 const get_answers = require('./answers').answers_get
 const post_answers = require('./answers').answers_post
 const get_exams = require('./exams').get_exams
@@ -75,9 +76,11 @@ app.post('/tasks', (req, res) => {
 // ------- USERS
 
 var users = [{userID: 1, username: 'lscotch', nome: 'Laura', cognome: 'Scoccianti', email:'laurascotch@live.it', matricola: 185765},
-			 {userID: 2, username: 'ppall', nome: 'Pinco', cognome: 'Pallino', email:'pp@mail.it', matricola: 123456}];
+			 {userID: 2, username: 'ppall', nome: 'Pinco', cognome: 'Pallino', email:'pp@mail.it', matricola: 123456},
+			 {userID: 3, username: 'ppall2', nome: 'Pinco2', cognome: 'Pallino2', email:'pp2@mail.it', matricola: 654321},
+			 {userID: 4, username: 'ppall3', nome: 'Pinco3', cognome: 'Pallino3', email:'pp3@mail.it', matricola: 132456}];
 
-var user_id = 2;
+var user_id = 4;
 /*
 	USER	
 {
@@ -108,6 +111,25 @@ app.post('/users', (req, res) => {
 	}
 
 })
+
+users.put('users/:userID', async (req, res) => {
+	const userID = Number.parseInt(req.params.userID);
+	var oldIndex = getByUserId(userID);
+	const toModify = req.body;
+	
+	if(!userID){
+		res.status(400).end();
+	}else{
+		let modified = await put_users(toModify, users[oldIndex]);
+		if(modified != 'errore'){
+			users[oldIndex] = modified
+			res.status(204)
+			res.json(users[oldIndex])
+		}else{
+			res.status(409).end();
+		}
+	}
+});
 
 
 // -------- END USERS
@@ -205,6 +227,28 @@ app.get('/exams/:examid', async (req,res) => {
     
 }) 
 // -------- END EXAMS
+
+
+
+
+//---------------------------FUNZIONI NECESSARIE---------------------------------
+
+async function getByUserId(id){
+	if(!id){
+		return null;
+	}else{
+		var resultIndex = users.findIndex(x => x.userID === id);
+		if(resultIndex != false){
+			return resultIndex;
+		}else{
+			console.log("userID non trovato")
+			return null;
+		}
+	}
+}
+
+//-------------------------------------------------------------------------------
+
 
 
 module.exports = {app};

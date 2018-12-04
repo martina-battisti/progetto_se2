@@ -1,5 +1,6 @@
 const get = require('./users').users_get
 const post = require('./users').users_post
+const put = require('./users').users_put
 
 var user_valido1 = 	{"username": "usernamev1",
 					 "nome": "firstname1",
@@ -72,6 +73,49 @@ var user_nonvalido7 = 	{	"username": "usernamev1",
 						   	"matricola": 13246
 						};
 
+//CASI PER PUT
+var damod = 	{"userID":7,
+				 "username":"oun1",
+				 "nome":"on1",
+				 "cognome":"oc1",
+				 "email":"oe@mt.it",
+				 "matricola":123556
+				} 
+
+//modifica valida
+var mod_valido1 = 	{"userID":7,
+					 "username":"un1",
+					 "nome":"n1",
+					 "cognome":"c1",
+					 "email":"em@ma.it",
+					 "matricola":123456
+					}
+
+//modifica non valida 1 - email non valida
+var mod_nonvalido1 = 	{"userID":7,
+					 "cognome":"c1",
+					 "email":"em.i",
+					 "matricola":123456
+					}
+
+//modifica non valida - matricola non valida
+var mod_nonvalido2 = 	{"userID":7,
+					 "username":"un1",
+					 "email":"e@m.i",
+					 "matricola":12456
+					}
+
+//modifica non valida - non modifica nulla
+var mod_nonvalido3 = 	{"userID": '',
+					 "username": "",
+					 "nome":"",
+					 "cognome":"",
+					 "email":"",
+					 "matricola":''
+					}
+
+//modifica non valida
+var mod_nonvalido4 = null
 
 //TEST
 
@@ -125,4 +169,24 @@ test('email non valida 3', () => {
 
 test('matricola non della giusta lunghezza', () => {
 	expect(post(2, user_nonvalido7)).toEqual('errore');
+});
+
+test('modifica valida per put', () => {
+	expect(put(mod_valido1,damod)).toEqual({userID: mod_valido1.userID, username: mod_valido1.username, nome: mod_valido1.nome, cognome: mod_valido1.cognome, email: mod_valido1.email, matricola: mod_valido1.matricola});
+});
+
+test('modifica non valida - email non valida', () => {
+	expect(put(mod_nonvalido1, damod)).toEqual('errore');
+});
+
+test('modifica non valida - matricola non valida', () => {
+	expect(put(mod_nonvalido2, damod)).toEqual('errore');
+});
+
+test('modifica non valida - non modifica nulla', () => {
+	expect(put(mod_nonvalido3, damod)).toEqual('errore');
+});
+
+test('modifica non valida - passo un null', () => {
+	expect(put(mod_nonvalido4, damod)).toEqual('errore');
 });
