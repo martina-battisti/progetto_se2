@@ -2,6 +2,7 @@ const express = require('express')
 var bodyParser = require('body-parser')
 const get_tasks = require('./tasks').get_tasks
 const post_tasks = require('./tasks').post_tasks
+const get_id_tasks = require('./tasks').get_id
 const get_groups = require('./groups').get_groups
 const post_groups = require('./groups').post_groups
 const get_users = require('./users').users_get
@@ -65,7 +66,25 @@ app.post('/tasks', (req, res) => {
 	//res.end();
 })
 
-//exports.tasks = tasks;
+app.get('/tasks/:taskid', (req,res) => {
+	const id = Number.parseInt(req.params.taskid);
+	if(!id){
+        res.status(400).end();
+    }
+	var task = get_id_tasks(id);
+    if(res){
+        //var tjson = JSON.parse(JSON.stringify(task));
+		res.json(task)
+        res.status(200)
+		//res.send(tjson);
+    }else{
+		res.status(404);
+		res.send(task);
+		res.end();
+    }
+});
+
+exports.tasks = tasks;
 
 // -------- END TASKS
 

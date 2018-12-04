@@ -2,7 +2,7 @@
 var bodyParser = require('body-parser')
 const express = require('express')
 const app = express()
-//var api = require('./api')
+var api = require('./api')
 app.use( bodyParser.json() )
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -47,6 +47,17 @@ var post_tasks = (body,i) => {
 		return(new_task)
 	}
 }
+
+
+var get_id = (id) => {
+	for(let i=0;i<api.tasks.length;i++) {
+		//console.log(api.tasks[i].taskid)
+		if(api.tasks[i].taskid==id) {
+			return(api.tasks[i])
+		}
+	}
+	return('Task non esistente!');
+}
 	
 //exports.i = i
-module.exports={get_tasks,post_tasks}
+module.exports={get_tasks,post_tasks,get_id}
