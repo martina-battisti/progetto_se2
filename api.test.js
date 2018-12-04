@@ -1,6 +1,6 @@
 const app = require('./api').app
 const fetch = require("node-fetch")
-const url = "http://localhost:3001/"
+const url = "http://localhost:8000/"
 
 
 var task_valido1 = 	{tipologia: 
@@ -21,6 +21,12 @@ var user_nonvalido3 = 	{	"username": "usernamev1",
 						   	"nome": "firstname1",
 						   	"cognome": "lastname1",
 						   	"matricola": 132465
+						};
+
+var user_nonvalido4 = 	{	"username": "usernamev1",
+						   	"nome": "firstname1",
+						   	"cognome": "lastname1",
+						   	"matricola": 1324
 						};
 
 var user_valido1 = 	{"username": "usernamev1",
@@ -105,13 +111,12 @@ test('works with GET /tasks', () => {
     return fetch(url+"tasks")
         .then(r => expect(r.status).toEqual(200))
 });
-/*
+
 test('works with POST /tasks', () => {
 	expect.assertions(1);
     return fetch(url)
         .then(r => expect(r.status).toEqual(200))
 });
-*/
 
 test('works with correct POST /tasks', () => {
 	expect.assertions(1); 
@@ -160,11 +165,9 @@ test('works with 400 GET /tasks/:taskid', () => {
     .then(r => expect(r.status).toEqual(400));
 });
 
-
 // ------- END TASKS
+
 // ------- USERS
-
-
 
 test('works with GET /users', () => {
 	expect.assertions(1);
@@ -197,10 +200,65 @@ test('works with wrong POST /users', () => {
 	//.then(r => r.json())
     .then(r => expect(r.status).toEqual(400));
 });
+/*
+const putUser = function(id, toModify){
+	return fetch(url+"users/"+id,{
+		method: 'PUT',
+		headers: {
+		 'Content-Type': 'application/json',
+		 'Accept': 'application/json'
+		},
+		body: JSON.stringify(toModify)
+	});
+}
 
+test('PUT user con id null', () => {
+	return putUser(null, user_valido1)
+		.then(putResponse => {expect(putResponse.status).toBe(404)});
+});
+
+test('PUT user con id non valido', () => {
+	return putUser(-1, user_valido1)
+		.then(putResponse => {expect(putResponse.status).toBe(404)});
+});
+
+test('PUT user giusto', () => {
+	return putUser(1, user_valido1)
+		.then(putResponse => {expect(putResponse.status).toBe(204)});
+});
+
+test('PUT user con nuovi dati non validi', () => {
+	return putUser(null, user_nonvalido4)
+		.then(putResponse => {expect(putResponse.status).toBe(404)});
+});
+
+const deleteUser = function(userID){
+	return fetch(url+"users/"+userID, {
+	  method: 'DELETE',
+	  headers: {
+		'Accept': 'application/json'
+	  }
+	});
+ };
+
+test('delete user valido',()=>{
+    return deleteUser(1)
+    .then(res=>{
+      expect(res.status).toBe(204);
+  })
+});
+
+test('delete user non valido',()=>{
+    return deleteUser(-1)
+    .then(res=>{
+      expect(res.status).toBe(404);
+  })
+});
+*/
 //afterAll(() => setTimeout(() => process.exit(), 1000));
 
 // ------- END USERS
+
 // ------- GROUPS
 
 test('works with GET /groups', () => {
@@ -257,7 +315,12 @@ test('works with 400 GET /groups/:groupid', () => {
 });
 
 // ------- END GROUPS
+
 // ------- ANSWERS
+
+
+//------> CORREGGERE CHE DA ERRORI CON I TEST <-----------
+
 
 test('works with GET /answers', () => {
 	expect.assertions(1);

@@ -8,10 +8,10 @@ var group_valido1 = {
 	titolo: "prova1",
 	componenti: [
 		80709944,
-		-74734533,
-		-89689823,
-		-6293821,
-		-70651806
+		74734533,
+		89689823,
+		6293821,
+		70651806
 	  ]
 }
 
@@ -25,10 +25,10 @@ var group_nonvalido1 = {
 var group_nonvalido2 = {
 	componenti: [
 		80709944,
-		-74734533,
-		-89689823,
-		-6293821,
-		-70651806
+		74734533,
+		89689823,
+		6293821,
+		70651806
 	  ]
 }
 
@@ -38,10 +38,10 @@ var group_nonvalido4 = {
 	titolo: null,
 	componenti: [
 		80709944,
-		-74734533,
-		-89689823,
-		-6293821,
-		-70651806
+		74734533,
+		89689823,
+		6293821,
+		70651806
 	  ]
 }
 
@@ -50,6 +50,47 @@ var group_nonvalido5 = {
 	componenti: null
 }
 
+var group_nonvalido6 = {
+	titolo: "prova1",
+	componenti: [
+		"fbfd",
+		89689823,
+		6293821,
+		70651806
+	  ]
+}
+var group_nonvalido7 = {
+	titolo: "prova1",
+	componenti: [
+		-1332414,
+		74734533,
+		89689823,
+		6293821,
+		70651806
+	  ]
+}
+
+var group_nonvalido8 = {
+	titolo: "prova1",
+	componenti: [
+		0,
+		74734533,
+		89689823,
+		6293821,
+		70651806
+	  ]
+}
+
+var group_nonvalido9 = {
+	titolo: "prova1",
+	componenti: [
+		3.356738,
+		74734533,
+		89689823,
+		6293821,
+		70651806
+	  ]
+}
 //TEST VALIDI
 
 test('get group corrisponde', () => {
@@ -99,4 +140,18 @@ test('groupID mancante', () => {
 	expect(post_groups(group_valido1)).toEqual('errore');
 });
 
+test('group con userid NaN', () => {
+	expect(post_groups(group_nonvalido6,1)).toEqual('errore');
+});
 
+test('group con userid negativo', () => {
+	expect(post_groups(group_nonvalido7,1)).toEqual('errore');
+});
+
+test('group con userid 0', () => {
+	expect(post_groups(group_nonvalido8,1)).toEqual('errore');
+});
+
+test('group con userid reale', () => {
+	expect(post_groups(group_nonvalido9,1)).toEqual('errore');
+});

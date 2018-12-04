@@ -8,14 +8,17 @@ const get_id_groups = require('./groups').get_id
 const post_groups = require('./groups').post_groups
 const get_users = require('./users').users_get
 const post_users = require('./users').users_post
+//const put_users = require('./users').users_put
 const get_answers = require('./answers').answers_get
 const get_id_answers = require('./answers').get_id
 const post_answers = require('./answers').answers_post
 const get_exams = require('./exams').get_exams
 const post_exams = require('./exams').post_exams
 var risorse = require('./risorse')
+//const get_exams_by_id = require('./exams').get_exams_by_id
+
 const app = express()
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 8000
 app.use( bodyParser.json() )
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -89,9 +92,11 @@ app.get('/tasks/:taskid', (req,res) => {
 // ------- USERS
 
 var users = [{userID: 1, username: 'lscotch', nome: 'Laura', cognome: 'Scoccianti', email:'laurascotch@live.it', matricola: 185765},
-			 {userID: 2, username: 'ppall', nome: 'Pinco', cognome: 'Pallino', email:'pp@mail.it', matricola: 123456}];
+			 {userID: 2, username: 'ppall', nome: 'Pinco', cognome: 'Pallino', email:'pp@mail.it', matricola: 123456},
+			 {userID: 3, username: 'ppall2', nome: 'Pinco2', cognome: 'Pallino2', email:'pp2@mail.it', matricola: 654321},
+			 {userID: 4, username: 'ppall3', nome: 'Pinco3', cognome: 'Pallino3', email:'pp3@mail.it', matricola: 132456}];
 
-var user_id = 2;
+var user_id = 4;
 /*
 	USER	
 {
@@ -122,14 +127,49 @@ app.post('/users', (req, res) => {
 	}
 
 })
+/*
+app.put('users/:userID', async (req, res) => {
+	const userID = Number.parseInt(req.params.userID);
+	var oldIndex = getByUserId(userID);
+	const toModify = req.body;
+	
+	if(!userID || userID == null || userID<=0){
+		res.status(404).end();
+	}else if(oldIndex == null){
+		res.status(404).end();
+	}else{
+		let modified = await put_users(toModify, users[oldIndex]);
+		if(modified != 'errore'){
+			users[oldIndex] = modified
+			res.status(204)
+			res.json(users[oldIndex])
+		}else{
+			res.status(404).end();
+		}
+	}
+});
 
+app.delete('users/:userID', async (req, res) => {
+	const userID = Number.parseInt(req.params.userID);
+	var userIndex = getByUserId(userID);
+	if(!userID || userID == null || userID<=0){
+		res.status(400).end();
+	}else if(userIndex == null){
+		res.status(400).end();
+	}else{
+    	users.splice(userIndex,1)
+    	console.log('\ndeleting ',req.params.id)
+    	console.log('now:',users)
+    	res.sendStatus(204) // delete, no content
+	}
+})
+*/
 
 // -------- END USERS
 
 
 
 // ------- GROUPS
-
 
 var i_groups = 2;
 // console.log(groups[0].componenti[0]); //questa è la dimostrazione che c'è
@@ -147,7 +187,7 @@ app.post('/groups', (req, res) => {
         res.json(new_group)
     } else {
         res.status(400)
-    res.end();
+		res.end();
     }
 })
 
@@ -176,7 +216,6 @@ app.get('/groups/:groupid', (req,res) => {
 
 // ------- ANSWERS
 
-
 i_answers = 2;
 
 app.get('/answers', (req, res) => {
@@ -194,7 +233,7 @@ app.post('/answers', (req, res) => {
 	else {
 		res.status(400)
 		res.end();
-}	
+	}	
 })
 
 app.get('/answers/:answerid', (req,res) => {
@@ -223,6 +262,8 @@ app.get('/answers/:answerid', (req,res) => {
 
 var exams = [{ examid: 1, titolo:'prova', creator: 0, tasks: [0,1], groups: [4,5,6]},
 			 { examid: 2, titolo:'prova', creator: 1, tasks: [0,1], groups: [4,6,8]}];
+
+//exports.exams = exams;
 var i_exams = 2;
 
 app.get('/exams', (req, res) => {
@@ -242,11 +283,39 @@ app.post('/exams',(req,res) => {
 		res.end();
 	}
 })
-			
+/*			
+app.get('/exams/:examid', async (req,res) => {
+    
+    var exambyid = get_exams_by_id(req.params.examid)
+    console.log(exambyid)
+    res.send(exambyid);
+   
+})
+*/ 
 // -------- END EXAMS
 
 
-//module.exports = {app};
+
+
+
+//---------------------------FUNZIONI NECESSARIE---------------------------------
+/*
+async function getByUserId(id){
+	if(!id){
+		return null;
+	}else{
+		var resultIndex = users.findIndex(x => x.userID === id);
+		if(resultIndex != false){
+			return resultIndex;
+		}else{
+			console.log("userID non trovato")
+			return null;
+		}
+	}
+}
+*/
+//-------------------------------------------------------------------------------
+
 
 var server = app.listen(PORT, () => console.log('Listening on port ' + PORT))
 

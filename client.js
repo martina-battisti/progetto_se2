@@ -1,7 +1,7 @@
 var https = require('http');
 const fetch = require("node-fetch");
 
-var url = "http://localhost:3001/";
+var url = "http://localhost:8000/";
 
 var task_valido1 = 	{tipologia: 
 						{domanda: 'Prima domanda radiobox?', 
@@ -157,6 +157,8 @@ async function get_post (url) {
 	await get(url+"answers");
 	await get_id(url+'answers/1');
 	
+    //await get(url+"exams/2");
+    //await get_exam_by_id(url+"exams/1");
 };
 
 
