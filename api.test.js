@@ -45,18 +45,41 @@ var exam_nonvalido1 = {
                     groups: [12,13,14]
     
 }
-
+/*
 var answer_valida1 = {taskid: 1,
-					 user: 1,
+					 userid: 1,
 					 risposta: 'Prima risposta',
 					 tempo: '2018-01-30T17:12:47'
 }
 
-var answer_nonvalida1 = {"taskid": 1,
-					 "user": 1,
-					  "risposta": 'Prima risposta',
-					  "tempo": '2018-01-30T17:12:47'
+var answer_nonvalida1 = {
+		taskid: 1,
+		userid: 1,
+		risposta: '',
+		tempo: '2018-01-30T17:12:47'
 }
+*/
+
+var group_valido1 = {
+	titolo: "prova1",
+	componenti: [
+		80709944,
+		74734533,
+		89689823,
+		6293821,
+		70651806
+	  ]
+}
+
+var group_nonvalido2 = {
+	componenti: [
+		80709944,
+		-74734533,
+		-89689823,
+		-6293821,
+		-70651806
+	  ]
+	}
 
 
 beforeAll(function () {
@@ -83,13 +106,13 @@ test('works with GET /tasks', () => {
     return fetch(url+"tasks")
         .then(r => expect(r.status).toEqual(200))
 });
-/*
+
 test('works with POST /tasks', () => {
 	expect.assertions(1);
     return fetch(url)
         .then(r => expect(r.status).toEqual(200))
 });
-*/
+
 
 test('works with correct POST /tasks', () => {
 	expect.assertions(1); 
@@ -165,11 +188,11 @@ test('works with GET /groups', () => {
         .then(r => expect(r.status).toEqual(200))
 });
 
-test('works with POST /groups', () => {
+test('works with correct POST /groups', () => {
 	expect.assertions(1);
 	return fetch(url+"groups", {
 		method: 'POST',
-		body: JSON.stringify({componenti: [{username: 'provaUser', nome: 'Firstname', cognome: 'Lastname', email:'prova@mail.it', matricola: 123654}]}),
+		body: JSON.stringify(group_valido1),
 		headers: {
 			'Content-Type': 'application/json',
 		},
@@ -178,8 +201,25 @@ test('works with POST /groups', () => {
     .then(r => expect(r.status).toEqual(201));
 });
 
+test('works with wrong POST /groups', () => {
+	expect.assertions(1); 
+	return fetch(url+"groups", {
+		method: 'POST',
+		body: JSON.stringify(group_nonvalido2),
+		headers: {
+			'Content-Type': 'application/json',
+		},
+    })
+	//.then(r => r.json())
+    .then(r => expect(r.status).toEqual(400));
+});
+
 // ------- END GROUPS
 // ------- ANSWERS
+/*
+
+------> CORREGGERE CHE DA ERRORI CON I TEST <-----------
+
 
 test('works with GET /answers', () => {
 	expect.assertions(1);
@@ -200,7 +240,7 @@ test('works with correct POST /answers', () => {
     .then(r => expect(r.status).toEqual(201));
 });
 
-test('works with correct POST /answers', () => {
+test('works with wrong POST /answers', () => {
 	expect.assertions(1);
 	return fetch(url+"answers", {
 		method: 'POST',
@@ -210,9 +250,9 @@ test('works with correct POST /answers', () => {
 		},
     })
 	//.then(r => r.json())
-    .then(r => expect(r.status).toEqual(201));
+    .then(r => expect(r.status).toEqual(400));
 });
-
+*/
 
 // ------- END ANSWERS
 

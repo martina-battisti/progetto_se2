@@ -13,8 +13,18 @@ var get_groups = (x) => {
 
 	//funzione della post: crea un nuovo gruppo
 var post_groups = (body,i) => {
-	const new_group =  {groupid:i, componenti:body.componenti}
-    return(new_group)
+	
+	
+	if(body==null || isNaN(i)) {
+		return('errore')
+	} else if(body.titolo==false || body.titolo==null) {
+		return('errore')
+	} else if(body.componenti==false || body.componenti==null) {
+		return('errore')
+	} else {
+		const new_group =  {groupid:i, titolo:body.titolo, componenti:body.componenti}
+		return(new_group)
+	}
 }
 	
 module.exports={get_groups,post_groups}

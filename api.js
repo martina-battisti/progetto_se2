@@ -11,6 +11,8 @@ const get_answers = require('./answers').answers_get
 const post_answers = require('./answers').answers_post
 const get_exams = require('./exams').get_exams
 const post_exams = require('./exams').post_exams
+const get_exams_by_id = require('./exams').get_exams_by_id
+
 
 const app = express()
 const PORT = process.env.PORT || 3001
@@ -136,31 +138,10 @@ users.put('users/:userID', async (req, res) => {
 
 // ------- GROUPS
 
-/*
-{
-  "groupid": -84588233,
-  "componenti": [
-    {
-      "username": "ipsum adipisicing",
-      "matricola": 16073017,
-      "nome": "Lorem la",
-      "cognome": "do sit quis Excepteur",
-      "email": "consequat"
-    },
-    {
-      "username": "magna anim ullamco",
-      "matricola": 65992090,
-      "nome": "velit non Ut officia exercitation",
-      "cognome": "magna nisi fugiat labore",
-      "email": "reprehenderit consequat ex"
-	}
-}
-*/
-
 var groups = [{groupid: 1,
-			   componenti: [users[0], users[1]]},
+			   componenti: [1, 2, 3]},
 			  {groupid: 2,
-			   componenti: [users[0]]}];
+			   componenti: [4, 5]}];
 var i_groups = 2;
 // console.log(groups[0].componenti[0]); //questa è la dimostrazione che c'è
 
@@ -171,10 +152,16 @@ app.get('/groups', (req, res) => {
 app.post('/groups', (req, res) => {
 	i_groups += 1;
 	var new_group = post_groups(req.body,i_groups); //body è la variabile che setto nel client.js
-	groups.push(new_group)
-	res.status(201)
-	res.json(new_group)
+    if(new_group!='errore') {
+        groups.push(new_group)
+	    res.status(201)
+        res.json(new_group)
+    } else {
+        res.status(400)
+    res.end();
+    }
 })
+
 
 // -------- END GROUPS
 
@@ -210,6 +197,8 @@ app.post('/answers', (req, res) => {
 
 var exams = [{ examid: 1, titolo:'prova', creator: 0, tasks: [0,1], groups: [4,5,6]},
 			 { examid: 2, titolo:'prova', creator: 1, tasks: [0,1], groups: [4,6,8]}];
+
+exports.exams = exams;
 var i_exams = 2;
 
 app.get('/exams', (req, res) => {
@@ -230,6 +219,13 @@ app.post('/exams',(req,res) => {
 	}
 			})
 			
+app.get('/exams/:examid', async (req,res) => {
+    var exambyid = get_exams_by_id(req.params.id)
+    console.log(index);
+    
+    res.send(exams[index]);
+    
+}) 
 // -------- END EXAMS
 
 

@@ -34,7 +34,7 @@ var users_post = (userid,body) => {
 		return('errore')
 	}
 	else if(body.matricola.toString().length != 6) {
-		//console.log("questo non è un numero di matricola")
+
 		return('errore')
 	}
 	else if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(body.email))){
