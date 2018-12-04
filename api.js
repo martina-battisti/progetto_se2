@@ -16,7 +16,7 @@ const post_answers = require('./answers').answers_post
 const get_exams = require('./exams').get_exams
 const post_exams = require('./exams').post_exams
 var risorse = require('./risorse')
-//const get_exams_by_id = require('./exams').get_exams_by_id
+const get_id_exams = require('./exams').get_id
 
 const app = express()
 const PORT = process.env.PORT || 8000
@@ -275,21 +275,20 @@ app.get('/answers/:answerid', (req,res) => {
 
 // ------- EXAMS
 
-var exams = [{ examid: 1, titolo:'prova', creator: 0, tasks: [0,1], groups: [4,5,6]},
-			 { examid: 2, titolo:'prova', creator: 1, tasks: [0,1], groups: [4,6,8]}];
+
 
 //exports.exams = exams;
 var i_exams = 2;
 
 app.get('/exams', (req, res) => {
-    res.send(get_exams(exams));
+    res.send(get_exams(risorse.exams));
     })
 
 app.post('/exams',(req,res) => {
     i_exams += 1
     var new_exam = post_exams(req.body, i_exams)
     if(new_exam!='errore') {
-        exams.push(new_exam)
+        risorse.exams.push(new_exam)
         res.status(201)
         res.json(new_exam)
    }
@@ -298,6 +297,27 @@ app.post('/exams',(req,res) => {
 		res.end();
 	}
 })
+
+app.get('/exams/:examid', (req,res) => {
+	const id = Number.parseInt(req.params.examid);
+	if(!id){
+        res.status(400)
+		res.send('errore')
+		res.end();
+    }
+	var exam = get_id_exams(id);
+    if(exam!='errore'){
+        //var tjson = JSON.parse(JSON.stringify(task));
+		res.json(exam)
+        res.status(200)
+		//res.send(tjson);
+    }else{
+		res.status(404);
+		res.send('errore');
+		res.end();
+    }
+});
+
 /*			
 app.get('/exams/:examid', async (req,res) => {
     

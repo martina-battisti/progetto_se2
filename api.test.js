@@ -430,4 +430,25 @@ test('works with wrong POST /exams', () => {
     .then(r => expect(r.status).toEqual(400));
 });
 
+test('works with correct GET /exams/:examid', () => {
+	expect.assertions(1); 
+	return fetch(url+'exams/1')
+	//.then(r => r.json())
+    .then(r => expect(r.status).toEqual(200));
+});
+
+test('works with 404 GET /exams/:examid', () => {
+	expect.assertions(1); 
+	return fetch(url+'exams/999999')
+	//.then(r => r.json())
+    .then(r => expect(r.status).toEqual(404));
+});
+
+test('works with 400 GET /tasks/:taskid', () => {
+	expect.assertions(1); 
+	return fetch(url+'exams/a')
+	//.then(r => r.json())
+    .then(r => expect(r.status).toEqual(400));
+});
+
 // ------- END EXAMS

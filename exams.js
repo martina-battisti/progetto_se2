@@ -1,8 +1,8 @@
 var bodyParser = require('body-parser')
 const express = require('express')
 const app = express()
-//var api = require('./api')
-//var esami = api.exams
+var risorse = require('./risorse')
+
 
 app.use( bodyParser.json() )
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -39,16 +39,17 @@ function post_exams(body,i){
         const new_exam = {examid:i, titolo:body.titolo, creator:body.creator, tasks:body.tasks, groups:body.groups};
         return(new_exam);
     }
-
-    
 }
-/*
-function get_exams_by_id(examid){
-    var ex = api.exams
-    var a = parseInt(examid)
-    var index = ex.findIndex(item => item.examid === a);
-    return ex[index];
-}*/
+
+var get_id = (id) => {
+	for(let i=0;i<risorse.exams.length;i++) {
+		if(risorse.exams[i].examid==id) {
+			return(risorse.exams[i])
+		}
+	}
+	return('errore');
+}
 	
+
 //module.exports={get_exams,post_exams,get_exams_by_id}
-module.exports={get_exams,post_exams}
+module.exports={get_exams,post_exams,get_id}
