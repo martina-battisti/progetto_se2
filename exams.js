@@ -8,7 +8,7 @@ app.use( bodyParser.json() )
 app.use(bodyParser.urlencoded({ extended: true }));
 
 var get_exams = (x) => {
-    console.log(api.exams)
+
 	return(x)
     
 }
@@ -26,16 +26,15 @@ function post_exams(body,i){
         //console.log('tasks non inserite')
 
         return('errore')
-        /*
+        
     } else if(body.tasks.some((n)=> {return n<=0} )  || !body.tasks.every(Number.isInteger)){
         return('errore')
-    }*/ else if(body.groups == false || body.groups == null){
+    } else if(body.groups == false || body.groups == null){
         //console.log('groups non inseriti')
         return('errore')
-    } /*else if(body.groups.some((n)=> {return n<=0} )  || !body.groups.every(Number.isInteger)){
-=======
+    } else if(body.groups.some((n)=> {return n<=0} )  || !body.groups.every(Number.isInteger)){
         return('errore')
-    }*/ else if(body.groups == false || body.groups == null){
+    } else if(body.groups == false || body.groups == null){
         //console.log('groups non inseriti')
         return('errore')
     } else{
@@ -45,10 +44,13 @@ function post_exams(body,i){
 
     
 }
-
+/*
 function get_exams_by_id(examid){
-    const index = esami.findIndex((item) => {return item.examid===examid})
-    return esami[index];
-}
+    var ex = api.exams
+    var a = parseInt(examid)
+    var index = ex.findIndex(item => item.examid === a);
+    return ex[index];
+}*/
 	
-module.exports={get_exams,post_exams,get_exams_by_id}
+//module.exports={get_exams,post_exams,get_exams_by_id}
+module.exports={get_exams,post_exams}

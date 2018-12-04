@@ -14,7 +14,7 @@ const get_exams_by_id = require('./exams').get_exams_by_id
 
 
 const app = express()
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 3002
 app.use( bodyParser.json() )
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -198,10 +198,10 @@ app.post('/exams',(req,res) => {
 			})
 			
 app.get('/exams/:examid', async (req,res) => {
-    var exambyid = get_exams_by_id(req.params.id)
-    console.log(index);
     
-    res.send(exams[index]);
+    var exambyid = get_exams_by_id(req.params.examid)
+    console.log(exambyid)
+    res.send(exambyid);
     
 }) 
 // -------- END EXAMS

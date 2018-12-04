@@ -1,8 +1,10 @@
 const get_exams = require('./exams').get_exams
 const post_exams = require('./exams').post_exams
+//const get_exams_by_id = require ('./exams').get_exams_by_id
 
-//exam valido
+//exam valido senza id per post
 var exam_valido1 = {
+                    
                     creator: 12,
                     titolo: 'prova',
                     tasks: [1,2,3,4], 
@@ -10,10 +12,10 @@ var exam_valido1 = {
     
 }
                         
-//exam non inserito
+//exam non inserito 
 var exam_nonvalido1 = null;
 
-//exam con creator null
+//exam con creator null senza id per post
 var exam_nonvalido2 = {
                     creator: null,
                     titolo: 'prova',
@@ -22,7 +24,7 @@ var exam_nonvalido2 = {
     
 }
 
-//exam con tasks null
+//exam con tasks null senza id per post
 var exam_nonvalido3 = {
                     creator: 12,
                     titolo: 'prova',
@@ -31,7 +33,7 @@ var exam_nonvalido3 = {
     
 }
 
-//exam con groups null
+//exam con groups null senza id per post
 var exam_nonvalido4 = {
                     creator: 12,
                     titolo: 'prova',
@@ -40,7 +42,7 @@ var exam_nonvalido4 = {
     
 }
 
-//exam con titolo null
+//exam con titolo null senza id per post
 var exam_nonvalido5 = {
                     creator: 12,
                     titolo: null,
@@ -49,7 +51,7 @@ var exam_nonvalido5 = {
     
 }
 
-//exam non valido con array di tasks con id negativi
+//exam non valido con array di tasks con id negativi senza id per post
 var exam_nonvalido6 = {
                     creator: 12,
                     titolo: 'prova',
@@ -57,7 +59,7 @@ var exam_nonvalido6 = {
                     groups: [12,13,14]
     
 }
-//exam non valido con array di tasks con characters
+//exam non valido con array di tasks con characters senza id per post
 var exam_nonvalido7 = {
                     creator: 12,
                     titolo: 'prova',
@@ -65,7 +67,7 @@ var exam_nonvalido7 = {
                     groups: [12,13,14]
     
 }
-//exam non valido con array di tasks senza interi solo characters
+//exam non valido con array di tasks senza interi solo characters senza id per post
 var exam_nonvalido8 = {
                     creator: 12,
                     titolo: 'prova',
@@ -73,7 +75,7 @@ var exam_nonvalido8 = {
                     groups: [12,13,14]
     
 }
-//exam non valido con groups di tasks con id negativi
+//exam non valido con groups di tasks con id negativi senza id per post
 var exam_nonvalido9 = {
                     creator: 12,
                     titolo: 'prova',
@@ -81,7 +83,7 @@ var exam_nonvalido9 = {
                     groups: [-12,13,14]
     
 }
-//exam non valido con groups di tasks con characters
+//exam non valido con groups di tasks con characters senza id per post
 var exam_nonvalido10 = {
                     creator: 12,
                     titolo: 'prova',
@@ -89,7 +91,7 @@ var exam_nonvalido10 = {
                     groups: [12,'c',14]
     
 }
-//exam non valido con groups di tasks senza interi solo characters
+//exam non valido con groups di tasks senza interi solo characters senza id per post
 var exam_nonvalido11 = {
                     creator: 12,
                     titolo: 'prova',
@@ -98,7 +100,7 @@ var exam_nonvalido11 = {
     
 }
 
-//exam non valido con tasks vuoto
+//exam non valido con tasks vuoto senza id per post
 var exam_nonvalido12 = {
                     creator: 12,
                     titolo: 'prova',
@@ -107,7 +109,7 @@ var exam_nonvalido12 = {
     
 }
 
-//exam non valido con groups vuoto
+//exam non valido con groups vuoto senza id per post
 var exam_nonvalido13 = {
                     creator: 12,
                     titolo: 'prova',
@@ -115,6 +117,16 @@ var exam_nonvalido13 = {
                     groups: []
     
 }
+
+var exam_valido2 = {
+                examid: 2,
+                titolo: 'prova',
+                creator: 1,
+                tasks: [ 0, 1 ],
+                groups: [ 4, 6, 8 ]
+}
+
+//TEST SULLA POST 
 
 // TASK VALIDI
 
@@ -203,4 +215,35 @@ test('exam non valido con tasks vuoto', () => {
 test('exam non valido con groups vuoto', () => {
 	expect(post_exams(exam_nonvalido13, 1)).toEqual('errore');
 });
+
+//TEST SULLA get_exams_by_id
+
+//TEST VALIDI 
+/*
+test('Get di un esame da un id valido ', () => {
+	//var i = tasks.i
+	expect(get_exams_by_id(2)).toEqual(exam_valido2);
+});
+*/
+//TEST NON VALIDI 
+/*
+test('Get di un esame da un id char ', () => {
+	//var i = tasks.i
+	expect(get_exams_by_id('c')).toEqual('errore');
+});
+
+test('Get di un esame da un id negativo ', () => {
+	//var i = tasks.i
+	expect(get_exams_by_id(-2)).toEqual('errore');
+});
+
+test('Get di un esame da un id null ', () => {
+	//var i = tasks.i
+	expect(get_exams_by_id(null)).toEqual('errore');
+});
+
+test('Get di un esame da un id con troppi parametri ', () => {
+	//var i = tasks.i
+	expect(get_exams_by_id(2,3)).toEqual('errore');
+});*/
 
