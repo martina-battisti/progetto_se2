@@ -1,5 +1,7 @@
 const get_answers = require('./answers').answers_get
 const post_answers = require('./answers').answers_post
+const get_id_answers = require('./answers').get_id
+var risorse = require('./risorse')
 
 var answer_valido1 = {taskid: 1, 
 	userid:1 ,
@@ -101,11 +103,17 @@ test('Restituisce quello che passo correttamente', () => {
 test('Crea nuova task con parametro passato', () => {
 	//var i = answers.i
 	expect(post_answers(answer_valido1,1)).toEqual({answerid: 1, taskid: answer_valido1.taskid, userid: answer_valido1.userid, risposta: answer_valido1.risposta, tempo: answer_valido1.tempo});
-
 });
 
+test('Get answer con id correttamente', () => {
+	expect(get_id_answers(1)).toEqual(risorse.answers[0]);
+});
 
 //TESTS NON VALIDI
+
+test('Get answer con id inesistente', () => {
+	expect(get_id_answers(999999)).toEqual('errore');
+});
 
 test('answerid mancante (solo primo parametro)', () => {
 	expect(post_answers(answer_valido1)).toEqual('errore');

@@ -8,6 +8,7 @@ const post_groups = require('./groups').post_groups
 const get_users = require('./users').users_get
 const post_users = require('./users').users_post
 const get_answers = require('./answers').answers_get
+const get_id_answers = require('./answers').get_id
 const post_answers = require('./answers').answers_post
 const get_exams = require('./exams').get_exams
 const post_exams = require('./exams').post_exams
@@ -158,28 +159,46 @@ app.post('/groups', (req, res) => {
 
 // ------- ANSWERS
 
-var answers = [{answerid: 1, taskid: 1, user: users[0], risposta: 'Prima risposta', tempo: '2018-01-30T17:12:47'},
-			   {answerid: 2, taskid: 2, user: users[0], risposta: 'Seconda risposta', tempo: '2018-02-30T17:12:47'}];
+
 i_answers = 2;
 
 app.get('/answers', (req, res) => {
-	res.send(get_answers(answers));
+	res.send(get_answers(risorse.answers));
 })
 
 app.post('/answers', (req, res) => {
 	i_answers += 1;
 	var new_answer = post_answers(req.body,i_answers); //body è la variabile che setto nel client.js
 	if(new_answer!='errore'){
-		answers.push(new_answer)
+		risorse.answers.push(new_answer)
 		res.status(201)
 		res.json(new_answer)
 	}
 	else {
 		res.status(400)
 		res.end();
-}
-	
+}	
 })
+
+app.get('/answers/:answerid', (req,res) => {
+	const id = Number.parseInt(req.params.answerid);
+	if(!id){
+        res.status(400)
+		res.send('errore')
+		res.end();
+    }
+	var answer = get_id_answers(id);
+    if(answer!='errore'){
+        //var tjson = JSON.parse(JSON.stringify(task));
+		res.json(answer)
+        res.status(200)
+		//res.send(tjson);
+    }else{
+		res.status(404);
+		res.send('errore');
+		res.end();
+    }
+});
 
 // -------- END ANSWERS
 

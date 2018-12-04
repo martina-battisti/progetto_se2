@@ -1,7 +1,7 @@
 var bodyParser = require('body-parser')
 const express = require('express')
 const app = express()
-
+var risorse = require('./risorse')
 app.use(bodyParser.json() )
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -34,5 +34,15 @@ var answers_post = (body,i) => {
 		return(new_answer)
 	}	
 }
+
+var get_id = (id) => {
+	for(let i=0;i<risorse.answers.length;i++) {
+		//console.log(risorse.tasks[i].taskid)
+		if(risorse.answers[i].answerid==id) {
+			return(risorse.answers[i])
+		}
+	}
+	return('errore');
+}
 	
-module.exports={answers_get,answers_post}
+module.exports={answers_get,answers_post,get_id}

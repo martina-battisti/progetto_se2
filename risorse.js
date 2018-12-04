@@ -7,4 +7,9 @@ var aperta = {domanda: 'Prima domanda aperta', risposta: 'Prima risposta'}
 var tasks = [{taskid: 1, tipologia: checkbox},
 			 {taskid: 2, tipologia: aperta}];
 			 
+			 
+var answers = [{answerid: 1, taskid: 1, userid: 1, tempo: '2018-01-30T17:12:47'},
+			   {answerid: 2, taskid: 2, userid: 2, tempo: '2018-02-30T17:12:47'}];
+			 
 exports.tasks = tasks;
+exports.answers = answers;

@@ -139,21 +139,21 @@ test('works with wrong POST /tasks', () => {
     .then(r => expect(r.status).toEqual(400));
 });
 
-test('works with correct GET /tasks/:idtask', () => {
+test('works with correct GET /tasks/:taskid', () => {
 	expect.assertions(1); 
 	return fetch(url+'tasks/1')
 	//.then(r => r.json())
     .then(r => expect(r.status).toEqual(200));
 });
 
-test('works with 404 GET /tasks/:idtask', () => {
+test('works with 404 GET /tasks/:taskid', () => {
 	expect.assertions(1); 
 	return fetch(url+'tasks/999999')
 	//.then(r => r.json())
     .then(r => expect(r.status).toEqual(404));
 });
 
-test('works with 400 GET /tasks/:idtask', () => {
+test('works with 400 GET /tasks/:taskid', () => {
 	expect.assertions(1); 
 	return fetch(url+'tasks/a')
 	//.then(r => r.json())
@@ -270,6 +270,26 @@ test('works with wrong POST /answers', () => {
     .then(r => expect(r.status).toEqual(400));
 });
 
+test('works with correct GET /answers/:answerid', () => {
+	expect.assertions(1); 
+	return fetch(url+'answers/1')
+	//.then(r => r.json())
+    .then(r => expect(r.status).toEqual(200));
+});
+
+test('works with 404 GET /answers/:answerid', () => {
+	expect.assertions(1); 
+	return fetch(url+'answers/999999')
+	//.then(r => r.json())
+    .then(r => expect(r.status).toEqual(404));
+});
+
+test('works with 400 GET /answers/:answerid', () => {
+	expect.assertions(1); 
+	return fetch(url+'answers/a')
+	//.then(r => r.json())
+    .then(r => expect(r.status).toEqual(400));
+});
 
 // ------- END ANSWERS
 
