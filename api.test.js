@@ -23,6 +23,12 @@ var user_nonvalido3 = 	{	"username": "usernamev1",
 						   	"matricola": 132465
 						};
 
+var user_nonvalido4 = 	{	"username": "usernamev1",
+						   	"nome": "firstname1",
+						   	"cognome": "lastname1",
+						   	"matricola": 1324
+						};
+
 var user_valido1 = 	{"username": "usernamev1",
 					 "nome": "firstname1",
 					 "cognome": "lastname1",
@@ -175,6 +181,30 @@ test('works with wrong POST /users', () => {
     })
 	//.then(r => r.json())
     .then(r => expect(r.status).toEqual(400));
+});
+
+test('works with correct PUT /users/userid', () => {
+	expect.assertions(1);
+	return fetch(url+"users/:userid", {
+		method: 'PUT',
+		body: JSON.stringify(user_valido1),
+		headers: {
+			'Content-Type': 'application/json',
+		},
+    })
+    .then(r => expect(r.status).toEqual(204));
+});
+
+test('works with wrong PUT /users/userid', () => {
+	expect.assertions(1);
+	return fetch(url+"users/:userid", {
+		method: 'PUT',
+		body: JSON.stringify(user_nonvalido4),
+		headers: {
+			'Content-Type': 'application/json',
+		},
+    })
+    .then(r => expect(r.status).toEqual(409));
 });
 
 //afterAll(() => setTimeout(() => process.exit(), 1000));

@@ -78,7 +78,7 @@ var damod = 	{"userID":7,
 				 "username":"oun1",
 				 "nome":"on1",
 				 "cognome":"oc1",
-				 "email":"oe@m.i",
+				 "email":"oe@mt.it",
 				 "matricola":123556
 				} 
 
