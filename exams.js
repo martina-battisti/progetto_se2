@@ -24,13 +24,19 @@ function post_exams(body,i){
         return('errore')
     }else if(body.tasks == false || body.tasks == null){
         //console.log('tasks non inserite')
+
         return('errore')
+        /*
     } else if(body.tasks.some((n)=> {return n<=0} )  || !body.tasks.every(Number.isInteger)){
         return('errore')
-    } else if(body.groups == false || body.groups == null){
+    }*/ else if(body.groups == false || body.groups == null){
         //console.log('groups non inseriti')
         return('errore')
-    } else if(body.groups.some((n)=> {return n<=0} )  || !body.groups.every(Number.isInteger)){
+    } /*else if(body.groups.some((n)=> {return n<=0} )  || !body.groups.every(Number.isInteger)){
+=======
+        return('errore')
+    }*/ else if(body.groups == false || body.groups == null){
+        //console.log('groups non inseriti')
         return('errore')
     } else{
         const new_exam = {examid:i, titolo:body.titolo, creator:body.creator, tasks:body.tasks, groups:body.groups};

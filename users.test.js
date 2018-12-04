@@ -64,6 +64,14 @@ var user_nonvalido6 = 	{	"username": "usernamev1",
 						   	"matricola": 132465
 						};
 
+//matricola non della giusta lunghezza
+var user_nonvalido7 = 	{	"username": "usernamev1",
+						   	"nome": "firstname1",
+						   	"cognome": "lastname1",
+						   	"email": "prova1@mail",
+						   	"matricola": 13246
+						};
+
 
 //TEST
 
@@ -113,4 +121,8 @@ test('email non valida 2', () => {
 
 test('email non valida 3', () => {
 	expect(post(2, user_nonvalido6)).toEqual('errore');
+});
+
+test('matricola non della giusta lunghezza', () => {
+	expect(post(2, user_nonvalido7)).toEqual('errore');
 });

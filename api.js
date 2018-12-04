@@ -116,31 +116,10 @@ app.post('/users', (req, res) => {
 
 // ------- GROUPS
 
-/*
-{
-  "groupid": -84588233,
-  "componenti": [
-    {
-      "username": "ipsum adipisicing",
-      "matricola": 16073017,
-      "nome": "Lorem la",
-      "cognome": "do sit quis Excepteur",
-      "email": "consequat"
-    },
-    {
-      "username": "magna anim ullamco",
-      "matricola": 65992090,
-      "nome": "velit non Ut officia exercitation",
-      "cognome": "magna nisi fugiat labore",
-      "email": "reprehenderit consequat ex"
-	}
-}
-*/
-
 var groups = [{groupid: 1,
-			   componenti: [users[0], users[1]]},
+			   componenti: [1, 2, 3]},
 			  {groupid: 2,
-			   componenti: [users[0]]}];
+			   componenti: [4, 5]}];
 var i_groups = 2;
 // console.log(groups[0].componenti[0]); //questa è la dimostrazione che c'è
 
@@ -151,10 +130,16 @@ app.get('/groups', (req, res) => {
 app.post('/groups', (req, res) => {
 	i_groups += 1;
 	var new_group = post_groups(req.body,i_groups); //body è la variabile che setto nel client.js
-	groups.push(new_group)
-	res.status(201)
-	res.json(new_group)
+    if(new_group!='errore') {
+        groups.push(new_group)
+	    res.status(201)
+        res.json(new_group)
+    } else {
+        res.status(400)
+    res.end();
+    }
 })
+
 
 // -------- END GROUPS
 
