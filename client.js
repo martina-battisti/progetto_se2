@@ -92,7 +92,7 @@ async function postBody(url, body) {
         console.log('error');
     }
 };
-
+/*
 async function get(url) {
 	console.log('\n\ngetting 2 ' + url + '\n')
     try {
@@ -104,7 +104,26 @@ async function get(url) {
     }
 };
 
+*/
+
+const get = async url => {
+    console.log('\ngetting ' + url)
+    try {
+        const response = await fetch(url, {
+            headers: {
+                'Accept' : 'application/json',
+            }
+        })
+        const json = await response.json()
+        console.log(json)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 async function get_post (url) {
+    
+    /*
 	await get(url+"users");
 	await postBody(url+"users",user_valido1);
 	await get(url+"users")
@@ -124,6 +143,10 @@ async function get_post (url) {
 	await get(url+"answers");
 	await postBody(url+"answers",{taskid: 2, user: {username: 'provaUser', nome: 'Firstname', cognome: 'Lastname', email:'prova@mail.it', matricola: 123654}, risposta: 'Prova risposta', tempo: '2018-03-30T17:12:47'});
 	await get(url+"answers");
+    */
+    await get(url+"exams/0");
+    //await get_exam_by_id(url+"exams/1");
+    
 };
 
 

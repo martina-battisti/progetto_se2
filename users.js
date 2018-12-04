@@ -10,18 +10,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 var users_get = (x) => {
 	return(x)
 }
-	
-
-	//funzione della post: crea una nuova task
-//var users_post = (x) => {
-	/*const new_name = x
-    const new_id = new_name.replace(/\s/g, '') //da sistemare perché al momento scrive "utente_prova 2" - guarda client.js
-    const new_user =  {id:new_id, user_name:new_name}
-	return(new_user)*/
-//	const new_user = x;
-	//const new_username = x.username;
-//	return(new_user);
-//}
 
 var users_post = (userid,body) => {
 	//id += 1;
@@ -46,7 +34,7 @@ var users_post = (userid,body) => {
 		return('errore')
 	}
 	else if(body.matricola.toString().length != 6) {
-		//console.log("questo non è un numero di matricola")
+
 		return('errore')
 	}
 	else if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(body.email))){
@@ -58,5 +46,36 @@ var users_post = (userid,body) => {
 		return(new_user)
 	}
 }
-	
-module.exports={users_get,users_post}
+
+var users_put = (toModify,oldUser) => {
+	/*if(arguments.length !== 2)
+		return 'errore';*/
+	if(toModify == null){
+		return('errore');
+	}else{
+		if(!toModify.nome || !toModify.cognome || !toModify.email || !toModify.matricola || oldUser.userID !== toModify.userID){
+			return 'errore';
+		}else{
+			if(toModify.username != ''){ oldUser = {userID: oldUser.userID, username: toModify.username, nome: oldUser.nome, cognome: oldUser.cognome, email: oldUser.email, matricola: oldUser.matricola} }
+			if(toModify.nome != ''){ oldUser = {userID: oldUser.userID, username: oldUser.username, nome: toModify.nome, cognome: oldUser.cognome, email: oldUser.email, matricola: oldUser.matricola} }
+			if(toModify.cognome != ''){ oldUser = {userID: oldUser.userID, username: oldUser.username, nome: oldUser.nome, cognome: toModify.cognome, email: oldUser.email, matricola: oldUser.matricola} }
+			if(toModify.email != ''){ oldUser = {userID: oldUser.userID, username: oldUser.username, nome: oldUser.nome, cognome: oldUser.cognome, email: toModify.email, matricola: oldUser.matricola} }
+			if(toModify.username != ''){ oldUser = {userID: oldUser.userID, username: oldUser.username, nome: oldUser.nome, cognome: oldUser.cognome, email: oldUser.email, matricola: toModify.matricola} }
+			
+			if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(oldUser.email))){
+				//console.log("email non valida")
+				return('errore')
+			}
+			
+			if(oldUser.matricola.toString().length != 6) {
+				//console.log("questo non è un numero di matricola")
+				return('errore')
+			}
+			
+			return(oldUser)
+			
+		}
+	}
+}
+
+module.exports={users_get,users_post,users_put}
