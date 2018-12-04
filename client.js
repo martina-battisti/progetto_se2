@@ -133,7 +133,7 @@ async function get_id(url) {
 };
 
 async function get_post (url) {
-	/*
+	
 	await get(url+"users");
 	await postBody(url+"users",user_valido1);
 	await get(url+"users");
@@ -150,9 +150,9 @@ async function get_post (url) {
 	await get(url+"exams");
     await postBody(url+"exams",exam_valido1);
 	await get(url+"exams");
-	*/
-	//await get(url+"answers");
-	//await postBody(url+"answers",answer_valido1);
+	
+	await get(url+"answers");
+	await postBody(url+"answers",answer_valido1);
 	await get(url+"answers");
 	await get_id(url+'answers/1');
 	
