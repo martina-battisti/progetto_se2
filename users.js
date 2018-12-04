@@ -80,13 +80,15 @@ var users_put = (toModify,oldUser) => {
 */
 
 var get_id = (id) => {
-	for(let i=0;i<risorse.users.get.length;i++) {
+	for(let i=0;i<risorse.users.length;i++) {
 		//console.log(risorse.users[i].userid)
-		if(risorse.users[i].userid==id) {
+		if(risorse.users[i].userID==id) {
 			return(risorse.users[i])
 		}
 	}
 	return('errore');
 }
 
-module.exports={get_users,post_users,get_id/*,users_put*/}
+
+
+module.exports={users_get,users_post,get_id/*,users_put*/}
