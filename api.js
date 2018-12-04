@@ -72,7 +72,7 @@ app.get('/tasks/:taskid', (req,res) => {
         res.status(400).end();
     }
 	var task = get_id_tasks(id);
-    if(res){
+    if(task!='Task non esistente!'){
         //var tjson = JSON.parse(JSON.stringify(task));
 		res.json(task)
         res.status(200)
@@ -83,8 +83,6 @@ app.get('/tasks/:taskid', (req,res) => {
 		res.end();
     }
 });
-
-exports.tasks = tasks;
 
 // -------- END TASKS
 
@@ -210,14 +208,15 @@ app.post('/exams',(req,res) => {
 		res.status(400)
 		res.end();
 	}
-			})
+})
 			
 // -------- END EXAMS
 
 
-module.exports = {app};
+//module.exports = {app};
 
 var server = app.listen(PORT, () => console.log('Listening on port ' + PORT))
 
 module.exports = {app};
+exports.tasks = tasks;
 module.exports = server;
