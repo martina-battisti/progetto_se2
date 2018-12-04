@@ -235,6 +235,27 @@ test('works with wrong POST /groups', () => {
     .then(r => expect(r.status).toEqual(400));
 });
 
+test('works with correct GET /groups/:groupid', () => {
+	expect.assertions(1); 
+	return fetch(url+'groups/1')
+	//.then(r => r.json())
+    .then(r => expect(r.status).toEqual(200));
+});
+
+test('works with 404 GET /groups/:groupid', () => {
+	expect.assertions(1); 
+	return fetch(url+'groups/999999')
+	//.then(r => r.json())
+    .then(r => expect(r.status).toEqual(404));
+});
+
+test('works with 400 GET /groups/:groupid', () => {
+	expect.assertions(1); 
+	return fetch(url+'groups/a')
+	//.then(r => r.json())
+    .then(r => expect(r.status).toEqual(400));
+});
+
 // ------- END GROUPS
 // ------- ANSWERS
 

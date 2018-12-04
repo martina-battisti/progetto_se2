@@ -1,5 +1,7 @@
 const get_groups = require('./groups').get_groups
 const post_groups = require('./groups').post_groups
+const get_id_groups = require('./groups').get_id
+var risorse = require('./risorse')
 
 //INPUT VALIDI
 var group_valido1 = {
@@ -57,10 +59,17 @@ test('get group corrisponde', () => {
 test('Crea nuovo group con parametri passati', () => {
 	//var i = tasks.i
 	expect(post_groups(group_valido1,1)).toEqual({groupid:1, titolo:group_valido1.titolo, componenti:group_valido1.componenti});
-	
+});
+
+test('Get group con id correttamente', () => {
+	expect(get_id_groups(1)).toEqual(risorse.groups[0]);
 });
 
 //TEST NON VALIDI
+
+test('Get group con id inesistente', () => {
+	expect(get_id_groups(999999)).toEqual('errore');
+});
 
 test('group con nessun componente', () => {
 	expect(post_groups(group_nonvalido1,1)).toEqual('errore');

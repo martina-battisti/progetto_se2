@@ -1,7 +1,7 @@
 var bodyParser = require('body-parser')
 const express = require('express')
 const app = express()
-
+var risorse = require('./risorse')
 app.use( bodyParser.json() )
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -26,5 +26,15 @@ var post_groups = (body,i) => {
 		return(new_group)
 	}
 }
+
+var get_id = (id) => {
+	for(let i=0;i<risorse.groups.length;i++) {
+		//console.log(risorse.groups[i].taskid)
+		if(risorse.groups[i].groupid==id) {
+			return(risorse.groups[i])
+		}
+	}
+	return('errore');
+}
 	
-module.exports={get_groups,post_groups}
+module.exports={get_groups,post_groups,get_id}

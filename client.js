@@ -146,6 +146,7 @@ async function get_post (url) {
 	await get(url+"groups");
 	await postBody(url+"groups",group_valido1);
 	await get(url+"groups");
+	await get_id(url+'groups/3');
 	
 	await get(url+"exams");
     await postBody(url+"exams",exam_valido1);

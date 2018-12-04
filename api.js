@@ -4,6 +4,7 @@ const get_tasks = require('./tasks').get_tasks
 const get_id_tasks = require('./tasks').get_id
 const post_tasks = require('./tasks').post_tasks
 const get_groups = require('./groups').get_groups
+const get_id_groups = require('./groups').get_id
 const post_groups = require('./groups').post_groups
 const get_users = require('./users').users_get
 const post_users = require('./users').users_post
@@ -129,22 +130,19 @@ app.post('/users', (req, res) => {
 
 // ------- GROUPS
 
-var groups = [{groupid: 1,
-			   componenti: [1, 2, 3]},
-			  {groupid: 2,
-			   componenti: [4, 5]}];
+
 var i_groups = 2;
 // console.log(groups[0].componenti[0]); //questa è la dimostrazione che c'è
 
 app.get('/groups', (req, res) => {
-	res.send(get_groups(groups));
+	res.send(get_groups(risorse.groups));
 })
 
 app.post('/groups', (req, res) => {
 	i_groups += 1;
 	var new_group = post_groups(req.body,i_groups); //body è la variabile che setto nel client.js
     if(new_group!='errore') {
-        groups.push(new_group)
+        risorse.groups.push(new_group)
 	    res.status(201)
         res.json(new_group)
     } else {
@@ -153,6 +151,25 @@ app.post('/groups', (req, res) => {
     }
 })
 
+app.get('/groups/:groupid', (req,res) => {
+	const id = Number.parseInt(req.params.groupid);
+	if(!id){
+        res.status(400)
+		res.send('errore')
+		res.end();
+    }
+	var group = get_id_groups(id);
+    if(group!='errore'){
+        //var tjson = JSON.parse(JSON.stringify(task));
+		res.json(group)
+        res.status(200)
+		//res.send(tjson);
+    }else{
+		res.status(404);
+		res.send('errore');
+		res.end();
+    }
+});
 
 // -------- END GROUPS
 
