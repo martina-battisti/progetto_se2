@@ -15,7 +15,7 @@ const get_exams_by_id = require('./exams').get_exams_by_id
 
 
 const app = express()
-const PORT = process.env.PORT || 3002
+const PORT = process.env.PORT || 8000
 app.use( bodyParser.json() )
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -112,15 +112,15 @@ app.post('/users', (req, res) => {
 
 })
 
-users.put('users/:userID', async (req, res) => {
+app.put('users/:userID', async (req, res) => {
 	const userID = Number.parseInt(req.params.userID);
 	var oldIndex = getByUserId(userID);
 	const toModify = req.body;
 	
-	if(!userID){
-		res.status(400).end();
+	if(!userID || userID == null || userID<=0){
+		res.status(404).end();
 	}else if(oldIndex == null){
-		res.status(400).end();
+		res.status(404).end();
 	}else{
 		let modified = await put_users(toModify, users[oldIndex]);
 		if(modified != 'errore'){
@@ -128,7 +128,7 @@ users.put('users/:userID', async (req, res) => {
 			res.status(204)
 			res.json(users[oldIndex])
 		}else{
-			res.status(409).end();
+			res.status(404).end();
 		}
 	}
 });

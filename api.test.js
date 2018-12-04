@@ -1,6 +1,6 @@
 const app = require('./api').app
 const fetch = require("node-fetch")
-const url = "http://localhost:3002/"
+const url = "http://localhost:8000/"
 
 
 var task_valido1 = 	{tipologia: 
@@ -183,32 +183,39 @@ test('works with wrong POST /users', () => {
     .then(r => expect(r.status).toEqual(400));
 });
 
-test('works with correct PUT /users/userid', () => {
-	expect.assertions(1);
-	return fetch(url+"users/:userid", {
+const putUser = function(id, toModify){
+	return fetch(url+"users/"+id,{
 		method: 'PUT',
-		body: JSON.stringify(user_valido1),
 		headers: {
-			'Content-Type': 'application/json',
+		 'Content-Type': 'application/json',
+		 'Accept': 'application/json'
 		},
-    })
-    .then(r => expect(r.status).toEqual(204));
+		body: JSON.stringify(toModify)
+	});
+}
+
+test('PUT user con id null', () => {
+	return putUser(null, user_valido1)
+		.then(putResponse => {expect(putResponse.status).toBe(404)});
 });
 
-test('works with wrong PUT /users/userid', () => {
-	expect.assertions(1);
-	return fetch(url+"users/:userid", {
-		method: 'PUT',
-		body: JSON.stringify(user_nonvalido4),
-		headers: {
-			'Content-Type': 'application/json',
-		},
-    })
-    .then(r => expect(r.status).toEqual(409));
+test('PUT user con id non valido', () => {
+	return putUser(-1, user_valido1)
+		.then(putResponse => {expect(putResponse.status).toBe(404)});
+});
+
+test('PUT user giusto', () => {
+	return putUser(1, user_valido1)
+		.then(putResponse => {expect(putResponse.status).toBe(204)});
+});
+
+test('PUT user con nuovi dati non validi', () => {
+	return putUser(null, user_nonvalido4)
+		.then(putResponse => {expect(putResponse.status).toBe(404)});
 });
 
 const deleteUser = function(userID){
-	return fetch(url+"users/:userid"+userID, {
+	return fetch(url+"users/"+userID, {
 	  method: 'DELETE',
 	  headers: {
 		'Accept': 'application/json'
@@ -217,7 +224,7 @@ const deleteUser = function(userID){
  };
 
 test('delete user valido',()=>{
-    return deleteUser(2)
+    return deleteUser(1)
     .then(res=>{
       expect(res.status).toBe(204);
   })

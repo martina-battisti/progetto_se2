@@ -1,7 +1,7 @@
 var https = require('http');
 const fetch = require("node-fetch");
 
-var url = "http://localhost:3002/";
+var url = "http://localhost:8000/";
 
 var task_valido1 = 	{tipologia: 
 						{domanda: 'Prima domanda radiobox?', 
