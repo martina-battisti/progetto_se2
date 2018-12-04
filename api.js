@@ -119,6 +119,8 @@ users.put('users/:userID', async (req, res) => {
 	
 	if(!userID){
 		res.status(400).end();
+	}else if(oldIndex == null){
+		res.status(400).end();
 	}else{
 		let modified = await put_users(toModify, users[oldIndex]);
 		if(modified != 'errore'){
@@ -130,6 +132,21 @@ users.put('users/:userID', async (req, res) => {
 		}
 	}
 });
+
+app.delete('users/:userID', async (req, res) => {
+	const userID = Number.parseInt(req.params.userID);
+	var userIndex = getByUserId(userID);
+	if(!userID || userID == null || userID<=0){
+		res.status(400).end();
+	}else if(userIndex == null){
+		res.status(400).end();
+	}else{
+    	users.splice(userIndex,1)
+    	console.log('\ndeleting ',req.params.id)
+    	console.log('now:',users)
+    	res.sendStatus(204) // delete, no content
+	}
+})
 
 
 // -------- END USERS

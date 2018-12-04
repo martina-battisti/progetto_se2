@@ -207,6 +207,29 @@ test('works with wrong PUT /users/userid', () => {
     .then(r => expect(r.status).toEqual(409));
 });
 
+const deleteUser = function(userID){
+	return fetch(url+"users/:userid"+userID, {
+	  method: 'DELETE',
+	  headers: {
+		'Accept': 'application/json'
+	  }
+	});
+ };
+
+test('delete user valido',()=>{
+    return deleteUser(2)
+    .then(res=>{
+      expect(res.status).toBe(204);
+  })
+});
+
+test('delete user non valido',()=>{
+    return deleteUser(-1)
+    .then(res=>{
+      expect(res.status).toBe(404);
+  })
+});
+
 //afterAll(() => setTimeout(() => process.exit(), 1000));
 
 // ------- END USERS
