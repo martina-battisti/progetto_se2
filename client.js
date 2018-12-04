@@ -48,6 +48,23 @@ var exam_nonvalido1 = {
     
 }
 
+var group_valido1 = {
+	titolo: "prova1",
+	componenti: [
+		80709944,
+		74734533,
+		89689823,
+		6293821,
+		70651806
+	  ]
+}
+
+var answer_valido1 = {taskid: 1, 
+	userid:1 ,
+	risposta: 'Prima risposta', 
+	tempo: '2018-01-30T17:12:47'
+};
+
 /*
 https.get(url, function(resp) {
 	console.log('\ngetting ' + url)
@@ -114,15 +131,15 @@ async function get_post (url) {
 	await get(url+"tasks");
 	
 	await get(url+"groups");
-	await postBody(url+"groups",{componenti: [{username: 'provaUser', nome: 'Firstname', cognome: 'Lastname', email:'prova@mail.it', matricola: 123654}]});
+	await postBody(url+"groups",group_valido1);
 	await get(url+"groups");
 	
 	await get(url+"exams");
-    await postBody(url+"exams",exam_valido1)
+    await postBody(url+"exams",exam_valido1);
 	await get(url+"exams");
 	
 	await get(url+"answers");
-	await postBody(url+"answers",{taskid: 2, user: {username: 'provaUser', nome: 'Firstname', cognome: 'Lastname', email:'prova@mail.it', matricola: 123654}, risposta: 'Prova risposta', tempo: '2018-03-30T17:12:47'});
+	await postBody(url+"answers",answer_valido1);
 	await get(url+"answers");
 };
 
