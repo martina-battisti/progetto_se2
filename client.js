@@ -128,11 +128,12 @@ async function get_id(url) {
         const json = await response.json();
         console.log(json)
     } catch (error) {
-        console.log(error);
+        console.log('error');
     }
 };
 
 async function get_post (url) {
+	
 	await get(url+"users");
 	await postBody(url+"users",user_valido1);
 	await get(url+"users");
@@ -143,16 +144,17 @@ async function get_post (url) {
 	await get_id(url+'tasks/1');
 	
 	await get(url+"groups");
-	await postBody(url+"groups",group_valido1)
+	await postBody(url+"groups",group_valido1);
 	await get(url+"groups");
 	
 	await get(url+"exams");
-    await postBody(url+"exams",exam_valido1)
+    await postBody(url+"exams",exam_valido1);
 	await get(url+"exams");
 	
 	await get(url+"answers");
 	await postBody(url+"answers",answer_valido1);
 	await get(url+"answers");
+	
 };
 
 

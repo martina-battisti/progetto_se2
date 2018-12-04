@@ -1,6 +1,7 @@
 const express = require('express')
 var bodyParser = require('body-parser')
 const get_tasks = require('./tasks').get_tasks
+const get_id_tasks = require('./tasks').get_id
 const post_tasks = require('./tasks').post_tasks
 const get_id_tasks = require('./tasks').get_id
 const get_groups = require('./groups').get_groups
@@ -11,7 +12,7 @@ const get_answers = require('./answers').answers_get
 const post_answers = require('./answers').answers_post
 const get_exams = require('./exams').get_exams
 const post_exams = require('./exams').post_exams
-
+var risorse = require('./risorse')
 const app = express()
 const PORT = process.env.PORT || 3001
 app.use( bodyParser.json() )
@@ -22,14 +23,7 @@ app.get('/', (req, res) => res.send('Hello World!'))
 
 // ------- TASKS
 
-var choice = [{choice: 'Prima scelta', selection: false},
-			  {choice: 'Seconda scelta', selection: false},
-			  {choice: 'Terza scelta', selection: false}];
-var radiobox = {domanda: 'Prima domanda radiobox?', options: choice, risposta: 'Prima risposta'};
-var checkbox = {domanda: 'Prima domanda checkbox?', options: choice, risposta: ['Prima risposta','Seconda risposta']};
-var aperta = {domanda: 'Prima domanda aperta', risposta: 'Prima risposta'}
-var tasks = [{taskid: 1, tipologia: checkbox},
-			 {taskid: 2, tipologia: aperta}];
+
 var i_tasks=2;
 /*
 app.get('/tasks', (req, res) => {
@@ -40,7 +34,7 @@ module.exports = {app};
 */
 
 app.get('/tasks', (req, res) => {
-	res.send(get_tasks(tasks));
+	res.send(get_tasks(risorse.tasks));
 })
 
 app.post('/tasks', (req, res) => {
@@ -53,7 +47,7 @@ app.post('/tasks', (req, res) => {
     tasks.push(new_task)
 	*/
 	if(new_task!='errore') {
-		tasks.push(new_task)
+		risorse.tasks.push(new_task)
 		res.status(201)
 		//console.log(new_task);
 		res.json(new_task)
@@ -69,20 +63,24 @@ app.post('/tasks', (req, res) => {
 app.get('/tasks/:taskid', (req,res) => {
 	const id = Number.parseInt(req.params.taskid);
 	if(!id){
-        res.status(400).end();
+        res.status(400)
+		res.send('errore')
+		res.end();
     }
 	var task = get_id_tasks(id);
-    if(task!='Task non esistente!'){
+    if(task!='errore'){
         //var tjson = JSON.parse(JSON.stringify(task));
 		res.json(task)
         res.status(200)
 		//res.send(tjson);
     }else{
 		res.status(404);
-		res.send(task);
+		res.send('errore');
 		res.end();
     }
 });
+
+//exports.tasks = tasks;
 
 // -------- END TASKS
 
@@ -218,5 +216,5 @@ app.post('/exams',(req,res) => {
 var server = app.listen(PORT, () => console.log('Listening on port ' + PORT))
 
 module.exports = {app};
-exports.tasks = tasks;
+//exports.tasks = tasks;
 module.exports = server;

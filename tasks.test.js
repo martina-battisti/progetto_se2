@@ -1,5 +1,7 @@
 const get_tasks = require('./tasks').get_tasks
 const post_tasks = require('./tasks').post_tasks
+const get_id_tasks = require('./tasks').get_id
+var risorse = require('./risorse')
 //var tasks = require('./tasks')
 
 
@@ -48,7 +50,7 @@ var task_nonvalido5 =	{domanda: 'a',
 					
 //VALIDI
 					
-test('Restituisce quello che passo correttamente', () => {
+test('Get tasks correttamente', () => {
 	expect(get_tasks('a')).toBe('a');
 });
 
@@ -59,8 +61,15 @@ test('Crea nuova task con parametro passato', () => {
 	expect(post_tasks(task_valido3,3)).toEqual({taskid: 3, tipologia: task_valido3.tipologia});	
 });
 
+test('Get task con id correttamente', () => {
+	expect(get_id_tasks(1)).toEqual(risorse.tasks[0]);
+});
 
 //NON VALIDI
+
+test('Get task con id inesistente', () => {
+	expect(get_id_tasks(999999)).toEqual('errore');
+});
 
 test('taskid mancante (solo primo parametro)', () => {
 	expect(post_tasks(task_valido1)).toEqual('errore');
