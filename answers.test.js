@@ -69,26 +69,33 @@ var answer_nonvalido11 = {taskid: 1,
 };
 
 var answer_nonvalido12 = {taskid: 1, 
+	userid: null ,
+	risposta: 'Prima risposta',
+	tempo: '2018-01-30T17:12:47'
+};
+
+var answer_nonvalido13 = {taskid: 1, 
 	userid:1 , 
 	tempo: '2018-01-30T17:12:47'
 };						
 
-var answer_nonvalido13 =	{taskid: 1, 
+var answer_nonvalido14 =	{taskid: 1, 
 	userid:1 ,
 	risposta: '', 
 	tempo: '2018-01-30T17:12:47'
 };
 
-var answer_nonvalido14 = {taskid: 1, 
+var answer_nonvalido15 = {taskid: 1, 
 	userid:1 ,
 	risposta: 'Prima risposta'
 };
 
-var answer_nonvalido15 = {taskid: 1, 
+var answer_nonvalido16 = {taskid: 1, 
 	userid:1 ,
 	risposta: 'Prima risposta',
 	tempo: ''
 };
+
 
 
 
@@ -159,20 +166,24 @@ test('answer con userid reale', () => {
 	expect(post_answers(answer_nonvalido11,1)).toEqual('errore');
 });
 
-test('answer con risposta assente', () => {
+test('answer con userid null', () => {
 	expect(post_answers(answer_nonvalido12,1)).toEqual('errore');
 });
 
-test('answer con risposta vuota', () => {
+test('answer con risposta assente', () => {
 	expect(post_answers(answer_nonvalido13,1)).toEqual('errore');
 });
 
-test('answer con tempo assente', () => {
+test('answer con risposta vuota', () => {
 	expect(post_answers(answer_nonvalido14,1)).toEqual('errore');
 });
 
-test('answer con tempo vuoto', () => {
+test('answer con tempo assente', () => {
 	expect(post_answers(answer_nonvalido15,1)).toEqual('errore');
+});
+
+test('answer con tempo vuoto', () => {
+	expect(post_answers(answer_nonvalido16,1)).toEqual('errore');
 });
 
 test('answer con i passato NaN', () => {
