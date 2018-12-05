@@ -1,6 +1,8 @@
 const get_exams = require('./exams').get_exams
 const post_exams = require('./exams').post_exams
 //const get_exams_by_id = require ('./exams').get_exams_by_id
+var risorse = require('./risorse')
+const get_id_exams = require('./exams').get_id
 
 //exam valido senza id per post
 var exam_valido1 = {
@@ -137,11 +139,17 @@ test('Restituisce quello che passo correttamente', () => {
 test('Crea nuovo exams con parametri passati', () => {
 	//var i = tasks.i
 	expect(post_exams(exam_valido1,1)).toEqual({examid:1, titolo:exam_valido1.titolo, creator:exam_valido1.creator, tasks:exam_valido1.tasks, groups:exam_valido1.groups });
-	
 });
 
+test('Get exam con id correttamente', () => {
+	expect(get_id_exams(1)).toEqual(risorse.exams[0]);
+});
 
 //TASK NON VALIDI
+
+test('Get exam con id inesistente', () => {
+	expect(get_id_exams(999999)).toEqual('errore');
+});
 
 test('exam non inserito', () => {
 	expect(post_exams(exam_nonvalido1,1)).toEqual('errore');

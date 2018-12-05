@@ -152,16 +152,13 @@ async function get_post (url) {
 	await get(url+"exams");
     await postBody(url+"exams",exam_valido1);
 	await get(url+"exams");
-	
+	await get_id(url+'exams/1');
+
 	await get(url+"answers");
 	await postBody(url+"answers",answer_valido1);
 	await get(url+"answers");
 	await get_id(url+'answers/1');
-
-    await get(url+"exams");
-	await postBody(url+"exams",exam_valido1);
-	await get(url+"exams")
-	await get_id(url+'exams/1');
+	
 };
 
 

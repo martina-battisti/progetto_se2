@@ -14,9 +14,9 @@ const get_answers = require('./answers').answers_get
 const get_id_answers = require('./answers').get_id
 const post_answers = require('./answers').answers_post
 const get_exams = require('./exams').get_exams
+const get_id_exams = require('./exams').get_id
 const post_exams = require('./exams').post_exams
 var risorse = require('./risorse')
-const get_id_exams = require('./exams').get_id
 
 const app = express()
 const PORT = process.env.PORT || 8000
