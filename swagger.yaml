@@ -657,7 +657,7 @@ definitions:
         type: string
     required:
       - domanda
-      - choices
+      - options
 
   Checkbox:
     title: Checkbox
@@ -675,7 +675,7 @@ definitions:
           type: string
     required:
       - domanda
-      - choices
+      - options
 
   Choice:
     title: Choice
